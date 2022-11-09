@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../controllers/navigation_controller.dart';
+import '../../controllers/navigation_controller.dart';
 
 class NavigationView extends StatefulWidget {
   const NavigationView({Key? key}) : super(key: key);
@@ -21,12 +21,14 @@ class _NavigationViewState extends State<NavigationView> with NavigationControll
   Widget build(BuildContext context) {
 
     // Set to true for layout debugging
-    debugPaintSizeEnabled = false;
+    debugPaintSizeEnabled = true;
 
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: routes
+      body: SafeArea(
+        child: IndexedStack(
+          index: currentIndex,
+          children: routes
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

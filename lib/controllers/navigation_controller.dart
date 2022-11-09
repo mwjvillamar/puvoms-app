@@ -1,8 +1,8 @@
-import 'package:puvoms/views/account_view.dart';
-import 'package:puvoms/views/geolocation_view.dart';
-import 'package:puvoms/views/inbox_view.dart';
-import 'package:puvoms/views/queue_view.dart';
-import 'package:puvoms/views/tally_view.dart';
+import 'package:puvoms/views/pages/account_view.dart';
+import 'package:puvoms/views/pages/geolocation_view.dart';
+import 'package:puvoms/views/pages/inbox_view.dart';
+import 'package:puvoms/views/pages/queue_view.dart';
+import 'package:puvoms/views/pages/tally_view.dart';
 
 class NavigationController {
 

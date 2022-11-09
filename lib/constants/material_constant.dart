@@ -10,6 +10,10 @@ extension Screen on BuildContext {
   double get mainHP => screenHeight * 0.050;
   // MAIN Width Padding
   double get mainWP => screenWidth * 0.050;
+  // SECONDARY Height Padding
+  double get secondaryHP => screenWidth * 0.025;
+  // SECONDARY Width Padding
+  double get secondaryWP => mainWP * 0.025;
 }
 
 // TODO: Polish -> app theme
