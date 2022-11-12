@@ -20,11 +20,10 @@ class _AccountViewState extends State<AccountView> {
 
     // TODO: implement build
 
-    return Container(
-      child: const Center(
-        child: Text(
-          'Account page'
-        )
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text('Account'),
       ),
     );
   }

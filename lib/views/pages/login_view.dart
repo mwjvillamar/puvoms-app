@@ -5,6 +5,7 @@ import 'package:puvoms/views/widgets/custom_button_widget.dart';
 import 'package:puvoms/views/widgets/custom_label_widget.dart';
 import 'package:puvoms/views/widgets/custom_textbutton_widget.dart';
 import 'package:puvoms/views/widgets/custom_textfield_widget.dart';
+import 'package:puvoms/services/auth.dart';
 
 // WIDGET
 class LoginView extends StatefulWidget {
@@ -25,7 +26,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-
+   
+    
     // TODO: Polish -> texts, textfields & button styles
 
     // Set to true for layout debugging
@@ -85,8 +87,8 @@ class _LoginViewState extends State<LoginView> {
                           const CustomTextField(hint: "Enter your password", icon: Icons.arrow_right_alt),
                           const CustomTextButton(prompt: "Don't have an account yet?", text: "Register Here"),
                           SizedBox(height: context.mainHP),
-                          const CustomButton(text: "Login"),
-                          const CustomButton(text: "Continue as Guest"),
+                          CustomButton(text: "Login"),
+                          CustomButton(text: "Continue as Guest"),
                         ]
                     ),
                   )

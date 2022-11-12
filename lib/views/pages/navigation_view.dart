@@ -21,7 +21,7 @@ class _NavigationViewState extends State<NavigationView> with NavigationControll
   Widget build(BuildContext context) {
 
     // Set to true for layout debugging
-    debugPaintSizeEnabled = true;
+    debugPaintSizeEnabled = false;
 
     return Scaffold(
       body: SafeArea(

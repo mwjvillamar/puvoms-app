@@ -93,7 +93,7 @@ class _RegisterViewState extends State<RegisterView> {
                           const CustomTextField(hint: "Confirm your password", icon: Icons.arrow_right_alt),
                           const CustomTextButton(prompt: "Already have an account?", text: "Login Here"),
                           SizedBox(height: context.mainHP),
-                          const CustomButton(text: "Register")
+                          CustomButton(text: "Register")
                       ],
                     ),
                   ),

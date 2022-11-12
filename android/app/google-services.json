@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "25530366918",
+    "project_id": "puvoms---3t",
+    "storage_bucket": "puvoms---3t.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25530366918:android:aacb50f222e2f519b490c7",
+        "android_client_info": {
+          "package_name": "com.capstone.puvoms.puvoms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25530366918-bilacriegf8rnvcdm96gdirg5trmve2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdG5EMc3xsTEPUl3Tx4Sg7grDTdGthcbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25530366918-bilacriegf8rnvcdm96gdirg5trmve2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
