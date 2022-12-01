@@ -23,7 +23,18 @@ class CustomTextButton extends StatelessWidget {
                   style: const TextStyle(fontSize: 16)
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if(key == const ValueKey("redirectToLogin")) {
+                      // TODO: Implement onPressed method
+                    }
+                    else if(key == const ValueKey("redirectToRegister")) {
+                      // TODO: Implement onPressed method
+                    }
+                    else
+                    {
+                      // TODO: Implement onPressed method
+                    }
+                  },
                   child: Text(
                       text,
                       style: const TextStyle(fontSize: 16)

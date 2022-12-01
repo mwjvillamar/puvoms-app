@@ -25,14 +25,26 @@ class CustomButton extends StatelessWidget {
             )
         ),
         onPressed: () async {
-          debugPrint("Test Press");
-          //calling anonymous sign-in method
-          dynamic result = await _auth.signInAnon();
-          if(result == null) {
-            debugPrint('Error Signing In');
-          } else {
-            debugPrint('Signed In');
-            debugPrint(result.uid.toString());
+          if(key == const ValueKey("login")) {
+            // TODO: Implement onPressed method
+          }
+          else if(key == const ValueKey("guest")) {
+            // debugPrint("Test Press");
+            // //calling anonymous sign-in method
+            // dynamic result = await _auth.signInAnon();
+            // if(result == null) {
+            //   debugPrint('Error Signing In');
+            // } else {
+            //   debugPrint('Signed In');
+            //   debugPrint(result.uid.toString());
+            // }
+          }
+          else if(key == const ValueKey("logout")) {
+            // TODO: Implement onPressed method
+          }
+          else
+          {
+            // TODO: Implement onPressed method
           }
         },
         child: Text(

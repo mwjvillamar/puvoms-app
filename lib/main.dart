@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
         catchError: (_, __) => null,
         value: AuthService().user, 
         initialData: null, 
-        child:MaterialApp(
+        child: MaterialApp(
           title: 'PUVOMS-T3',
-          initialRoute: '/login-router',
+          initialRoute: '/navigation',
           routes:{
             '/': (context) => const LoadView(),
             //LoginRouter = LandingPage, checks whether Login or Register

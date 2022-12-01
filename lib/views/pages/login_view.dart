@@ -26,7 +26,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-   
+
     
     // TODO: Polish -> texts, textfields & button styles
 
@@ -85,10 +85,10 @@ class _LoginViewState extends State<LoginView> {
                           const CustomTextField(hint: "Enter your username", icon: Icons.arrow_right_alt),
                           const CustomLabel(icon: Icons.key, text: ' Password'),
                           const CustomTextField(hint: "Enter your password", icon: Icons.arrow_right_alt),
-                          const CustomTextButton(prompt: "Don't have an account yet?", text: "Register Here"),
+                          const CustomTextButton(key: ValueKey("redirectToRegister"), prompt: "Don't have an account yet?", text: "Register Here"),
                           SizedBox(height: context.mainHP),
-                          CustomButton(text: "Login"),
-                          CustomButton(text: "Continue as Guest"),
+                          CustomButton(key: const ValueKey("login"), text: "Login"),
+                          CustomButton(key: const ValueKey("guest"), text: "Continue as Guest"),
                         ]
                     ),
                   )

@@ -91,7 +91,7 @@ class _RegisterViewState extends State<RegisterView> {
                           const CustomTextField(hint: "Enter your password", icon: Icons.arrow_right_alt),
                           const CustomLabel(icon: Icons.password, text: " Confirm Password"),
                           const CustomTextField(hint: "Confirm your password", icon: Icons.arrow_right_alt),
-                          const CustomTextButton(prompt: "Already have an account?", text: "Login Here"),
+                          const CustomTextButton(key: ValueKey("redirectToLogin"), prompt: "Already have an account?", text: "Login Here"),
                           SizedBox(height: context.mainHP),
                           CustomButton(text: "Register")
                       ],
