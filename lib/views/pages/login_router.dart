@@ -13,7 +13,7 @@ class LoginRouter extends StatelessWidget {
     //Accessing the user data from the Provider.
     //null safety and shit...
     final user = Provider.of<UserObject?>(context);
-    debugPrint(user.toString());
+    debugPrint("Provider Said: $user");
     
     //returns either the Home or Authenticate Widget
     if (user == null) {

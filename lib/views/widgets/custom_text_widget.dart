@@ -1,0 +1,33 @@
+import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
+
+class CustomText extends StatelessWidget {
+  
+  final String? text;
+  
+  final Color? color;
+  
+  final double? size;
+  
+  const CustomText({
+    Key? key,
+    
+    this.text,
+    this.color,
+    this.size,
+   
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text!,
+      style: TextStyle(
+        color: color!,
+        fontSize: size!
+      ),
+    );
+  }
+}

@@ -5,7 +5,7 @@ import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/views/pages/account_view.dart';
 import 'package:puvoms/views/pages/geolocation_view.dart';
 import 'package:puvoms/views/pages/inbox_view.dart';
-import 'package:puvoms/views/pages/load_view.dart';
+import 'package:puvoms/shared/load_view.dart';
 import 'package:puvoms/views/pages/login_view.dart';
 import 'package:puvoms/views/pages/navigation_view.dart';
 import 'package:puvoms/views/pages/queue_view.dart';
@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
         value: AuthService().user, 
         initialData: null, 
         child:MaterialApp(
-          title: 'PUVOMS-T3',
+          title: 'PUVOMS-3T',
           initialRoute: '/login-router',
           routes:{
             '/': (context) => const LoadView(),
-            //LoginRouter = LandingPage, checks whether Login or Register
+            //LoginRouter = LandingPage, checks whether Login or Home
             '/login-router': (context) => const LoginRouter(),
             '/login': (context) => const LoginView(),
             //NavigationView = HomeView
