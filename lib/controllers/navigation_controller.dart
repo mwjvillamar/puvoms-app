@@ -8,28 +8,28 @@ import 'package:puvoms/views/pages/tally_view.dart';
 class NavigationController extends StatelessWidget {
 
   final GlobalKey<NavigatorState> navigatorKey;
-  final String page;
+  final String tab;
 
-  const NavigationController({Key? key, required this.navigatorKey, required this.page}) : super(key: key);
+  const NavigationController({Key? key, required this.navigatorKey, required this.tab}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     Widget child = const GeolocationView();
 
-    if(page == "geolocation") {
+    if(tab == "geolocation") {
       child = const GeolocationView();
     }
-    else if(page == "tally") {
+    else if(tab == "tally") {
       child = const TallyView();
     }
-    else if(page == "queue") {
+    else if(tab == "queue") {
       child = const QueueView();
     }
-    else if(page == "inbox") {
+    else if(tab == "inbox") {
       child = const InboxView();
     }
-    else if(page == "account") {
+    else if(tab == "account") {
       child = const AccountView();
     }
 

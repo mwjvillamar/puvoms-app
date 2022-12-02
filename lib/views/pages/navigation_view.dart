@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import '../../controllers/navigation_controller.dart';
 
 class NavigationView extends StatefulWidget {
@@ -12,10 +13,12 @@ class NavigationView extends StatefulWidget {
 
 class _NavigationViewState extends State<NavigationView>{
 
-  String currentPage = "geolocation";
+  DateTime backPressedTime = DateTime.now();
+
+  String currentTab = "geolocation";
   int currentIndex = 0;
 
-  final List<String> pageList = [
+  final List<String> tabList = [
     "geolocation",
     "tally",
     "queue",
@@ -23,7 +26,7 @@ class _NavigationViewState extends State<NavigationView>{
     "account"
   ];
 
-  final Map<String, GlobalKey<NavigatorState>> pageKeys = {
+  final Map<String, GlobalKey<NavigatorState>> tabKeys = {
     "geolocation": GlobalKey<NavigatorState>(),
     "tally": GlobalKey<NavigatorState>(),
     "queue": GlobalKey<NavigatorState>(),
@@ -31,23 +34,23 @@ class _NavigationViewState extends State<NavigationView>{
     "account": GlobalKey<NavigatorState>(),
   };
 
-  void selectPage(String page, int index) {
-    if(page == currentPage) {
-      pageKeys[page]!.currentState!.popUntil((route) => route.isFirst);
+  void selectPage(String tab, int index) {
+    if(tab == currentTab) {
+      tabKeys[tab]!.currentState!.popUntil((route) => route.isFirst);
     } else {
       setState(() {
-        currentPage = page;
+        currentTab = tab;
         currentIndex = index;
       });
     }
   }
 
-  Widget buildOffstageNavigator(String page) {
+  Widget buildOffstageNavigator(String tab) {
     return Offstage(
-      offstage: currentPage != page,
+      offstage: currentTab != tab,
       child: NavigationController(
-        navigatorKey: pageKeys[page]!,
-        page: page,
+        navigatorKey: tabKeys[tab]!,
+        tab: tab,
       ),
     );
   }
@@ -66,12 +69,34 @@ class _NavigationViewState extends State<NavigationView>{
 
     return WillPopScope(
       onWillPop: () async {
-        final isFirstRouteInCurrentTab = !await pageKeys[currentPage]!.currentState!.maybePop();
+        // bool value to check if currently in first page of navigator stack
+        final isFirstRouteInCurrentTab = !await tabKeys[currentTab]!.currentState!.maybePop();
 
-        if (isFirstRouteInCurrentTab) {
-          if (currentPage != "geolocation") {
+        // if on first page of navigator stack
+        if (isFirstRouteInCurrentTab == true) {
+          // check if currently not geolocation (default) tab
+          if (currentTab != "geolocation") {
+            // redirect to geolocation (default) tab
             selectPage("geolocation", 0);
+            // retain app
             return false;
+          }
+          // if already on geolocation (default) tab
+          else if (currentTab == "geolocation") {
+            // get difference of backPressedTime minus present time
+            final difference = DateTime.now().difference(backPressedTime);
+            // re-set backPressedTime to present time
+            backPressedTime = DateTime.now();
+            // if frequency of press is faster than or equal to 1 second
+            if (difference <= const Duration(seconds: 1)) {
+              // exit app
+              return true;
+            }
+            // else
+            else {
+              // retain app
+              return false;
+            }
           }
         }
 
@@ -91,7 +116,7 @@ class _NavigationViewState extends State<NavigationView>{
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: currentIndex,
-            onTap: (index) => selectPage(pageList[index], index),
+            onTap: (index) => selectPage(tabList[index], index),
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.location_pin),
