@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:puvoms/services/database.dart';
 
 class QueueView extends StatefulWidget {
   const QueueView({Key? key}) : super(key: key);
@@ -8,6 +10,8 @@ class QueueView extends StatefulWidget {
 }
 
 class _QueueViewState extends State<QueueView> {
+  
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -20,10 +24,24 @@ class _QueueViewState extends State<QueueView> {
 
     // TODO: implement build
 
-    return const Center(
+    return Scaffold(
+      body: const Center(
       child: Text(
-          'Queue page'
+          "Queue Page",
+          style: TextStyle(
+          fontSize: 30.0,
+          letterSpacing: 2.0,
+          color: Colors.black45,
+          ),
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          //Function
+          
+        },
+      child: const Text('+'),
+    ),
     );
   }
 }
