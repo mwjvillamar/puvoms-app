@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/views/pages/register_view.dart';
+import 'package:puvoms/shared/register_view.dart';
 import 'package:puvoms/services/auth.dart';
 
 class CustomTextButton extends StatelessWidget{

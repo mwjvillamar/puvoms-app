@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:puvoms/constants/material_constant.dart';
+import 'package:puvoms/widgets/custom_carditem_widget.dart';
 
 class QueueView extends StatefulWidget {
   const QueueView({Key? key}) : super(key: key);
@@ -18,12 +21,12 @@ class _QueueViewState extends State<QueueView> {
   @override
   Widget build(BuildContext context) {
 
+    //debugPaintSizeEnabled = true;
+
     // TODO: implement build
 
-    return const Center(
-      child: Text(
-          'Queue page'
-      ),
+    return Center(
+      child: Text("DRIVER Queue Page")
     );
   }
 }

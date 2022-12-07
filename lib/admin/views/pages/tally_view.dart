@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/constants/material_constant.dart';
-import 'package:puvoms/views/widgets/custom_cardbutton_widget.dart';
+import 'package:puvoms/widgets/custom_cardbutton_widget.dart';
 
 class TallyView extends StatefulWidget {
   const TallyView({Key? key}) : super(key: key);
@@ -82,7 +82,7 @@ class _TallyViewState extends State<TallyView> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Flexible(
+                    Expanded(
                       flex: 1,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -92,7 +92,7 @@ class _TallyViewState extends State<TallyView> {
                           ]
                       ),
                     ),
-                    Flexible(
+                    Expanded(
                       flex: 1,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,

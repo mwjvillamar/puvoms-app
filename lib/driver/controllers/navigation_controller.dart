@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/views/pages/account_view.dart';
-import 'package:puvoms/views/pages/geolocation_view.dart';
-import 'package:puvoms/views/pages/inbox_view.dart';
-import 'package:puvoms/views/pages/queue_view.dart';
-import 'package:puvoms/views/pages/tally_view.dart';
+import 'package:puvoms/driver/views/pages/account_view.dart';
+import 'package:puvoms/driver/views/pages/inbox_view.dart';
+import 'package:puvoms/driver/views/pages/geolocation_view.dart';
+import 'package:puvoms/driver/views/pages/queue_view.dart';
+import 'package:puvoms/driver/views/pages/tally_view.dart';
 
 class NavigationController extends StatelessWidget {
 

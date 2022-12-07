@@ -3,11 +3,11 @@ import 'package:flutter/rendering.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/shared/load_view.dart';
-import 'package:puvoms/views/widgets/custom_label_widget.dart';
-import 'package:puvoms/views/widgets/custom_text_widget.dart';
-import 'package:puvoms/views/widgets/custom_textbutton_widget.dart';
-import 'package:puvoms/views/widgets/custom_textformfield_widget.dart';
-import '../widgets/custom_button_widget.dart';
+import 'package:puvoms/widgets/custom_label_widget.dart';
+import 'package:puvoms/widgets/custom_text_widget.dart';
+import 'package:puvoms/widgets/custom_textbutton_widget.dart';
+import 'package:puvoms/widgets/custom_button_widget.dart';
+import 'package:puvoms/widgets/custom_textformfield_widget.dart';
 
 class RegisterView extends StatefulWidget {
   

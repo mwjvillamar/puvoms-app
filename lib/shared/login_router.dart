@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/models/user_model.dart';
-import 'package:puvoms/views/pages/authenticate.dart';
-import 'package:puvoms/views/pages/navigation_view.dart';
+import 'package:puvoms/shared/authenticate.dart';
+import 'package:puvoms/admin/views/pages/navigation_view.dart';
 
 class LoginRouter extends StatelessWidget {
   const LoginRouter({super.key});

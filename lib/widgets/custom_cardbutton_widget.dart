@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/views/pages/calendar_view.dart';
-import 'package:puvoms/views/pages/driver_view.dart';
-import 'package:puvoms/views/pages/payment_view.dart';
-import 'package:puvoms/views/pages/summary_view.dart';
+import 'package:puvoms/admin/views/pages/driver_view.dart';
+import 'package:puvoms/admin/views/pages/summary_view.dart';
+import 'package:puvoms/admin/views/pages/calendar_view.dart';
+import 'package:puvoms/admin/views/pages/payment_view.dart';
 
 class CustomCardButton extends StatelessWidget {
 
