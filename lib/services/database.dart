@@ -87,5 +87,4 @@ class DatabaseService {
     .map(_userDataFromSnapshot);
   }
   
-  
 }
