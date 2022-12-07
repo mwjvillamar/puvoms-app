@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:puvoms/models/user_model.dart';
+import 'package:puvoms/services/database.dart';
 
 class AuthService {
   
@@ -56,6 +57,10 @@ class AuthService {
     try{
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user!;
+      
+      //Create a document for the user with the UID
+      await DatabaseService(uid: user.uid).updateUserData('1111', 'Dwight Nowards', 'No Status', 15);
+      
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e){
       debugPrint(e.toString());

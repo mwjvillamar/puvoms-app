@@ -191,12 +191,11 @@ class _LoginViewState extends State<LoginView> {
                               });
                             }),
                           ),
-                          CustomButton(text: "Continue as Guest", key: const ValueKey("guest")),
+                          CustomButton(
+                            text: "Continue as Guest", 
+                            key: const ValueKey("guest")
+                          ),
                           const SizedBox(height: 12.0,),
-                          // Text(
-                          //   error,
-                          //   style: const TextStyle(color: Colors.red, fontSize: 14),
-                          // ),
                           CustomText(
                             text: error,
                             color: Colors.red,

@@ -32,14 +32,12 @@ class MyApp extends StatelessWidget {
         value: AuthService().user, 
         initialData: null, 
         child:MaterialApp(
-          title: 'PUVOMS-3T',
+          title: 'PUVOMS-T3',
           initialRoute: '/login-router',
           routes:{
             '/': (context) => const LoadView(),
-            //LoginRouter = LandingPage, checks whether Login or Home
             '/login-router': (context) => const LoginRouter(),
             '/login': (context) => const LoginView(),
-            //NavigationView = HomeView
             '/navigation': (context) => const NavigationView(),
             '/geolocation': (context) => const GeolocationView(),
             '/tally': (context) => const TallyView(),
@@ -51,26 +49,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//Rewrote main class to be available with async/await
-//Fat Arrow Async await doesn't work...
-//Waiting for further revisions
-
-// void main() async => 
- 
-//     WidgetsFlutterBinding.ensureInitialized();
-//     await Firebase.initializeApp();
-   
-//     runApp(MaterialApp(title: 'PUVOMS-3T', 
-//     initialRoute: '/wrapper', 
-//     routes: {
-//       '/': (context) => const LoadView(),
-//       '/wrapper': (context) => const Wrapper(),
-//       '/login': (context) => const LoginView(),
-//       '/navigation': (context) => const NavigationView(),
-//       '/geolocation': (context) => const GeolocationView(),
-//       '/tally': (context) => const TallyView(),
-//       '/queue': (context) => const QueueView(),
-//       '/inbox': (context) => const InboxView(),
-//       '/account': (context) => const AccountView()
-//     }));
