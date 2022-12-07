@@ -22,7 +22,7 @@ class _QueueViewState extends State<QueueView> {
 
     return const Center(
       child: Text(
-          'Queue page'
+          'DRIVER Queue page'
       ),
     );
   }
