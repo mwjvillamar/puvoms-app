@@ -179,6 +179,12 @@ class _LoginViewState extends State<LoginView> {
                           //     style: TextStyle(fontSize: 16),
                           //   ),
                           // ),
+                          // const SizedBox(height: 5.0,),
+                          CustomText(
+                            text: error,
+                            color: Colors.red,
+                            size: 14,
+                          ),
                           CustomButton(
                             text: "Login", 
                             key: const ValueKey("login"), 
@@ -195,12 +201,7 @@ class _LoginViewState extends State<LoginView> {
                             text: "Continue as Guest", 
                             key: const ValueKey("guest")
                           ),
-                          const SizedBox(height: 12.0,),
-                          CustomText(
-                            text: error,
-                            color: Colors.red,
-                            size: 14,
-                          )
+                          
                         ],
                       ),
                     ),

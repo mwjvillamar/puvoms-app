@@ -19,7 +19,6 @@ class _TallyViewState extends State<TallyView> {
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Padding(
         padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
@@ -88,7 +87,7 @@ class _TallyViewState extends State<TallyView> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: const[
                             CustomCardButton(key: ValueKey("payments"), icon: Icons.payments, text: "Payments"),
-                            CustomCardButton(key: ValueKey("drivers"), icon: Icons.airport_shuttle, text: "Drivers")
+                            CustomCardButton(key: ValueKey("users"), icon: Icons.account_circle, text: "Users")
                           ]
                       ),
                     ),

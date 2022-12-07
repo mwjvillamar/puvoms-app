@@ -140,6 +140,11 @@ class _RegisterViewState extends State<RegisterView> {
                             toggleView: widget.toggleView, 
                             size: 16,
                           ),
+                          CustomText(
+                            text: error,
+                            color: Colors.red,
+                            size: 14,
+                          ),
                           CustomButton(
                             text: "Register", 
                             key: const ValueKey("register"), 
@@ -147,12 +152,6 @@ class _RegisterViewState extends State<RegisterView> {
                             formState: _formKey.currentState, 
                             callbackFunction: (val) => setState(() => error = val),
                             loadingFunction: (val) => setState(() => loading = val),
-                          ),
-                          const SizedBox(height: 12.0,),
-                          CustomText(
-                            text: error,
-                            color: Colors.red,
-                            size: 14,
                           )
                         ],
                       ),

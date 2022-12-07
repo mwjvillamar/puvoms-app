@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:puvoms/models/test_model.dart';
 import 'package:puvoms/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:puvoms/views/lists/test_list_widget.dart';
 
 class QueueView extends StatefulWidget {
   const QueueView({Key? key}) : super(key: key);
@@ -24,24 +28,20 @@ class _QueueViewState extends State<QueueView> {
 
     // TODO: implement build
 
-    return Scaffold(
-      body: const Center(
-      child: Text(
-          "Queue Page",
-          style: TextStyle(
-          fontSize: 30.0,
-          letterSpacing: 2.0,
-          color: Colors.black45,
-          ),
+    return StreamProvider<List<Test>>.value(
+      initialData: [],
+      value: DatabaseService().test,
+      child: Scaffold(
+        body: const Center(
+          child: TestList()
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            debugPrint(DatabaseService().userData.toString());
+          },
+        child: const Text('+'),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          //Function
-          
-        },
-      child: const Text('+'),
-    ),
     );
   }
 }

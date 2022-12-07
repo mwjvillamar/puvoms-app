@@ -3,6 +3,7 @@ import 'package:puvoms/views/pages/calendar_view.dart';
 import 'package:puvoms/views/pages/driver_view.dart';
 import 'package:puvoms/views/pages/payment_view.dart';
 import 'package:puvoms/views/pages/summary_view.dart';
+import 'package:puvoms/views/pages/users_view.dart';
 
 class CustomCardButton extends StatelessWidget {
 
@@ -19,10 +20,14 @@ class CustomCardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Card(
+        color: Colors.black87,
         child: InkWell(
           onTap: () {
             if(key == const ValueKey("payments")) {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentView()));
+            }
+            else if(key == const ValueKey("users")){
+             Navigator.push(context, MaterialPageRoute(builder: (context) => const UsersView())); 
             }
             else if(key == const ValueKey("drivers")) {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverView()));
@@ -41,10 +46,21 @@ class CustomCardButton extends StatelessWidget {
           child: FittedBox(
             child: Column(
               children: [
-                Icon(icon),
+                const SizedBox(height: 2,),
+                Icon(
+                  icon,
+                  color: Colors.white,
+                  size: 10.0,
+                ),
                 Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Text(text)
+                    padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 5.0,
+                      ),
+                    )
                 )
               ],
             ),

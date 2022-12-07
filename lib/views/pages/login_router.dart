@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/models/user_model.dart';
+import 'package:puvoms/services/database.dart';
 import 'package:puvoms/views/pages/authenticate.dart';
 import 'package:puvoms/views/pages/navigation_view.dart';
 
@@ -19,7 +20,20 @@ class LoginRouter extends StatelessWidget {
     if (user == null) {
       return const Authenticate();
     } else {
-      return const NavigationView();
+      return StreamBuilder<UserData>(
+        stream: DatabaseService(uid: user.uid).userData,
+        builder: (context, snapshot) {
+          if(snapshot.hasData){
+            
+            UserData? userData = snapshot.data;
+            debugPrint("snapshot has data ${userData!.role}");
+            return const NavigationView();
+          } else {
+            debugPrint("snapshot has no data");
+            return const NavigationView();
+          }
+        },
+      );
     }
   }
 }

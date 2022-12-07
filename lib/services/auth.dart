@@ -59,7 +59,10 @@ class AuthService {
       User user = userCredential.user!;
       
       //Create a document for the user with the UID
-      await DatabaseService(uid: user.uid).updateUserData('1111', 'Dwight Nowards', 'No Status', 15);
+      await DatabaseService(uid: user.uid).updateUserData('1111', 'Dwight Nowards', false, 15);
+      
+      //Creating a document for the user data
+      await DatabaseService(uid: user.uid).createUser(user.uid, 'Lebronze Games', 'member', '+7777', email);
       
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e){
