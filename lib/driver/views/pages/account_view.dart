@@ -26,13 +26,13 @@ class _AccountViewState extends State<AccountView> {
     // TODO: implement build
 
     return Center(
-      child: CustomTextButton(
-        prompt: "",
-        text: "DRIVER Signout",
-        color: Colors.white,
-        key: const ValueKey("signout"),
-        size: 16,
-      ),
+      // child: CustomTextButton(
+      //   prompt: "",
+      //   text: "DRIVER Signout",
+      //   color: Colors.white,
+      //   key: const ValueKey("signout"),
+      //   size: 16,
+      // ),
     );
   }
 }
