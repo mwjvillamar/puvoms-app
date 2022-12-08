@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TallyView extends StatefulWidget {
-  const TallyView({Key? key}) : super(key: key);
+class DriverTallyView extends StatefulWidget {
+  const DriverTallyView({Key? key}) : super(key: key);
 
   @override
-  State<TallyView> createState() => _TallyViewState();
+  State<DriverTallyView> createState() => _TallyViewState();
 }
 
-class _TallyViewState extends State<TallyView> {
+class _TallyViewState extends State<DriverTallyView> {
 
   @override
   void initState() {

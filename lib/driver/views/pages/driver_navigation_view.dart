@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import '../../controllers/navigation_controller.dart';
+import 'package:puvoms/driver/controllers/driver_navigation_controller.dart';
 
-class NavigationView extends StatefulWidget {
+class DriverNavigationView extends StatefulWidget {
 
-  const NavigationView({Key? key}) : super(key: key);
+  const DriverNavigationView({Key? key}) : super(key: key);
 
   @override
-  State<NavigationView> createState() => _NavigationViewState();
+  State<DriverNavigationView> createState() => _DriverNavigationViewState();
 }
 
-class _NavigationViewState extends State<NavigationView>{
+class _DriverNavigationViewState extends State<DriverNavigationView>{
 
   DateTime backPressedTime = DateTime.now();
 
@@ -48,7 +47,7 @@ class _NavigationViewState extends State<NavigationView>{
   Widget buildOffstageNavigator(String tab) {
     return Offstage(
       offstage: currentTab != tab,
-      child: NavigationController(
+      child: DriverNavigationController(
         navigatorKey: tabKeys[tab]!,
         tab: tab,
       ),

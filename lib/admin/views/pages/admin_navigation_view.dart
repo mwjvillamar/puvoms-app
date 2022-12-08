@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:puvoms/driver/controllers/navigation_controller.dart';
+import 'package:flutter/services.dart';
+import '../../controllers/admin_navigation_controller.dart';
 
-class NavigationView extends StatefulWidget {
+class AdminNavigationView extends StatefulWidget {
 
-  const NavigationView({Key? key}) : super(key: key);
+  const AdminNavigationView({Key? key}) : super(key: key);
 
   @override
-  State<NavigationView> createState() => _NavigationViewState();
+  State<AdminNavigationView> createState() => _AdminNavigationViewState();
 }
 
-class _NavigationViewState extends State<NavigationView>{
+class _AdminNavigationViewState extends State<AdminNavigationView>{
 
   DateTime backPressedTime = DateTime.now();
 
@@ -47,7 +48,7 @@ class _NavigationViewState extends State<NavigationView>{
   Widget buildOffstageNavigator(String tab) {
     return Offstage(
       offstage: currentTab != tab,
-      child: NavigationController(
+      child: AdminNavigationController(
         navigatorKey: tabKeys[tab]!,
         tab: tab,
       ),

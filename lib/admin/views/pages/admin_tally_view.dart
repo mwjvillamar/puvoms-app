@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/widgets/custom_cardbutton_widget.dart';
 
-class TallyView extends StatefulWidget {
-  const TallyView({Key? key}) : super(key: key);
+class AdminTallyView extends StatefulWidget {
+  const AdminTallyView({Key? key}) : super(key: key);
 
   @override
-  State<TallyView> createState() => _TallyViewState();
+  State<AdminTallyView> createState() => _TallyViewState();
 }
 
-class _TallyViewState extends State<TallyView> {
+class _TallyViewState extends State<AdminTallyView> {
 
   @override
   void initState() {

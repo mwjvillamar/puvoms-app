@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/widgets/custom_textbutton_widget.dart';
 
-class AccountView extends StatefulWidget {
-  const AccountView({Key? key}) : super(key: key);
+class DriverAccountView extends StatefulWidget {
+  const DriverAccountView({Key? key}) : super(key: key);
 
   @override
-  State<AccountView> createState() => _AccountViewState();
+  State<DriverAccountView> createState() => _DriverAccountViewState();
 }
 
-class _AccountViewState extends State<AccountView> {
+class _DriverAccountViewState extends State<DriverAccountView> {
   
   //Firebase Instance
   final AuthService _auth = AuthService();
@@ -28,8 +28,8 @@ class _AccountViewState extends State<AccountView> {
     return Center(
       child: CustomTextButton(
         prompt: "",
-        text: "ADMIN Signout",
-        color: Colors.white,
+        text: "DRIVER Signout",
+        color: Colors.green,
         key: const ValueKey("signout"),
         size: 16,
       ),

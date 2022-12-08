@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class QueueView extends StatefulWidget {
-  const QueueView({Key? key}) : super(key: key);
+class PassengerQueueView extends StatefulWidget {
+  const PassengerQueueView({Key? key}) : super(key: key);
 
   @override
-  State<QueueView> createState() => _QueueViewState();
+  State<PassengerQueueView> createState() => _QueueViewState();
 }
 
-class _QueueViewState extends State<QueueView> {
+class _QueueViewState extends State<PassengerQueueView> {
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ class _QueueViewState extends State<QueueView> {
 
     return const Center(
       child: Text(
-          'DRIVER Queue page'
+          'Passenger Queue page'
       ),
     );
   }

@@ -5,14 +5,14 @@ import 'package:puvoms/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/widgets/users_list.dart';
 
-class UsersView extends StatefulWidget {
-  const UsersView({super.key});
+class AdminUsersView extends StatefulWidget {
+  const AdminUsersView({super.key});
 
   @override
-  State<UsersView> createState() => _UsersViewState();
+  State<AdminUsersView> createState() => _AdminUsersViewState();
 }
 
-class _UsersViewState extends State<UsersView> {
+class _AdminUsersViewState extends State<AdminUsersView> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<UserCollection>>.value(

@@ -53,7 +53,7 @@ class AuthService {
   }
 
   //Register with Email and Password
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(String email, String password, String firstName, String lastName, String role, String phoneNum) async {
     try{
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user!;
@@ -62,7 +62,7 @@ class AuthService {
       await DatabaseService(uid: user.uid).updateUserData('1111', 'Dwight Nowards', false, 15);
       
       //Creating a document for the user data
-      await DatabaseService(uid: user.uid).createUser(user.uid, 'Lebronze Games', 'member', '+7777', email);
+      await DatabaseService(uid: user.uid).createUser(user.uid, firstName, lastName, role, phoneNum, email);
       
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e){

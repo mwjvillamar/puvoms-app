@@ -31,6 +31,19 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextFormField> {
+  
+  validateMobile(String value) {
+    String pattern = r'(^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4,6}$)';
+    RegExp regExp = new RegExp(pattern);
+    if (value.isEmpty == 0) {
+          return 'Please enter mobile number';
+    }
+    else if (!regExp.hasMatch(value)) {
+      return 'Please enter valid mobile number: +(00)-000-000-0000';
+    }
+    return null;
+  }      
+  
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -52,6 +65,25 @@ class _CustomTextFieldState extends State<CustomTextFormField> {
           } else if (widget.key == const ValueKey("login-password")){
             if (val!.isEmpty){
               return("Enter a valid Password");
+            } else {
+              return null;
+            }
+          } else if (widget.key == const ValueKey("register-firstName")){
+            if (val!.isEmpty){
+              return("Enter a valid Name");
+            } else {
+              return null;
+            }
+          } else if (widget.key == const ValueKey("register-lastName")){
+            if (val!.isEmpty){
+              return("Enter a valid Last Name");
+            } else {
+              return null;
+            }
+          } else if (widget.key == const ValueKey("register-phoneNum")){
+            // validateMobile(val!);
+            if (val!.isEmpty){
+              return("Enter a valid Phone Number");
             } else {
               return null;
             }

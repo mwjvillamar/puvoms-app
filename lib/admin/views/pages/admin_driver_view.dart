@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DriverView extends StatefulWidget {
-  const DriverView({Key? key}) : super(key: key);
+class AdminDriverView extends StatefulWidget {
+  const AdminDriverView({Key? key}) : super(key: key);
 
   @override
-  State<DriverView> createState() => _DriverViewState();
+  State<AdminDriverView> createState() => _AdminDriverViewState();
 }
 
-class _DriverViewState extends State<DriverView> {
+class _AdminDriverViewState extends State<AdminDriverView> {
   @override
   Widget build(BuildContext context) {
 
