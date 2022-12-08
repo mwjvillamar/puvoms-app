@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/shared/load_view.dart';
+import 'package:puvoms/widgets/custom_dropdown_widget.dart';
 import 'package:puvoms/widgets/custom_label_widget.dart';
 import 'package:puvoms/widgets/custom_text_widget.dart';
 import 'package:puvoms/widgets/custom_textbutton_widget.dart';
@@ -30,7 +31,14 @@ class _RegisterViewState extends State<RegisterView> {
   //Text Field State?
   String email = "";
   String password = "";
+  
   String error = "";
+  
+  String firstName = "";
+  String lastName = "";
+  String role = "admin";
+  String phoneNum = "";
+   
   
   //for loading widget
   bool loading = false;
@@ -101,12 +109,40 @@ class _RegisterViewState extends State<RegisterView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          // const CustomLabel(icon: Icons.badge, text: " First Name"),
-                          // const CustomTextField(hint: "Enter your first name", icon: Icons.arrow_right_alt),
-                          // const CustomLabel(icon: Icons.badge, text: " Last Name"),
-                          // const CustomTextField(hint: "Enter your last name", icon: Icons.arrow_right_alt),
-                          // const CustomLabel(icon: Icons.phone, text: " Phone Number"),
-                          // const CustomTextField(hint: "Enter your phone number", icon: Icons.arrow_right_alt),
+                          const CustomLabel(icon: Icons.account_circle_rounded, text: " First Name"),
+                          CustomTextFormField(
+                            key: const ValueKey("register-firstName"),
+                            isHidden: false,
+                            hint: "Enter your First Name", 
+                            icon: Icons.arrow_right_alt,
+                            callbackFunction: (val) => setState(() => firstName = val),
+                          ),
+                          const CustomLabel(icon: Icons.account_circle_rounded, text: " Last Name"),
+                          CustomTextFormField(
+                            key: const ValueKey("register-lastName"),
+                            isHidden: false,
+                            hint: "Enter your Last Name", 
+                            icon: Icons.arrow_right_alt,
+                            callbackFunction: (val) => setState(() => lastName = val),
+                          ),
+                          const CustomLabel(icon: Icons.badge, text: "Role - For Testing"),
+                          CustomDropwdownButton(
+                            list: const ['Passenger', 'Driver', 'Admin'],
+                            callbackFunction: (val) {
+                              setState(() {
+                                role = val;
+                                debugPrint(role);
+                              });
+                            },
+                          ),
+                          const CustomLabel(icon: Icons.phone, text: " Phone Number"),
+                          CustomTextFormField(
+                            key: const ValueKey("register-phoneNum"),
+                            isHidden: false,
+                            hint: "Enter your phone number", 
+                            icon: Icons.arrow_right_alt,
+                            callbackFunction: (val) => setState(() => phoneNum = val),
+                          ),
                           const CustomLabel(icon: Icons.person, text: " Email"),
                           CustomTextFormField(
                             key: const ValueKey("register-username"),
@@ -148,7 +184,7 @@ class _RegisterViewState extends State<RegisterView> {
                           CustomButton(
                             text: "Register", 
                             key: const ValueKey("register"), 
-                            value: [email, password], 
+                            value: [email, password, firstName, lastName, role, phoneNum], 
                             formState: _formKey.currentState, 
                             callbackFunction: (val) => setState(() => error = val),
                             loadingFunction: (val) => setState(() => loading = val),

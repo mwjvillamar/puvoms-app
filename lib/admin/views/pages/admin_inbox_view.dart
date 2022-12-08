@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/models/user_model.dart';
 
-class InboxView extends StatefulWidget {
-  const InboxView({Key? key}) : super(key: key);
+class AdminInboxView extends StatefulWidget {
+  const AdminInboxView({Key? key}) : super(key: key);
 
   @override
-  State<InboxView> createState() => _InboxViewState();
+  State<AdminInboxView> createState() => _AdminInboxViewState();
 }
 
-class _InboxViewState extends State<InboxView> {
+class _AdminInboxViewState extends State<AdminInboxView> {
 
   @override
   void initState() {

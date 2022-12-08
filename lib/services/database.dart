@@ -24,10 +24,11 @@ class DatabaseService {
     });
   }
   
-  Future createUser(String uid, String name, String role, String phoneNum, String email) async {
+  Future createUser(String uid, String firstName, String lastName, String role, String phoneNum, String email) async {
     return await userCollection.doc(uid).set({
       'uid' : uid,
-      'name' : name,
+      'firstName' : firstName,
+      'lastName' : lastName,
       'role' : role,
       'phoneNum' : phoneNum,
       'email' : email
@@ -51,7 +52,8 @@ class DatabaseService {
     return snapshot.docs.map((doc) {
       return UserCollection(
         uid: doc.get('uid') ?? " ", 
-        name: doc.get('name') ?? " ", 
+        firstName: doc.get('firstName') ?? " ",
+        lastName: doc.get('lastName') ?? " ", 
         role: doc.get('role') ?? " ", 
         phoneNum: doc.get('phoneNum') ?? " ", 
         email: doc.get('email') ?? " "
@@ -63,7 +65,8 @@ class DatabaseService {
   UserData  _userDataFromSnapshot(DocumentSnapshot snapshot){
     return UserData(
       uid: uid!, 
-      name: snapshot.get("name"), 
+      firstName: snapshot.get("firstName"),
+      lastName: snapshot.get("lastName"), 
       role: snapshot.get("role"), 
       phoneNum: snapshot.get("phoneNum"), 
       email: snapshot.get("email")

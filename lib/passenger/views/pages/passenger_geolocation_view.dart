@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GeolocationView extends StatefulWidget {
-  const GeolocationView({Key? key}) : super(key: key);
+class PassengerGeolocationView extends StatefulWidget {
+  const PassengerGeolocationView({Key? key}) : super(key: key);
 
   @override
-  State<GeolocationView> createState() => _GeolocationViewState();
+  State<PassengerGeolocationView> createState() => _PassengerGeolocationViewState();
 }
 
-class _GeolocationViewState extends State<GeolocationView> {
+class _PassengerGeolocationViewState extends State<PassengerGeolocationView> {
 
   @override
   void initState() {

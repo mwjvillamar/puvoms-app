@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class InboxView extends StatefulWidget {
-  const InboxView({Key? key}) : super(key: key);
+class DriverInboxView extends StatefulWidget {
+  const DriverInboxView({Key? key}) : super(key: key);
 
   @override
-  State<InboxView> createState() => _InboxViewState();
+  State<DriverInboxView> createState() => _DriverInboxViewState();
 }
 
-class _InboxViewState extends State<InboxView> {
+class _DriverInboxViewState extends State<DriverInboxView> {
 
   @override
   void initState() {

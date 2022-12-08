@@ -7,14 +7,14 @@ import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_carditem_widget.dart';
 import 'package:puvoms/widgets/test_list_widget.dart';
 
-class QueueView extends StatefulWidget {
-  const QueueView({Key? key}) : super(key: key);
+class AdminQueueView extends StatefulWidget {
+  const AdminQueueView({Key? key}) : super(key: key);
 
   @override
-  State<QueueView> createState() => _QueueViewState();
+  State<AdminQueueView> createState() => _AdminQueueViewState();
 }
 
-class _QueueViewState extends State<QueueView> {
+class _AdminQueueViewState extends State<AdminQueueView> {
 
   @override
   void initState() {

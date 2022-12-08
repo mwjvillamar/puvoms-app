@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puvoms/driver/views/pages/driver_navigation_view.dart';
 import 'package:puvoms/models/user_model.dart';
+import 'package:puvoms/passenger/views/pages/passenger_navigation_view.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/shared/authenticate.dart';
-import 'package:puvoms/admin/views/pages/navigation_view.dart';
+import 'package:puvoms/admin/views/pages/admin_navigation_view.dart';
 
 class LoginRouter extends StatelessWidget {
   const LoginRouter({super.key});
@@ -24,13 +26,19 @@ class LoginRouter extends StatelessWidget {
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
           if(snapshot.hasData){
-            
             UserData? userData = snapshot.data;
+            if(userData!.role == "Admin"){
+              debugPrint("snapshot has data ${userData.role}");
+              return const AdminNavigationView();
+            } else if(userData!.role == "Driver"){
+              debugPrint("snapshot has data ${userData!.role}");
+              return const DriverNavigationView();
+            }
             debugPrint("snapshot has data ${userData!.role}");
-            return const NavigationView();
+            return const PassengerNavigationView();
           } else {
             debugPrint("snapshot has no data");
-            return const NavigationView();
+            return const PassengerNavigationView();
           }
         },
       );

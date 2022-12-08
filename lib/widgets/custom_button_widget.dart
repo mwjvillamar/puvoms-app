@@ -70,7 +70,7 @@ class CustomButton extends StatelessWidget {
             try {
               if (formState.validate()){
                 loadingFunction(true);
-              dynamic result = await _auth.registerWithEmailAndPassword(value[0], value[1]);
+              dynamic result = await _auth.registerWithEmailAndPassword(value[0], value[1], value[2], value[3], value[4], value[5]);
                 if (result is String){
                   callbackFunction!(result);
                   loadingFunction(false);

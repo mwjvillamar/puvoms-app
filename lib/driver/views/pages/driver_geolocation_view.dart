@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GeolocationView extends StatefulWidget {
-  const GeolocationView({Key? key}) : super(key: key);
+class DriverGeolocationView extends StatefulWidget {
+  const DriverGeolocationView({Key? key}) : super(key: key);
 
   @override
-  State<GeolocationView> createState() => _GeolocationViewState();
+  State<DriverGeolocationView> createState() => _DriverGeolocationViewState();
 }
 
-class _GeolocationViewState extends State<GeolocationView> {
+class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   @override
   void initState() {
@@ -18,8 +18,6 @@ class _GeolocationViewState extends State<GeolocationView> {
 
   @override
   Widget build(BuildContext context) {
-    
-    
 
     // TODO: implement build
 

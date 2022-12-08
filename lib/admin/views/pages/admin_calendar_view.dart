@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CalendarView extends StatefulWidget {
-  const CalendarView({Key? key}) : super(key: key);
+class AdminCalendarView extends StatefulWidget {
+  const AdminCalendarView({Key? key}) : super(key: key);
 
   @override
-  State<CalendarView> createState() => _CalendarViewState();
+  State<AdminCalendarView> createState() => _CalendarViewState();
 }
 
-class _CalendarViewState extends State<CalendarView> {
+class _CalendarViewState extends State<AdminCalendarView> {
   @override
   Widget build(BuildContext context) {
 

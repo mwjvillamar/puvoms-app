@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/admin/views/pages/driver_view.dart';
-import 'package:puvoms/admin/views/pages/summary_view.dart';
-import 'package:puvoms/admin/views/pages/calendar_view.dart';
-import 'package:puvoms/admin/views/pages/payment_view.dart';
-import 'package:puvoms/admin/views/pages/users_view.dart';
+import 'package:puvoms/admin/views/pages/admin_driver_view.dart';
+import 'package:puvoms/admin/views/pages/admin_summary_view.dart';
+import 'package:puvoms/admin/views/pages/admin_calendar_view.dart';
+import 'package:puvoms/admin/views/pages/admin_payment_view.dart';
+import 'package:puvoms/admin/views/pages/admin_users_view.dart';
 
 class CustomCardButton extends StatelessWidget {
 
@@ -24,19 +24,19 @@ class CustomCardButton extends StatelessWidget {
         child: InkWell(
           onTap: () {
             if(key == const ValueKey("payments")) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentView()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminPaymentView()));
             }
             else if(key == const ValueKey("users")){
-             Navigator.push(context, MaterialPageRoute(builder: (context) => const UsersView())); 
+             Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminUsersView())); 
             }
             else if(key == const ValueKey("drivers")) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverView()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminDriverView()));
             }
             else if(key == const ValueKey("calendar")) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CalendarView()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminCalendarView()));
             }
             else if(key == const ValueKey("summary")) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SummaryView()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminSummaryView()));
             }
             else
             {

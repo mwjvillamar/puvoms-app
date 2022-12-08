@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:puvoms/models/user_model.dart';
 import 'package:puvoms/services/auth.dart';
+import 'package:puvoms/admin/views/pages/admin_account_view.dart';
+import 'package:puvoms/admin/views/pages/admin_geolocation_view.dart';
+import 'package:puvoms/admin/views/pages/admin_inbox_view.dart';
 import 'package:puvoms/shared/load_view.dart';
 import 'package:puvoms/shared/login_view.dart';
+import 'package:puvoms/admin/views/pages/admin_navigation_view.dart';
+import 'package:puvoms/admin/views/pages/admin_queue_view.dart';
+import 'package:puvoms/admin/views/pages/admin_tally_view.dart';
 import 'package:puvoms/shared/login_router.dart';
-import 'package:puvoms/admin/views/pages/navigation_view.dart';
-import 'package:puvoms/admin/views/pages/geolocation_view.dart';
-import 'package:puvoms/admin/views/pages/tally_view.dart';
-import 'package:puvoms/admin/views/pages/queue_view.dart';
-import 'package:puvoms/admin/views/pages/inbox_view.dart';
-import 'package:puvoms/admin/views/pages/account_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,12 +38,12 @@ class MyApp extends StatelessWidget {
             '/': (context) => const LoadView(),
             '/login-router': (context) => const LoginRouter(),
             '/login': (context) => const LoginView(),
-            '/navigation': (context) => const NavigationView(),
-            '/geolocation': (context) => const GeolocationView(),
-            '/tally': (context) => const TallyView(),
-            '/queue': (context) => const QueueView(),
-            '/inbox': (context) => const InboxView(),
-            '/account': (context) => const AccountView()
+            '/navigation': (context) => const AdminNavigationView(),
+            '/geolocation': (context) => const AdminGeolocationView(),
+            '/tally': (context) => const AdminTallyView(),
+            '/queue': (context) => const AdminQueueView(),
+            '/inbox': (context) => const AdminInboxView(),
+            '/account': (context) => const AdminAccountView()
           }
       )),
     );
