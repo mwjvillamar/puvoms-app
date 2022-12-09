@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:puvoms/constants/material_constant.dart';
 
 class CustomRowItem extends StatefulWidget {
 
-  final String text;
-  final IconData icon;
-
-  const CustomRowItem({Key? key, required this.text, required this.icon}) : super(key: key);
+  const CustomRowItem({Key? key}) : super(key: key);
 
   @override
   State<CustomRowItem> createState() => _CustomRowItemState();
@@ -15,11 +13,18 @@ class _CustomRowItemState extends State<CustomRowItem> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(widget.icon),
-        Text(widget.text),
-        const Expanded(
-          child: TextField(),
+        Expanded(
+          flex: 7,
+          child: TextFormField
+          (
+            enabled: false,
+            decoration: InputDecoration
+            (
+              border: OutlineInputBorder(),
+            ),
+          ),
         ),
         IconButton(
             onPressed: () {

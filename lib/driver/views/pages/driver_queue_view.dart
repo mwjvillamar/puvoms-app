@@ -4,10 +4,10 @@ class DriverQueueView extends StatefulWidget {
   const DriverQueueView({Key? key}) : super(key: key);
 
   @override
-  State<DriverQueueView> createState() => _QueueViewState();
+  State<DriverQueueView> createState() => _AdminQueueViewState();
 }
 
-class _QueueViewState extends State<DriverQueueView> {
+class _AdminQueueViewState extends State<DriverQueueView> {
 
   @override
   void initState() {
