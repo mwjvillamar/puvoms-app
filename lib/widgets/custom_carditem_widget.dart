@@ -77,8 +77,8 @@ class _CustomCardItemState extends State<CustomCardItem> {
                           child: Text.rich(
                             TextSpan(
                               children: [
-                                WidgetSpan(child: Icon(Icons.person)),
-                                TextSpan(text: "0/0")
+                                WidgetSpan(child: Icon(Icons.person, size: 16,)),
+                                TextSpan(text: "0/0", style: TextStyle(fontSize: 12))
                               ]
                             )
                           ),

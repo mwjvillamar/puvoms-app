@@ -45,7 +45,7 @@ class _AdminQueueViewState extends State<AdminQueueView> {
     //   ),
     // );
     return StreamProvider<List<Test>>.value(
-      initialData: [],
+      initialData: const [],
       value: DatabaseService().test,
       child: Scaffold(
         body: const Center(

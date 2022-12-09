@@ -15,12 +15,27 @@ class DatabaseService {
   //reference to the users collections
   final CollectionReference userCollection = FirebaseFirestore.instance.collection("users");
   
+  //reference to the queue collections
+  final CollectionReference queueCollection = FirebaseFirestore.instance.collection("queue");
+  
   Future updateUserData(String plateNumber, String driverName, bool inQueue, int passengerCount) async {
     return await testCollection.doc(uid).set({
       'plateNumber' : plateNumber,
       'driverName' : driverName,
       'inQueue' : inQueue,
       'passengerCount' : passengerCount,
+    });
+  }
+  
+  Future updateQueue(String uid, bool inQueue, DateTime queueStart, String firstName, String lastName, String plateNumber, int passengerCount) async {
+    return await queueCollection.doc(uid).set({
+      'uid' : uid,
+      'inQueue' : inQueue,
+      'queueStart' : queueStart,
+      'firstName' : firstName,
+      'lastName' : lastName,
+      'plateNumber' : plateNumber,
+      'passengerCount' : passengerCount
     });
   }
   
@@ -85,9 +100,15 @@ class DatabaseService {
     .map(_usersListFromSnapshot);
   }
   
+  //Stream for specific UserData
   Stream<UserData> get userData {
     return userCollection.doc(uid).snapshots()
     .map(_userDataFromSnapshot);
+  }
+  
+  //Stream for Queue
+  Stream<QuerySnapshot> get queue {
+    return queueCollection.snapshots();
   }
   
 }

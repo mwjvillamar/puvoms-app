@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:puvoms/widgets/custom_carditem_widget.dart';
+import 'package:puvoms/constants/material_constant.dart';
 
 class PassengerQueueView extends StatefulWidget {
   const PassengerQueueView({Key? key}) : super(key: key);
@@ -18,11 +21,23 @@ class _QueueViewState extends State<PassengerQueueView> {
   @override
   Widget build(BuildContext context) {
 
-    // TODO: implement build
+    debugPaintSizeEnabled = false;
 
-    return const Center(
-      child: Text(
-          'Passenger Queue page'
+    //TODO: implement build
+
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
+        child: ListView(
+          children: const[
+            CustomCardItem(),
+            CustomCardItem(),
+            CustomCardItem(),
+            CustomCardItem(),
+            CustomCardItem(),
+            CustomCardItem(),
+          ],
+        ),
       ),
     );
   }

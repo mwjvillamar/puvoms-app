@@ -125,16 +125,6 @@ class _RegisterViewState extends State<RegisterView> {
                             icon: Icons.arrow_right_alt,
                             callbackFunction: (val) => setState(() => lastName = val),
                           ),
-                          const CustomLabel(icon: Icons.badge, text: "Role - For Testing"),
-                          CustomDropwdownButton(
-                            list: const ['Passenger', 'Driver', 'Admin'],
-                            callbackFunction: (val) {
-                              setState(() {
-                                role = val;
-                                debugPrint(role);
-                              });
-                            },
-                          ),
                           const CustomLabel(icon: Icons.phone, text: " Phone Number"),
                           CustomTextFormField(
                             key: const ValueKey("register-phoneNum"),
@@ -168,6 +158,16 @@ class _RegisterViewState extends State<RegisterView> {
                               border: OutlineInputBorder(),
                             ),
                             validator: (val) => val! != password ? "Does not Match password" : null,
+                          ),
+                          const CustomLabel(icon: Icons.badge, text: " Role - For Testing"),
+                          CustomDropwdownButton(
+                            list: const ['Passenger', 'Driver', 'Admin'],
+                            callbackFunction: (val) {
+                              setState(() {
+                                role = val;
+                                debugPrint(role);
+                              });
+                            },
                           ),
                           CustomTextButton(
                             prompt: "Already have an account?", 

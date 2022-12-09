@@ -30,11 +30,11 @@ class LoginRouter extends StatelessWidget {
             if(userData!.role == "Admin"){
               debugPrint("snapshot has data ${userData.role}");
               return const AdminNavigationView();
-            } else if(userData!.role == "Driver"){
-              debugPrint("snapshot has data ${userData!.role}");
+            } else if(userData.role == "Driver"){
+              debugPrint("snapshot has data ${userData.role}");
               return const DriverNavigationView();
             }
-            debugPrint("snapshot has data ${userData!.role}");
+            debugPrint("snapshot has data ${userData.role}");
             return const PassengerNavigationView();
           } else {
             debugPrint("snapshot has no data");
