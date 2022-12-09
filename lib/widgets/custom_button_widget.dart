@@ -79,6 +79,8 @@ class CustomButton extends StatelessWidget {
             } catch (e) {
               debugPrint("Form State is Null \n E: $e"); 
             }
+          } else if(key == const ValueKey("signout")){
+            _auth.signOut();
           } else {
             debugPrint("No Button");
           }

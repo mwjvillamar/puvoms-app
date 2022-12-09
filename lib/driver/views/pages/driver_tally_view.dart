@@ -4,10 +4,10 @@ class DriverTallyView extends StatefulWidget {
   const DriverTallyView({Key? key}) : super(key: key);
 
   @override
-  State<DriverTallyView> createState() => _TallyViewState();
+  State<DriverTallyView> createState() => _AdminTallyViewState();
 }
 
-class _TallyViewState extends State<DriverTallyView> {
+class _AdminTallyViewState extends State<DriverTallyView> {
 
   @override
   void initState() {

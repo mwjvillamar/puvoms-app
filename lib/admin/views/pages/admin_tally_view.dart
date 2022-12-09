@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/widgets/custom_cardbutton_widget.dart';
 
@@ -6,10 +7,10 @@ class AdminTallyView extends StatefulWidget {
   const AdminTallyView({Key? key}) : super(key: key);
 
   @override
-  State<AdminTallyView> createState() => _TallyViewState();
+  State<AdminTallyView> createState() => _AdminTallyViewState();
 }
 
-class _TallyViewState extends State<AdminTallyView> {
+class _AdminTallyViewState extends State<AdminTallyView> {
 
   @override
   void initState() {
@@ -19,6 +20,9 @@ class _TallyViewState extends State<AdminTallyView> {
 
   @override
   Widget build(BuildContext context) {
+
+    //debugPaintSizeEnabled = true;
+
     return Center(
       child: Padding(
         padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),

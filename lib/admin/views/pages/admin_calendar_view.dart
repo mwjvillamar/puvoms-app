@@ -4,10 +4,10 @@ class AdminCalendarView extends StatefulWidget {
   const AdminCalendarView({Key? key}) : super(key: key);
 
   @override
-  State<AdminCalendarView> createState() => _CalendarViewState();
+  State<AdminCalendarView> createState() => _AdminCalendarViewState();
 }
 
-class _CalendarViewState extends State<AdminCalendarView> {
+class _AdminCalendarViewState extends State<AdminCalendarView> {
   @override
   Widget build(BuildContext context) {
 
