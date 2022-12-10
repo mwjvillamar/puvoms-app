@@ -108,7 +108,7 @@ class _RegisterViewState extends State<RegisterView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const CustomLabel(icon: Icons.account_circle_rounded, text: " First Name", size: 16,),
+                          const CustomLabel(icon: Icons.account_circle_rounded, text: " First Name"),
                           CustomTextFormField(
                             key: const ValueKey("register-firstName"),
                             isHidden: false,
@@ -116,7 +116,7 @@ class _RegisterViewState extends State<RegisterView> {
                             icon: Icons.arrow_right_alt,
                             callbackFunction: (val) => setState(() => firstName = val),
                           ),
-                          const CustomLabel(icon: Icons.account_circle_rounded, text: " Last Name", size: 16,),
+                          const CustomLabel(icon: Icons.account_circle_rounded, text: " Last Name"),
                           CustomTextFormField(
                             key: const ValueKey("register-lastName"),
                             isHidden: false,
@@ -124,7 +124,7 @@ class _RegisterViewState extends State<RegisterView> {
                             icon: Icons.arrow_right_alt,
                             callbackFunction: (val) => setState(() => lastName = val),
                           ),
-                          const CustomLabel(icon: Icons.phone, text: " Phone Number", size: 16,),
+                          const CustomLabel(icon: Icons.phone, text: " Phone Number"),
                           CustomTextFormField(
                             key: const ValueKey("register-phoneNum"),
                             isHidden: false,
@@ -132,7 +132,7 @@ class _RegisterViewState extends State<RegisterView> {
                             icon: Icons.arrow_right_alt,
                             callbackFunction: (val) => setState(() => phoneNum = val),
                           ),
-                          const CustomLabel(icon: Icons.person, text: " Email", size: 16,),
+                          const CustomLabel(icon: Icons.person, text: " Email"),
                           CustomTextFormField(
                             key: const ValueKey("register-username"),
                             isHidden: false,
@@ -140,7 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
                             icon: Icons.arrow_right_alt,
                             callbackFunction: (val) => setState(() => email = val),
                           ),
-                          const CustomLabel(icon: Icons.key, text: " Password", size: 16,),
+                          const CustomLabel(icon: Icons.key, text: " Password"),
                           CustomTextFormField(
                             key: const ValueKey("register-password"),
                             isHidden: true,
@@ -148,7 +148,7 @@ class _RegisterViewState extends State<RegisterView> {
                             icon: Icons.arrow_right_alt,
                             callbackFunction: (val) => setState(() => password = val),
                           ),
-                          const CustomLabel(icon: Icons.password, text: " Confirm Password", size: 16,),
+                          const CustomLabel(icon: Icons.password, text: " Confirm Password"),
                           TextFormField(
                             obscureText: true,
                             decoration: const InputDecoration(
@@ -158,7 +158,7 @@ class _RegisterViewState extends State<RegisterView> {
                             ),
                             validator: (val) => val! != password ? "Does not Match password" : null,
                           ),
-                          const CustomLabel(icon: Icons.badge, text: " Role - For Testing", size: 16,),
+                          const CustomLabel(icon: Icons.badge, text: " Role - For Testing"),
                           CustomDropwdownButton(
                             list: const ['Passenger', 'Driver', 'Admin'],
                             callbackFunction: (val) {

@@ -5,8 +5,8 @@ import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_button_widget.dart';
 import 'package:puvoms/widgets/custom_label_widget.dart';
-import 'package:puvoms/widgets/custom_rowitem_widget.dart';
 import 'package:puvoms/constants/material_constant.dart';
+import 'package:puvoms/widgets/custom_accountitem_widget.dart';
 
 class PassengerAccountView extends StatefulWidget {
   const PassengerAccountView({Key? key}) : super(key: key);
@@ -82,7 +82,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomLabel(icon: Icons.person, text: ' Full Name: ', size: fontSize,),
+                            const CustomLabel(icon: Icons.person, text: 'Full Name:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData.firstName} ${userData.lastName}",
@@ -94,7 +94,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                                     });
                                   },
                                 ),
-                                CustomLabel(icon: Icons.phone, text: ' Phone: ', size: fontSize,),
+                                const CustomLabel(icon: Icons.phone, text: 'Phone:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData.phoneNum,

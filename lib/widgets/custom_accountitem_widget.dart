@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/constants/material_constant.dart';
 
 class CustomRowItem extends StatefulWidget {
   
   final value;
   final callbackFunction;
-  
 
   const CustomRowItem({
     Key? key,

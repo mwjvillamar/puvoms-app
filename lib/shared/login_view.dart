@@ -103,7 +103,7 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          const CustomLabel(icon: Icons.person, text: 'Email', size: 16,),
+                          const CustomLabel(icon: Icons.person, text: 'Email'),
                           CustomTextFormField(
                             key: const ValueKey("login-username"),
                             isHidden: false,
@@ -123,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                           //   },
                           //   validator: (val) => val!.isEmpty ? "Enter an Email" : null,
                           // ),
-                          const CustomLabel(icon: Icons.key, text: ' Password', size: 16,),
+                          const CustomLabel(icon: Icons.key, text: 'Password'),
                           CustomTextFormField(
                             key: const ValueKey("login-password"),
                             isHidden: true,

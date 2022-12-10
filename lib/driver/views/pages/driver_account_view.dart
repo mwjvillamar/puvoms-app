@@ -6,9 +6,8 @@ import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_button_widget.dart';
 import 'package:puvoms/widgets/custom_label_widget.dart';
-import 'package:puvoms/widgets/custom_rowitem_widget.dart';
 import 'package:puvoms/constants/material_constant.dart';
-import 'package:puvoms/widgets/custom_textformfield_widget.dart';
+import 'package:puvoms/widgets/custom_accountitem_widget.dart';
 
 class DriverAccountView extends StatefulWidget {
   const DriverAccountView({Key? key}) : super(key: key);
@@ -93,7 +92,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomLabel(icon: Icons.person, text: ' Full Name: ', size: fontSize,),
+                                const CustomLabel(icon: Icons.person, text: 'Full Name:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData?.firstName} ${userData?.lastName}",
@@ -104,7 +103,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                     });
                                   },
                                 ),
-                                CustomLabel(icon: Icons.phone, text: ' Phone: ', size: fontSize,),
+                                const CustomLabel(icon: Icons.phone, text: 'Phone:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData?.phoneNum,
@@ -122,19 +121,19 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                 //   icon: Icons.abc,
                                 //   callbackFunction: (val) => setState(() => phoneNum = val),
                                 // ),  
-                                CustomLabel(icon: Icons.directions_bus, text: ' Vehicle Brand: ', size: fontSize,),
+                                const CustomLabel(icon: Icons.directions_bus, text: 'Vehicle Brand:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-vehicleBrand"),
                                   value: vehicleData?.vehicleBrand,
                                   callbackFunction: (val) => setState(() => vehicleBrand = val),
                                 ),
-                                CustomLabel(icon: Icons.directions_bus, text: ' Vehicle Color: ', size: fontSize,),
+                                const CustomLabel(icon: Icons.directions_bus, text: 'Vehicle Color:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-vehicleColor"),
                                   value: vehicleData?.vehicleColor,
                                   callbackFunction: (val) => setState(() => vehicleColor = val),
                                 ),
-                                CustomLabel(icon: Icons.abc, text: ' Vehicle Plate Number: ', size: fontSize,),
+                                const CustomLabel(icon: Icons.abc, text: 'Vehicle Plate Number:'),
                                 CustomRowItem(
                                   key: const ValueKey("account-plateNumber"),
                                   value: vehicleData?.plateNumber,

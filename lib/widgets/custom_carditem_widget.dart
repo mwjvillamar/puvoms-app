@@ -4,27 +4,27 @@ import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
 import 'package:puvoms/models/vehicle_model.dart';
 
-class CustomCardItem extends StatefulWidget {
+class CustomQueueCard extends StatefulWidget {
   
   final QueueCollection? value;
   final VehicleCollection? vehicleData;
   
-  const CustomCardItem({
+  const CustomQueueCard({
     Key? key,
     this.value,
     this.vehicleData
   }) : super(key: key);
 
   @override
-  State<CustomCardItem> createState() => _CustomCardItemState();
+  State<CustomQueueCard> createState() => _CustomQueueCardState();
 }
 
-class _CustomCardItemState extends State<CustomCardItem> {
+class _CustomQueueCardState extends State<CustomQueueCard> {
   @override
   Widget build(BuildContext context) {
 
     //debugPaintSizeEnabled = true;
-    
+
     bool inQueue = widget.value!.inQueue;
 
     return Container(
