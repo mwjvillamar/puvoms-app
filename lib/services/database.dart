@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:puvoms/models/queue_collection_model.dart';
 import 'package:puvoms/models/test_model.dart';
 import 'package:puvoms/models/user_collection_model.dart';
 import 'package:puvoms/models/user_model.dart';
+import 'package:puvoms/models/vehicle_model.dart';
 
 class DatabaseService {
   
@@ -17,6 +19,9 @@ class DatabaseService {
   
   //reference to the queue collections
   final CollectionReference queueCollection = FirebaseFirestore.instance.collection("queue");
+  
+  //reference to the vehicle collections
+  final CollectionReference vehicleCollection = FirebaseFirestore.instance.collection("vehicles");
   
   Future updateUserData(String plateNumber, String driverName, bool inQueue, int passengerCount) async {
     return await testCollection.doc(uid).set({
@@ -39,6 +44,13 @@ class DatabaseService {
     });
   }
   
+  Future updateQueueStatus(String uid, bool inQueue) async {
+    return await queueCollection.doc(uid).update({
+      'uid' : uid,
+      'inQueue' : inQueue,
+    });
+  }
+  
   Future createUser(String uid, String firstName, String lastName, String role, String phoneNum, String email) async {
     return await userCollection.doc(uid).set({
       'uid' : uid,
@@ -47,6 +59,24 @@ class DatabaseService {
       'role' : role,
       'phoneNum' : phoneNum,
       'email' : email
+    });
+  }
+   
+  Future updateUser(String uid, String firstName, String lastName, String phoneNum) async {
+    return await userCollection.doc(uid).update({
+      'uid' : uid,
+      'firstName' : firstName,
+      'lastName' : lastName,
+      'phoneNum' : phoneNum
+    });
+  }
+  
+  Future createVehicle(String uid, String vehicleBrand, String vehicleColor, String plateNumber) async {
+    return await vehicleCollection.doc(uid).set({
+      'uid' : uid,
+      'vehicleBrand' : vehicleBrand,
+      'vehicleColor' : vehicleColor,
+      'plateNumber' : plateNumber
     });
   }
   
@@ -76,6 +106,33 @@ class DatabaseService {
     }).toList();
   }
   
+  //creating a list of the queue from the snapshot
+  List<QueueCollection> _queueListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.docs.map((doc){
+      return QueueCollection(
+        uid: doc.get('uid') ?? " ", 
+        inQueue: doc.get('inQueue') ?? false, 
+        queueStart: doc.get('queueStart').toDate() ?? DateTime.now(), 
+        firstName: doc.get('firstName') ?? " ", 
+        lastName: doc.get('lastName') ?? " ", 
+        plateNumber: doc.get('plateNumber') ?? " ", 
+        passengerCount: doc.get('passengerCount') ?? 0
+        );
+    }).toList();
+  }
+  
+  //list of vehicles format
+  List<VehicleCollection> _vehicleListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.docs.map((doc){
+      return VehicleCollection(
+        uid: doc.get('uid') ?? " ", 
+        vehicleBrand: doc.get('vehicleBrand') ?? " ", 
+        vehicleColor: doc.get('vehicleColor') ?? " ", 
+        plateNumber: doc.get('plateNumber') ?? " ", 
+        );
+    }).toList();
+  }
+  
   //userDAta from snapshot
   UserData  _userDataFromSnapshot(DocumentSnapshot snapshot){
     return UserData(
@@ -85,6 +142,37 @@ class DatabaseService {
       role: snapshot.get("role"), 
       phoneNum: snapshot.get("phoneNum"), 
       email: snapshot.get("email")
+    );
+  }
+  
+  //Create an Object from a snapshot
+  QueueData _queueDataFromSnapshot(DocumentSnapshot snapshot){
+    return QueueData(
+      uid: uid!, 
+      inQueue: snapshot.get("inQueue"), 
+      queueStart: snapshot.get("queueStart"), 
+      firstName: snapshot.get("firstName"), 
+      lastName: snapshot.get("lastName"), 
+      plateNumber: snapshot.get("plateNumber"), 
+      passengerCount: snapshot.get("passengerCount")
+    );
+  }
+  
+  //Create an Object from a snaphot
+  VehicleData _vehicleDataFromSnapshot(DocumentSnapshot snapshot){
+    return VehicleData(
+      uid: uid!,
+      vehicleBrand: snapshot.get("vehicleBrand"),
+      vehicleColor: snapshot.get("vehicleColor"),
+      plateNumber: snapshot.get("plateNumber")
+    );
+  }
+  
+  //getting queuestatus only
+  QueueData _statusData(DocumentSnapshot snapshot){
+    return QueueData(
+      uid: uid!,
+      inQueue: snapshot.get("inQueue")
     );
   }
   
@@ -107,8 +195,32 @@ class DatabaseService {
   }
   
   //Stream for Queue
-  Stream<QuerySnapshot> get queue {
-    return queueCollection.snapshots();
+  Stream<QueueData> get queueData {
+    return queueCollection.doc(uid).snapshots()
+    .map(_queueDataFromSnapshot);
   }
   
+  //For Role Only?
+  Stream<QueueData> get  queueStatus {
+    return queueCollection.doc(uid).snapshots()
+    .map(_statusData);
+  }
+  
+  //Stream for Queuelist
+  Stream<List<QueueCollection>> get queueList {
+    return queueCollection.snapshots()
+    .map(_queueListFromSnapshot);
+  }
+  
+  //Stream for Vehicle Data
+  Stream<VehicleData> get vehicleData{
+    return vehicleCollection.doc(uid).snapshots()
+    .map(_vehicleDataFromSnapshot);
+  }
+  
+  //Stream for Vehicle List
+  Stream<List<VehicleCollection>> get vehicleList{
+    return vehicleCollection.snapshots()
+    .map(_vehicleListFromSnapshot);
+  }
 }

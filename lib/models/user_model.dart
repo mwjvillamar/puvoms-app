@@ -9,12 +9,12 @@ class UserObject {
 }
 
 class UserData {
-  final String uid;
-  final String firstName;
-  final String lastName;
-  final String role;
-  final String phoneNum;
-  final String email;
+  final String? uid;
+  final String? firstName;
+  final String? lastName;
+  final String? role;
+  final String? phoneNum;
+  final String? email;
   
   UserData({
     required this.uid,

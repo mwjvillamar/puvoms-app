@@ -24,7 +24,8 @@ class LoginRouter extends StatelessWidget {
     } else {
       return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
-        builder: (context, snapshot) {
+        builder: (context, snapshot){
+          Future.delayed(const Duration(milliseconds: 2000));
           if(snapshot.hasData){
             UserData? userData = snapshot.data;
             if(userData!.role == "Admin"){
@@ -33,9 +34,10 @@ class LoginRouter extends StatelessWidget {
             } else if(userData.role == "Driver"){
               debugPrint("snapshot has data ${userData.role}");
               return const DriverNavigationView();
+            } else {
+              debugPrint("snapshot has data ${userData.role}");
+              return const PassengerNavigationView();
             }
-            debugPrint("snapshot has data ${userData.role}");
-            return const PassengerNavigationView();
           } else {
             debugPrint("snapshot has no data");
             return const PassengerNavigationView();
