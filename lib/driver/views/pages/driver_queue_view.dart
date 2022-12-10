@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
-import 'package:puvoms/models/user_collection_model.dart';
+import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/models/user_model.dart';
 import 'package:puvoms/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_button_widget.dart';
+import 'package:puvoms/widgets/custom_queueitem_widget.dart';
 
 class DriverQueueView extends StatefulWidget {
   const DriverQueueView({Key? key}) : super(key: key);
@@ -44,24 +45,67 @@ class _DriverQueueViewState extends State<DriverQueueView> {
               stream: DatabaseService(uid: user.uid).vehicleData,
               builder: (context, snapshot3) {
                 VehicleData? vehicleData = snapshot3.data;
-                return Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomButton(
-                        key: const ValueKey("queue-driver"),
-                        text: "Queue Driver + ${queueStatus?.inQueue}",
-                        // value: [user.uid, inQueue, userData?.firstName, userData?.lastName],
-                        value: {
-                          "uid" : user.uid,
-                          "inQueue" : queueStatus?.inQueue,
-                          "firstName" : userData?.firstName,
-                          "lastName" : userData?.lastName,
-                          "plateNumber" : vehicleData?.plateNumber
-                        },
+                return Center(
+                  child: Padding(
+                    padding:  EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  constraints: const BoxConstraints(
+                                    minHeight: 200,
+                                    minWidth: 200,
+                                  ),
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage('lib/assets/puvoms_logo.png'),
+                                      fit: BoxFit.contain
+                                    )
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: context.mainHP),
+                              CustomButton(
+                                key: const ValueKey("queue-driver"),
+                                text: "Queue Driver + ${queueStatus?.inQueue}",
+                                // value: [user.uid, inQueue, userData?.firstName, userData?.lastName],
+                                value: {
+                                  "uid" : user.uid,
+                                  "inQueue" : queueStatus?.inQueue,
+                                  "firstName" : userData?.firstName,
+                                  "lastName" : userData?.lastName,
+                                  "plateNumber" : vehicleData?.plateNumber
+                                },
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  children: const [
+                                    CustomQueueItem(icon: Icons.confirmation_number, text: 'Queue No.:'),
+                                    CustomQueueItem(icon: Icons.people, text: 'Passenger:'),
+                                    CustomQueueItem(icon: Icons.departure_board, text: 'Status:'),
+                                    CustomQueueItem(icon: Icons.directions_car, text: 'Model:'),
+                                    CustomQueueItem(icon: Icons.color_lens, text: 'Color:'),
+                                    CustomQueueItem(icon: Icons.numbers, text: 'License No.:'),
+                                    CustomQueueItem(icon: Icons.departure_board, text: 'Queue Start:'),
+                                    CustomQueueItem(icon: Icons.departure_board, text: 'Estimated Time of Departure:'),
+                                    CustomQueueItem(icon: Icons.map, text: 'Route:')
+                                  ],
+                                ),
+                              )
+                      ],
                       ),
-                    ],
+                        )
+                      ],
+                      
+                    ),
                   ),
                 );
               }
