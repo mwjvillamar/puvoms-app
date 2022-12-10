@@ -84,21 +84,19 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                   "plateNumber" : vehicleData?.plateNumber
                                 },
                               ),
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  children: const [
-                                    CustomQueueItem(icon: Icons.confirmation_number, text: 'Queue No.:'),
-                                    CustomQueueItem(icon: Icons.people, text: 'Passenger:'),
-                                    CustomQueueItem(icon: Icons.departure_board, text: 'Status:'),
-                                    CustomQueueItem(icon: Icons.directions_car, text: 'Model:'),
-                                    CustomQueueItem(icon: Icons.color_lens, text: 'Color:'),
-                                    CustomQueueItem(icon: Icons.numbers, text: 'License No.:'),
-                                    CustomQueueItem(icon: Icons.departure_board, text: 'Queue Start:'),
-                                    CustomQueueItem(icon: Icons.departure_board, text: 'Estimated Time of Departure:'),
-                                    CustomQueueItem(icon: Icons.map, text: 'Route:')
-                                  ],
-                                ),
+                              SizedBox(height: context.mainHP),
+                              Column(
+                                children: const [
+                                  CustomQueueItem(icon: Icons.confirmation_number, text: 'Queue No.:'),
+                                  CustomQueueItem(icon: Icons.people, text: 'Passenger:'),
+                                  CustomQueueItem(icon: Icons.departure_board, text: 'Status:'),
+                                  CustomQueueItem(icon: Icons.directions_car, text: 'Model:'),
+                                  CustomQueueItem(icon: Icons.color_lens, text: 'Color:'),
+                                  CustomQueueItem(icon: Icons.numbers, text: 'License No.:'),
+                                  CustomQueueItem(icon: Icons.departure_board, text: 'Queue Start:'),
+                                  CustomQueueItem(icon: Icons.departure_board, text: 'Estimated Time of Departure:'),
+                                  CustomQueueItem(icon: Icons.map, text: 'Route:')
+                                ],
                               )
                       ],
                       ),

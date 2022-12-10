@@ -101,9 +101,9 @@ class CustomButton extends StatelessWidget {
             debugPrint(value.toString());
           } else if (key == const ValueKey("driver-account-save")) {
             try {
-              if (formState.validate()){
-                await DatabaseService(uid: value['uid']).createVehicle(value['uid'], value['vehicleBrand'], value['vehicleColor'], value['plateNumber']);
+              if (formState.validate()) {
                 await DatabaseService(uid: value['uid']).updateUser(value['uid'], value['firstName'], value['lastName'], value['phoneNum']);
+                await DatabaseService(uid: value['uid']).createVehicle(value['uid'], value['vehicleBrand'], value['vehicleColor'], value['plateNumber']);
                 // await DatabaseService(uid: value[0]).createVehicle(value[0], value[4], value[5], value[6]);
                 // await DatabaseService(uid: value[0]).updateUser(value[0], value[1], value[2], value[3]);
                 debugPrint(value.toString());

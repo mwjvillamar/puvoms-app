@@ -40,8 +40,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
     // TODO: implement initState
     super.initState();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     
@@ -84,11 +83,25 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10,),
-                            Center(child: Text("Hey ${userData?.firstName}!", style: const TextStyle(fontSize: 22),)),
-                            Center(child: Text("You are a ${userData?.role}", style: const TextStyle(fontSize: 18),),),
-                            Center(child: Text("${userData?.email}", style: const TextStyle(fontSize: 14),),),
-                            const SizedBox(height: 10,),
+                            SizedBox(height: context.secondaryHP),
+                            Center(
+                                child: Text(
+                                  "Hey ${userData?.firstName}!",
+                                  style: const TextStyle(fontSize: 22)
+                                )
+                            ),
+                            Center(
+                              child: Text(
+                                "You are a ${userData?.role}",
+                                style: const TextStyle(fontSize: 18)
+                              )
+                            ),
+                            Center(
+                              child: Text("${userData?.email}",
+                                style: const TextStyle(fontSize: 14)
+                              )
+                            ),
+                            const SizedBox(height: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -141,7 +154,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10,),
+                            SizedBox(height: context.secondaryHP),
                             CustomButton(
                               text: "Save",
                               key: const ValueKey("driver-account-save"),
@@ -157,7 +170,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                               // value: [user.uid, firstName, lastName, phoneNum, vehicleBrand, vehicleColor, plateNumber],
                               formState: _formKey.currentState,
                             ),
-                            CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid,)
+                            CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid)
                           ],
                         ),
                       ),
