@@ -15,15 +15,30 @@ class CustomLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(10),
-        child: Text.rich(
-            TextSpan(
-                style: const TextStyle(fontSize: 16),
-                children: [
-                  WidgetSpan(child: Icon(icon)),
-                  TextSpan(text: text)
-                ]
+        child: Row(
+          children: [
+            Icon(icon),
+            const SizedBox(width: 5),
+            Expanded(
+              child: Text(text,
+                maxLines: 16,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
             )
+          ],
         )
+        // child: Text.rich(
+        //     TextSpan(
+        //         style: const TextStyle(fontSize: 16),
+        //         children: [
+        //           WidgetSpan(child: Icon(icon)),
+        //           TextSpan(text: text)
+        //         ]
+        //     )
+        // )
     );
   }
 }

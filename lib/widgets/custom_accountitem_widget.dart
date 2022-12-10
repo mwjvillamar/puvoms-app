@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/constants/material_constant.dart';
 
-class CustomRowItem extends StatefulWidget {
+class CustomAccountItem extends StatefulWidget {
 
-  const CustomRowItem({Key? key}) : super(key: key);
+  const CustomAccountItem({Key? key}) : super(key: key);
 
   @override
-  State<CustomRowItem> createState() => _CustomRowItemState();
+  State<CustomAccountItem> createState() => _CustomAccountItemState();
 }
 
-class _CustomRowItemState extends State<CustomRowItem> {
+class _CustomAccountItemState extends State<CustomAccountItem> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,11 +17,9 @@ class _CustomRowItemState extends State<CustomRowItem> {
       children: [
         Expanded(
           flex: 7,
-          child: TextFormField
-          (
+          child: TextFormField(
             enabled: false,
-            decoration: InputDecoration
-            (
+            decoration: InputDecoration(
               border: OutlineInputBorder(),
             ),
           ),
