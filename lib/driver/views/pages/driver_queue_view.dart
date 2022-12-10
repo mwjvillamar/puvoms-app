@@ -98,11 +98,10 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                   CustomQueueItem(icon: Icons.map, text: 'Route:')
                                 ],
                               )
-                      ],
-                      ),
+                            ],
+                          ),
                         )
                       ],
-                      
                     ),
                   ),
                 );
