@@ -53,7 +53,15 @@ class AuthService {
   }
 
   //Register with Email and Password
-  Future registerWithEmailAndPassword(String email, String password, String firstName, String lastName, String role, String phoneNum) async {
+  Future registerWithEmailAndPassword(
+    String email, 
+    String password, 
+    String firstName, 
+    String lastName, 
+    String role, 
+    String phoneNum,
+    String plateNumber, 
+  ) async {
     try{
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user!;
@@ -63,6 +71,14 @@ class AuthService {
       
       //Creating a document for the user data
       await DatabaseService(uid: user.uid).createUser(user.uid, firstName, lastName, role, phoneNum, email);
+      
+      try {
+        if (role == "Driver"){
+          await DatabaseService(uid: user.uid).updateQueue(user.uid, false, DateTime.now(), firstName, lastName, plateNumber, 0);
+        }
+      } catch (e) {
+        debugPrint("User most likely isn't a Driver \n Error: $e");
+      }
       
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e){

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/services/auth.dart';
+import 'package:puvoms/services/database.dart';
 
 class CustomButton extends StatelessWidget {
   
@@ -70,7 +71,7 @@ class CustomButton extends StatelessWidget {
             try {
               if (formState.validate()){
                 loadingFunction(true);
-              dynamic result = await _auth.registerWithEmailAndPassword(value[0], value[1], value[2], value[3], value[4], value[5]);
+              dynamic result = await _auth.registerWithEmailAndPassword(value['email'], value['password'], value['firstName'], value['lastName'], value['role'], value['phoneNum'], "0000");
                 if (result is String){
                   callbackFunction!(result);
                   loadingFunction(false);
@@ -80,7 +81,47 @@ class CustomButton extends StatelessWidget {
               debugPrint("Form State is Null \n E: $e"); 
             }
           } else if(key == const ValueKey("signout")){
-            _auth.signOut();
+            try {
+              await DatabaseService(uid: value).updateQueueStatus(value, false);
+              _auth.signOut();
+            } catch (e) {
+              debugPrint("User isn't a Driver");
+              _auth.signOut();
+            }
+          } else if (key == const ValueKey("queue-driver")) {
+            if(value['inQueue'] == null){
+                await DatabaseService(uid: value['uid']).updateQueue(value['uid'], true, DateTime.now(), value['firstName'], value['lastName'], value['plateNumber'], 0);
+            } else {
+              if(!value['inQueue']){
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true);
+              } else {
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false);
+              }
+            }
+            debugPrint(value.toString());
+          } else if (key == const ValueKey("driver-account-save")) {
+            try {
+              if (formState.validate()){
+                await DatabaseService(uid: value['uid']).createVehicle(value['uid'], value['vehicleBrand'], value['vehicleColor'], value['plateNumber']);
+                await DatabaseService(uid: value['uid']).updateUser(value['uid'], value['firstName'], value['lastName'], value['phoneNum']);
+                // await DatabaseService(uid: value[0]).createVehicle(value[0], value[4], value[5], value[6]);
+                // await DatabaseService(uid: value[0]).updateUser(value[0], value[1], value[2], value[3]);
+                debugPrint(value.toString());
+              }
+            } catch (e){
+              debugPrint("Something went wrong with Account View \n Account View error: $e"); 
+            }
+          } else if (key == const ValueKey("account-save")) {
+            try {
+              if (formState.validate()){
+                await DatabaseService(uid: value['uid']).updateUser(value['uid'], value['firstName'], value['lastName'], value['phoneNum']);
+                // await DatabaseService(uid: value[0]).createVehicle(value[0], value[4], value[5], value[6]);
+                // await DatabaseService(uid: value[0]).updateUser(value[0], value[1], value[2], value[3]);
+                debugPrint(value.toString());
+              }
+            } catch (e){
+              debugPrint("Something went wrong with Admin Account View \n Admin Account View error: $e"); 
+            }
           } else {
             debugPrint("No Button");
           }

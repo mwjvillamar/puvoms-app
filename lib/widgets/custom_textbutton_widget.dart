@@ -46,6 +46,7 @@ class CustomTextButton extends StatelessWidget{
                       toggleView!();
                     } else if(key == const ValueKey("signout")){
                       _auth.signOut();
+                      debugPrint(DateTime.now().toString());
                     }
                   },
                   style: TextButton.styleFrom(

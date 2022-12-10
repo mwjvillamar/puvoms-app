@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:puvoms/constants/material_constant.dart';
+import 'package:puvoms/models/queue_collection_model.dart';
+import 'package:puvoms/models/vehicle_model.dart';
 
 class CustomCardItem extends StatefulWidget {
-  const CustomCardItem({Key? key}) : super(key: key);
+  
+  final QueueCollection? value;
+  final VehicleCollection? vehicleData;
+  
+  const CustomCardItem({
+    Key? key,
+    this.value,
+    this.vehicleData
+  }) : super(key: key);
 
   @override
   State<CustomCardItem> createState() => _CustomCardItemState();
@@ -14,6 +24,8 @@ class _CustomCardItemState extends State<CustomCardItem> {
   Widget build(BuildContext context) {
 
     //debugPaintSizeEnabled = true;
+    
+    bool inQueue = widget.value!.inQueue;
 
     return Container(
       height: context.screenHeight*0.20,
@@ -21,7 +33,7 @@ class _CustomCardItemState extends State<CustomCardItem> {
         minHeight: 150,
         minWidth: double.infinity,
       ),
-      child: Card(
+      child: inQueue? Card(
         child: Padding(
           padding: EdgeInsets.fromLTRB(context.secondaryWP, context.secondaryHP, context.secondaryWP, context.secondaryHP),
           child: Column(
@@ -49,18 +61,18 @@ class _CustomCardItemState extends State<CustomCardItem> {
                             child: FittedBox(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const[
+                                children: [
                                   Padding(
-                                    padding: EdgeInsets.all(2),
-                                      child: Text("STATUS")
+                                    padding: const EdgeInsets.all(2),
+                                      child: const Text("Queueing")
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Text("${widget.value?.plateNumber}")
                                   ),
                                   Padding(
                                       padding: EdgeInsets.all(2),
-                                      child: Text("License Plate")
-                                  ),
-                                  Padding(
-                                      padding: EdgeInsets.all(2),
-                                      child: Text("Vehicle Type & Color")
+                                      child: Text("A ${widget.vehicleData?.vehicleColor} ${widget.vehicleData?.vehicleBrand}")
                                   ),
                                 ],
                               ),
@@ -69,7 +81,7 @@ class _CustomCardItemState extends State<CustomCardItem> {
                         ],
                       )
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: FittedBox(
                         alignment: Alignment.topRight,
@@ -77,8 +89,8 @@ class _CustomCardItemState extends State<CustomCardItem> {
                           child: Text.rich(
                             TextSpan(
                               children: [
-                                WidgetSpan(child: Icon(Icons.person)),
-                                TextSpan(text: "0/0")
+                                const WidgetSpan(child: Icon(Icons.person, size: 16,)),
+                                TextSpan(text: "${widget.value?.passengerCount}/15", style: const TextStyle(fontSize: 12))
                               ]
                             )
                           ),
@@ -98,13 +110,13 @@ class _CustomCardItemState extends State<CustomCardItem> {
                   ),
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 1,
                 child: FittedBox(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                      padding: EdgeInsets.all(2),
-                      child: Text("Queue Started at 6:06")
+                      padding: const EdgeInsets.all(2),
+                      child: Text("Queue Started at +${widget.value?.queueStart}")
                   ),
                 ),
               ),
@@ -156,7 +168,7 @@ class _CustomCardItemState extends State<CustomCardItem> {
             ],
           ),
         ),
-      ),
+      ): Container()
     );
   }
 }
