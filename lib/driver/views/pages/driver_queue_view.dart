@@ -100,11 +100,10 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                   ],
                                 ),
                               )
-                      ],
-                      ),
+                            ],
+                          ),
                         )
                       ],
-                      
                     ),
                   ),
                 );
