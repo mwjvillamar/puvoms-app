@@ -39,6 +39,10 @@ class _RegisterViewState extends State<RegisterView> {
   String role = "admin";
   String phoneNum = "";
   
+  String vehicleBrand = "";
+  String vehicleColor = "";
+  String plateNumber = "";
+    
   //for loading widget
   bool loading = false;
 
@@ -168,6 +172,32 @@ class _RegisterViewState extends State<RegisterView> {
                               });
                             },
                           ),
+                          if (role == "Driver") ... [
+                            const CustomLabel(icon: Icons.person, text: " Vehicle Brand"),
+                            CustomTextFormField(
+                              key: const ValueKey("register-vehicleBrand"),
+                              isHidden: false,
+                              hint: "Enter Your Vehicle Brand", 
+                              icon: Icons.directions_bus,
+                              callbackFunction: (val) => setState(() => vehicleBrand = val),       
+                            ),
+                            const CustomLabel(icon: Icons.person, text: " Vehicle Color"),
+                            CustomTextFormField(
+                              key: const ValueKey("register-vehicleColor"),
+                              isHidden: false,
+                              hint: "Enter Your Vehicle Brand", 
+                              icon: Icons.directions_bus,
+                              callbackFunction: (val) => setState(() => vehicleColor = val),       
+                            ),
+                            const CustomLabel(icon: Icons.person, text: " Plate Number:"),
+                            CustomTextFormField(
+                              key: const ValueKey("register-plateNumber"),
+                              isHidden: false,
+                              hint: "Enter Your Vehicle Brand", 
+                              icon: Icons.abc,
+                              callbackFunction: (val) => setState(() => plateNumber = val),       
+                            ),
+                          ],
                           const SizedBox(height: 10,),
                           CustomTextButton(
                             prompt: "Already have an account?", 
@@ -192,6 +222,9 @@ class _RegisterViewState extends State<RegisterView> {
                               'lastName' : lastName,
                               'role' : role,
                               'phoneNum' : phoneNum,
+                              'vehicleBrand' : vehicleBrand,
+                              'vehicleColor' : vehicleColor,
+                              'plateNumber' : plateNumber
                             },
                             formState: _formKey.currentState, 
                             callbackFunction: (val) => setState(() => error = val),

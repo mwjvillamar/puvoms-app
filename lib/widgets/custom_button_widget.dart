@@ -71,7 +71,17 @@ class CustomButton extends StatelessWidget {
             try {
               if (formState.validate()){
                 loadingFunction(true);
-              dynamic result = await _auth.registerWithEmailAndPassword(value['email'], value['password'], value['firstName'], value['lastName'], value['role'], value['phoneNum'], "0000");
+              dynamic result = await _auth.registerWithEmailAndPassword(
+                value['email'], 
+                value['password'], 
+                value['firstName'], 
+                value['lastName'], 
+                value['role'], 
+                value['phoneNum'], 
+                value['plateNumber'],
+                value['vehicleBrand'],
+                value['vehicleColor']
+                );
                 if (result is String){
                   callbackFunction!(result);
                   loadingFunction(false);
@@ -82,7 +92,7 @@ class CustomButton extends StatelessWidget {
             }
           } else if(key == const ValueKey("signout")){
             try {
-              await DatabaseService(uid: value).updateQueueStatus(value, false);
+              await DatabaseService(uid: value).updateQueueStatus(value, false, DateTime.now());
               _auth.signOut();
             } catch (e) {
               debugPrint("User isn't a Driver");
@@ -93,9 +103,9 @@ class CustomButton extends StatelessWidget {
                 await DatabaseService(uid: value['uid']).updateQueue(value['uid'], true, DateTime.now(), value['firstName'], value['lastName'], value['plateNumber'], 0);
             } else {
               if(!value['inQueue']){
-                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true);
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, DateTime.now());
               } else {
-                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false);
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, DateTime.now());
               }
             }
             debugPrint(value.toString());

@@ -27,7 +27,7 @@ class _QueueViewState extends State<PassengerQueueView> {
   Widget build(BuildContext context) {
 
     debugPaintSizeEnabled = false;
-
+  
     //TODO: implement build
 
     return StreamProvider<List<QueueCollection>>.value(
