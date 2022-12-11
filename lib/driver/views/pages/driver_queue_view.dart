@@ -46,12 +46,12 @@ class _DriverQueueViewState extends State<DriverQueueView> {
               builder: (context, snapshot3) {
                 VehicleData? vehicleData = snapshot3.data;
                 return Center(
-                  child: Padding(
-                    padding:  EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverFillRemaining(
-                          hasScrollBody: false,
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -100,9 +100,9 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                               )
                             ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 );
               }
