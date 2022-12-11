@@ -60,7 +60,9 @@ class AuthService {
     String lastName, 
     String role, 
     String phoneNum,
-    String plateNumber, 
+    String plateNumber,
+    String vehicleBrand,
+    String vehicleColor 
   ) async {
     try{
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -72,14 +74,14 @@ class AuthService {
       //Creating a document for the user data
       await DatabaseService(uid: user.uid).createUser(user.uid, firstName, lastName, role, phoneNum, email);
       
-      try {
-        if (role == "Driver"){
+      if (role == "Driver"){
+        try {
           await DatabaseService(uid: user.uid).updateQueue(user.uid, false, DateTime.now(), firstName, lastName, plateNumber, 0);
-        }
-      } catch (e) {
-        debugPrint("User most likely isn't a Driver \n Error: $e");
+          await DatabaseService(uid: user.uid).createVehicle(user.uid, vehicleBrand, vehicleColor, plateNumber);
+        } catch (e) {
+          debugPrint("User most likely isn't a Driver \n Error: $e");
+        }   
       }
-      
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e){
       debugPrint(e.toString());

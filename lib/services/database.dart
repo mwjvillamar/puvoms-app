@@ -44,10 +44,11 @@ class DatabaseService {
     });
   }
   
-  Future updateQueueStatus(String uid, bool inQueue) async {
+  Future updateQueueStatus(String uid, bool inQueue, DateTime queueStart) async {
     return await queueCollection.doc(uid).update({
       'uid' : uid,
       'inQueue' : inQueue,
+      'queueStart' : queueStart
     });
   }
   
@@ -118,7 +119,8 @@ class DatabaseService {
         plateNumber: doc.get('plateNumber') ?? " ", 
         passengerCount: doc.get('passengerCount') ?? 0
         );
-    }).toList();
+        //thiw will now sort the list by queue.
+    }).toList()..sort((q1, q2) => q1.queueStart.compareTo(q2.queueStart));
   }
   
   //list of vehicles format

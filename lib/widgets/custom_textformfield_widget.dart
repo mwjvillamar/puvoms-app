@@ -107,7 +107,25 @@ class _CustomTextFieldState extends State<CustomTextFormField> {
             } else {
               return null;
             }
-          } 
+          } else if (widget.key == const ValueKey("register-vehicleBrand")){
+            if (val!.isEmpty){
+              return("Enter your Vehicle Brand");
+            } else {
+              return null;
+            }
+          } else if (widget.key == const ValueKey("register-vehicleColor")){
+            if (val!.isEmpty){
+              return("Enter your Vehicle Color");
+            } else {
+              return null;
+            }
+          } else if (widget.key == const ValueKey("register-plateNum")){
+            if (val!.isEmpty){
+              return("Enter your Plate Number");
+            } else {
+              return null;
+            }
+          }    
           return null;
         }),
         // validator: (val) => ,

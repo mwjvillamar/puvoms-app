@@ -24,8 +24,7 @@ class LoginRouter extends StatelessWidget {
     } else {
       return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
-        builder: (context, snapshot){
-          Future.delayed(const Duration(milliseconds: 2000));
+        builder: (context, AsyncSnapshot snapshot){
           if(snapshot.hasData){
             UserData? userData = snapshot.data;
             if(userData!.role == "Admin"){
