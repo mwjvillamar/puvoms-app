@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
 import 'package:puvoms/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
-import 'package:puvoms/widgets/custom_carditem_widget.dart';
+import 'package:puvoms/widgets/custom_queuecard_widget.dart';
 
 class PassengerQueueList extends StatefulWidget {
   const PassengerQueueList({super.key});

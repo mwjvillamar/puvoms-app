@@ -10,6 +10,7 @@ import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/widgets/custom_accountitem_widget.dart';
 
 class DriverAccountView extends StatefulWidget {
+
   const DriverAccountView({Key? key}) : super(key: key);
 
   @override
@@ -40,8 +41,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
     // TODO: implement initState
     super.initState();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     
@@ -58,14 +58,14 @@ class _DriverAccountViewState extends State<DriverAccountView> {
           builder: (context, snapshot2) {
             VehicleData? vehicleData = snapshot2.data;
             return Center(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
-                child: CustomScrollView(
-                  slivers: [
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Form(
-                        key: _formKey,
+              child: CustomScrollView(
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -84,16 +84,30 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10,),
-                            Center(child: Text("Hey ${userData?.firstName}!", style: const TextStyle(fontSize: 22),)),
-                            Center(child: Text("You are a ${userData?.role}", style: const TextStyle(fontSize: 18),),),
-                            Center(child: Text("${userData?.email}", style: const TextStyle(fontSize: 14),),),
-                            const SizedBox(height: 10,),
+                            SizedBox(height: context.secondaryHP),
+                            Center(
+                                child: Text(
+                                  "Hey ${userData?.firstName}!",
+                                  style: const TextStyle(fontSize: 24)
+                                )
+                            ),
+                            Center(
+                              child: Text(
+                                "You are a ${userData?.role}",
+                                style: const TextStyle(fontSize: 20)
+                              )
+                            ),
+                            Center(
+                              child: Text("${userData?.email}",
+                                style: const TextStyle(fontSize: 16)
+                              )
+                            ),
+                            const SizedBox(height: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const CustomLabel(icon: Icons.person, text: 'Full Name:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData?.firstName} ${userData?.lastName}",
                                   callbackFunction: (val){
@@ -104,7 +118,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                   },
                                 ),
                                 const CustomLabel(icon: Icons.phone, text: 'Phone:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData?.phoneNum,
                                   callbackFunction: (val) {
@@ -115,33 +129,33 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                   },
                                 ),
                                 // CustomTextFormField(
-                                //   key: const ValueKey("account-phoneNum"), 
-                                //   isHidden: false, 
-                                //   hint: "${userData?.lastName}", 
+                                //   key: const ValueKey("account-phoneNum"),
+                                //   isHidden: false,
+                                //   hint: "${userData?.lastName}",
                                 //   icon: Icons.abc,
                                 //   callbackFunction: (val) => setState(() => phoneNum = val),
-                                // ),  
+                                // ),
                                 const CustomLabel(icon: Icons.directions_bus, text: 'Vehicle Brand:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-vehicleBrand"),
                                   value: vehicleData?.vehicleBrand,
                                   callbackFunction: (val) => setState(() => vehicleBrand = val),
                                 ),
                                 const CustomLabel(icon: Icons.directions_bus, text: 'Vehicle Color:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-vehicleColor"),
                                   value: vehicleData?.vehicleColor,
                                   callbackFunction: (val) => setState(() => vehicleColor = val),
                                 ),
                                 const CustomLabel(icon: Icons.abc, text: 'Vehicle Plate Number:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-plateNumber"),
                                   value: vehicleData?.plateNumber,
                                   callbackFunction: (val) => setState(() => plateNumber = val),
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10,),
+                            SizedBox(height: context.secondaryHP),
                             CustomButton(
                               text: "Save",
                               key: const ValueKey("driver-account-save"),
@@ -157,13 +171,13 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                               // value: [user.uid, firstName, lastName, phoneNum, vehicleBrand, vehicleColor, plateNumber],
                               formState: _formKey.currentState,
                             ),
-                            CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid,)
+                            CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid)
                           ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               )
              );
           }

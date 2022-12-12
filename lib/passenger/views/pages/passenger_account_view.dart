@@ -83,7 +83,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const CustomLabel(icon: Icons.person, text: 'Full Name:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData.firstName} ${userData.lastName}",
                                   callbackFunction: (val){
@@ -95,7 +95,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                                   },
                                 ),
                                 const CustomLabel(icon: Icons.phone, text: 'Phone:'),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData.phoneNum,
                                   callbackFunction: (val) {

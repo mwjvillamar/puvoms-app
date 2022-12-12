@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:puvoms/constants/material_constant.dart';
 
-class CustomRowItem extends StatefulWidget {
+class CustomAccountItem extends StatefulWidget {
   
   final value;
   final callbackFunction;
 
-  const CustomRowItem({
+  const CustomAccountItem({
     Key? key,
     this.value,
     this.callbackFunction
   }) : super(key: key);
 
   @override
-  State<CustomRowItem> createState() => _CustomRowItemState();
+  State<CustomAccountItem> createState() => _CustomAccountItemState();
 }
 
-class _CustomRowItemState extends State<CustomRowItem> {
+class _CustomAccountItemState extends State<CustomAccountItem> {
   
   bool isEditing = false;
   
@@ -34,7 +35,8 @@ class _CustomRowItemState extends State<CustomRowItem> {
               hintText: widget.value,
               hintStyle: const TextStyle(fontSize: 17, color: Colors.black54),
               enabledBorder:  const OutlineInputBorder(),
-              disabledBorder: InputBorder.none
+              disabledBorder: InputBorder.none,
+              errorStyle: TextStyle(color: Theme.of(context).errorColor)
             ),
             onChanged: ((val){
               if(widget.key == const ValueKey("account-name")){
@@ -50,7 +52,7 @@ class _CustomRowItemState extends State<CustomRowItem> {
                 String pattern = r'^\s*[0-9a-zA-Z]+[ ][0-9a-zA-z]+\s*';
                 RegExp regExp = RegExp(pattern);
                 if (val!.isEmpty){
-                  return "Please Enter an your Full Name";
+                  return "Enter a valid Full Name";
                 } else if(!regExp.hasMatch(val)){
                   return "Please add a space between your First and Last Name";
                 } else {
@@ -90,6 +92,9 @@ class _CustomRowItemState extends State<CustomRowItem> {
               // TODO: implement onPressed function
               setState(() {
                 isEditing = !isEditing;
+                //DEBUGGING SCREEN SIZE
+                double scr = context.screenHeight*0.15;
+                debugPrint(scr.toString());
               });
             },
             icon: isEditing? const Icon(Icons.check): const Icon(Icons.edit)

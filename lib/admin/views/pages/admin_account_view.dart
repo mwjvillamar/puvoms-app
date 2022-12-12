@@ -16,15 +16,15 @@ class AdminAccountView extends StatefulWidget {
 }
 
 class _AdminAccountViewState extends State<AdminAccountView> {
-  
+
   //Firebase Instance
   final AuthService _auth = AuthService();
-  
+
   //formkey
   final _formKey = GlobalKey<FormState>();
-  
+
   final double fontSize = 16;
-  
+
   //account edits with vehicle edits
   String firstName = "";
   String lastName = "";
@@ -38,9 +38,9 @@ class _AdminAccountViewState extends State<AdminAccountView> {
 
   @override
   Widget build(BuildContext context) {
-    
+
     final user = Provider.of<UserObject?>(context);
-    
+
 
     // TODO: implement build
 
@@ -51,14 +51,14 @@ class _AdminAccountViewState extends State<AdminAccountView> {
       builder: (context, snapshot) {
         UserData? userData = snapshot.data;
         return Center(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
-            child: CustomScrollView(
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Form(
-                    key: _formKey,
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -85,7 +85,7 @@ class _AdminAccountViewState extends State<AdminAccountView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const CustomLabel(icon: Icons.person, text: ' Full Name: '),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData?.firstName} ${userData?.lastName}",
                                   callbackFunction: (val){
@@ -97,7 +97,7 @@ class _AdminAccountViewState extends State<AdminAccountView> {
                                   },
                                 ),
                                 const CustomLabel(icon: Icons.phone, text: ' Phone: '),
-                                CustomRowItem(
+                                CustomAccountItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData?.phoneNum,
                                   callbackFunction: (val) {
@@ -127,8 +127,8 @@ class _AdminAccountViewState extends State<AdminAccountView> {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           )
         );
       }
