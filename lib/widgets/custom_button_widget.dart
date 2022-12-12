@@ -35,6 +35,9 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final today = DateTime.now();
+    final fiftyDaysFromNow = today.add(const Duration(days: 50));
+    
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: const RoundedRectangleBorder(
@@ -92,7 +95,7 @@ class CustomButton extends StatelessWidget {
             }
           } else if(key == const ValueKey("signout")){
             try {
-              await DatabaseService(uid: value).updateQueueStatus(value, false, DateTime.now());
+              await DatabaseService(uid: value).updateQueueStatus(value, false, fiftyDaysFromNow);
               _auth.signOut();
             } catch (e) {
               debugPrint("User isn't a Driver");
@@ -109,6 +112,7 @@ class CustomButton extends StatelessWidget {
               }
             }
             debugPrint(value.toString());
+            debugPrint(value['queueTime'].toString());
           } else if (key == const ValueKey("driver-account-save")) {
             try {
               if (formState.validate()){

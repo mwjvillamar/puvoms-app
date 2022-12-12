@@ -152,7 +152,8 @@ class DatabaseService {
     return QueueData(
       uid: uid!, 
       inQueue: snapshot.get("inQueue"), 
-      queueStart: snapshot.get("queueStart"), 
+      //firestore gives back timestamp
+      queueStart: snapshot.get("queueStart").toDate(), 
       firstName: snapshot.get("firstName"), 
       lastName: snapshot.get("lastName"), 
       plateNumber: snapshot.get("plateNumber"), 
@@ -174,7 +175,7 @@ class DatabaseService {
   QueueData _statusData(DocumentSnapshot snapshot){
     return QueueData(
       uid: uid!,
-      inQueue: snapshot.get("inQueue")
+      inQueue: snapshot.get("inQueue"),
     );
   }
   
@@ -203,7 +204,7 @@ class DatabaseService {
   }
   
   //For Role Only?
-  Stream<QueueData> get  queueStatus {
+  Stream<QueueData> get queueStatus {
     return queueCollection.doc(uid).snapshots()
     .map(_statusData);
   }

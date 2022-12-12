@@ -24,7 +24,7 @@ class CustomLabel extends StatelessWidget {
                 maxLines: 16,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
             )

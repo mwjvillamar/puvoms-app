@@ -5,8 +5,10 @@ class CustomQueueItem extends StatefulWidget {
 
   final String text;
   final IconData icon;
+  
+  final value;
 
-  const CustomQueueItem({Key? key, required this.text, required this.icon}) : super(key: key);
+  const CustomQueueItem({Key? key, required this.text, required this.icon, this.value}) : super(key: key);
 
   @override
   State<CustomQueueItem> createState() => _CustomQueueItemState();
@@ -16,14 +18,14 @@ class _CustomQueueItemState extends State<CustomQueueItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
             flex: 1,
               child: CustomLabel(
                   icon: widget.icon,
-                  text: widget.text
+                  text: widget.text,
               )
           ),
           Expanded(
@@ -31,7 +33,9 @@ class _CustomQueueItemState extends State<CustomQueueItem> {
               child: TextFormField(
                 enabled: false,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  hintText: widget.value,
+                  hintStyle: const TextStyle(color: Colors.black),
+                  border: const OutlineInputBorder()
                 ),
               )
           )
