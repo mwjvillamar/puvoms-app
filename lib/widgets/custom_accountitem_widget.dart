@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puvoms/constants/material_constant.dart';
 
 class CustomAccountItem extends StatefulWidget {
   
@@ -91,6 +92,9 @@ class _CustomAccountItemState extends State<CustomAccountItem> {
               // TODO: implement onPressed function
               setState(() {
                 isEditing = !isEditing;
+                //DEBUGGING SCREEN SIZE
+                double scr = context.screenHeight*0.15;
+                debugPrint(scr.toString());
               });
             },
             icon: isEditing? const Icon(Icons.check): const Icon(Icons.edit)
