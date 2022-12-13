@@ -6,6 +6,7 @@ import 'package:puvoms/passenger/views/pages/passenger_navigation_view.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/shared/authenticate.dart';
 import 'package:puvoms/admin/views/pages/admin_navigation_view.dart';
+import 'package:puvoms/shared/load_view.dart';
 
 class LoginRouter extends StatelessWidget {
   const LoginRouter({super.key});
@@ -39,7 +40,7 @@ class LoginRouter extends StatelessWidget {
             }
           } else {
             debugPrint("snapshot has no data");
-            return const PassengerNavigationView();
+            return const LoadView();
           }
         },
       );

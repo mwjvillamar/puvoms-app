@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
+import 'package:puvoms/models/user_model.dart';
 import 'package:puvoms/models/vehicle_model.dart';
+import 'package:puvoms/services/database.dart';
 
 class CustomQueueCard extends StatefulWidget {
   
@@ -23,156 +26,176 @@ class _CustomQueueCardState extends State<CustomQueueCard> {
   Widget build(BuildContext context) {
 
     //debugPaintSizeEnabled = true;
+    final user = Provider.of<UserObject?>(context);
 
     bool inQueue = widget.value!.inQueue;
 
-    return Container(
-      height: context.screenHeight*0.20,
-      constraints: const BoxConstraints(
-        minHeight: 150,
-        minWidth: double.infinity,
-      ),
-      child: inQueue? Card(
-        child: InkWell(
-          onTap: () {
-            debugPrint("Tapped");
-          },
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(context.secondaryWP, context.secondaryHP, context.secondaryWP, context.secondaryHP),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: Row(
-                    children: [
-                      const Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Image(
-                            image: AssetImage('lib/assets/puvoms_logo.png'),
-                          ),
-                        )
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: FittedBox(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.all(2),
-                                        child: Text("Queueing")
-                                    ),
-                                    Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Text("${widget.value?.plateNumber}")
-                                    ),
-                                    Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Text("A ${widget.vehicleData?.vehicleColor} ${widget.vehicleData?.vehicleBrand}")
-                                    ),
-                                  ],
-                                ),
+    return StreamBuilder<UserData>(
+      stream: DatabaseService(uid: user!.uid).userData,
+      builder: (context, snapshot) {
+        UserData? userData = snapshot.data;
+        return Container(
+          height: context.screenHeight*0.20,
+          constraints: const BoxConstraints(
+            minHeight: 150,
+            minWidth: double.infinity,
+          ),
+          child: inQueue? Card(
+            child: InkWell(
+              onTap: () async {
+                await DatabaseService(uid: user.uid).createPayment(
+                  user.uid!, 
+                  "${userData!.firstName!} ${userData.lastName!}", 
+                  DateTime.now(), 
+                  widget.value!.uid,
+                  "${widget.value!.firstName} ${widget.value!.lastName}" ,
+                  widget.vehicleData!.vehicleBrand!, 
+                  widget.vehicleData!.vehicleColor!, 
+                  widget.vehicleData!.plateNumber!
+                );
+                if(widget.value!.passengerCount < 15){
+                  var newValue = widget.value!.passengerCount + 1;
+                  await DatabaseService(uid: user.uid).addPassenger(widget.value!.uid, newValue);
+                }
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(context.secondaryWP, context.secondaryHP, context.secondaryWP, context.secondaryHP),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: EdgeInsets.all(2),
+                              child: Image(
+                                image: AssetImage('lib/assets/puvoms_logo.png'),
                               ),
                             )
-                          ],
-                        )
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: FittedBox(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.all(2),
+                                            child: Text("Queueing")
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Text("${widget.value?.plateNumber}")
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Text("A ${widget.vehicleData?.vehicleColor} ${widget.vehicleData?.vehicleBrand}")
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: FittedBox(
+                              alignment: Alignment.topRight,
+                              child: Center(
+                                child: Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      const WidgetSpan(child: Icon(Icons.person, size: 16,)),
+                                      TextSpan(text: "${widget.value?.passengerCount}/15", style: const TextStyle(fontSize: 12))
+                                    ]
+                                  )
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ),
+                    const Expanded(
+                      flex: 1,
+                      child: FittedBox(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: Text("Estimated Time of Departure: 11:11")
+                        ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: FittedBox(
-                          alignment: Alignment.topRight,
-                          child: Center(
-                            child: Text.rich(
-                              TextSpan(
-                                children: [
-                                  const WidgetSpan(child: Icon(Icons.person, size: 16,)),
-                                  TextSpan(text: "${widget.value?.passengerCount}/15", style: const TextStyle(fontSize: 12))
-                                ]
-                              )
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: FittedBox(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Text("Queue Started at +${widget.value?.queueStart}")
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        children: const[
+                          Expanded(
+                            flex: 1,
+                            child: FittedBox(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                  padding: EdgeInsets.all(2),
+                                  child: Text(
+                                  "Meycauayan",
+                                  maxLines: null,
+                                  overflow: TextOverflow.ellipsis,
+                                  )
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
-                  )
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: FittedBox(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                        padding: EdgeInsets.all(2),
-                        child: Text("Estimated Time of Departure: 11:11")
+                          Expanded(
+                            flex: 1,
+                            child: FittedBox(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                  padding: EdgeInsets.all(2),
+                                  child: Text("---- 2h 30m ----")
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: FittedBox(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                  padding: EdgeInsets.all(2),
+                                  child: Text(
+                                    "Monumento",
+                                    maxLines: null,
+                                    overflow: TextOverflow.ellipsis,
+                                  )
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-                Expanded(
-                  flex: 1,
-                  child: FittedBox(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Text("Queue Started at +${widget.value?.queueStart}")
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    children: const[
-                      Expanded(
-                        flex: 1,
-                        child: FittedBox(
-                          alignment: Alignment.center,
-                          child: Padding(
-                              padding: EdgeInsets.all(2),
-                              child: Text(
-                              "Meycauayan",
-                              maxLines: null,
-                              overflow: TextOverflow.ellipsis,
-                              )
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: FittedBox(
-                          alignment: Alignment.center,
-                          child: Padding(
-                              padding: EdgeInsets.all(2),
-                              child: Text("---- 2h 30m ----")
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: FittedBox(
-                          alignment: Alignment.center,
-                          child: Padding(
-                              padding: EdgeInsets.all(2),
-                              child: Text(
-                                "Monumento",
-                                maxLines: null,
-                                overflow: TextOverflow.ellipsis,
-                              )
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ): Container()
+          ): Container()
+        );
+      }
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:puvoms/models/payment_model.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
 import 'package:puvoms/models/test_model.dart';
 import 'package:puvoms/models/user_collection_model.dart';
@@ -47,11 +48,20 @@ class DatabaseService {
     });
   }
   
-  Future updateQueueStatus(String uid, bool inQueue, DateTime queueStart) async {
+  Future updateQueueStatus(String uid, bool inQueue, DateTime queueStart, String firstName, String lastName, String plateNumber) async {
     return await queueCollection.doc(uid).update({
       'uid' : uid,
       'inQueue' : inQueue,
-      'queueStart' : queueStart
+      'queueStart' : queueStart,
+      'firstName' : firstName,
+      'lastName' : lastName,
+      'plateNumber' : plateNumber
+    });
+  }
+  
+  Future addPassenger(String queueUID, int passengerCount) async {
+    return await queueCollection.doc(queueUID).update({
+      'passengerCount' : passengerCount
     });
   }
   
@@ -75,14 +85,53 @@ class DatabaseService {
     });
   }
   
-  Future createVehicle(String uid, String vehicleBrand, String vehicleColor, String plateNumber) async {
+  Future createVehicle(String uid, String vehicleBrand, String vehicleColor, String plateNumber, DateTime queueStart) async {
     return await vehicleCollection.doc(uid).set({
       'uid' : uid,
+      'vehicleBrand' : vehicleBrand,
+      'vehicleColor' : vehicleColor,
+      'plateNumber' : plateNumber,
+      'queueStart' : queueStart
+    });
+  }
+  
+  Future updateVehicle(String uid, DateTime queueStart) async {
+    return await vehicleCollection.doc(uid).update({
+      'queueStart' : queueStart
+    });
+  }
+  
+  Future createPayment(String userUID, String passengerName, DateTime datePaid, String driverName, String queueUID, String vehicleBrand, String vehicleColor, String plateNumber) async {
+    return await paymentCollection.add({
+      'userUID' : userUID,
+      'passengerName' : passengerName,
+      'datePaid' : datePaid,
+      'driverName' : driverName,
+      'queueUID' : queueUID,
       'vehicleBrand' : vehicleBrand,
       'vehicleColor' : vehicleColor,
       'plateNumber' : plateNumber
     });
   }
+    
+  
+  
+  //creating a list of payments from a snapshot
+  List<PaymentCollection> _paymentsListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.docs.map((doc){
+      return PaymentCollection(
+        userUID: doc.get('userUID'),
+        passengerName: doc.get('passengerName'),
+        datePaid: doc.get('datePaid'),
+        queueUID: doc.get('queueUID'),
+        driverName: doc.get('driverName'),
+        vehicleBrand: doc.get('vehicleBrand'),
+        vehicleColor: doc.get('vehicleColor'),
+        plateNumber: doc.get('plateNumber')
+      );
+    }).toList()..sort((p1, p2) => p1.datePaid.compareTo(p2.datePaid));
+  }
+
   
   //get list from snapshot
   List<Test> _testListFromSnapshot(QuerySnapshot snapshot){
@@ -134,8 +183,9 @@ class DatabaseService {
         vehicleBrand: doc.get('vehicleBrand') ?? " ", 
         vehicleColor: doc.get('vehicleColor') ?? " ", 
         plateNumber: doc.get('plateNumber') ?? " ", 
-        );
-    }).toList();
+        queueStart: doc.get('queueStart').toDate()
+      );
+    }).toList()..sort((v1, v2) => v1.queueStart.compareTo(v2.queueStart));
   }
   
   //userDAta from snapshot
@@ -170,7 +220,8 @@ class DatabaseService {
       uid: uid!,
       vehicleBrand: snapshot.get("vehicleBrand"),
       vehicleColor: snapshot.get("vehicleColor"),
-      plateNumber: snapshot.get("plateNumber")
+      plateNumber: snapshot.get("plateNumber"),
+      queueStart: snapshot.get("queueStart").toDate()
     );
   }
   
@@ -180,6 +231,17 @@ class DatabaseService {
       uid: uid!,
       inQueue: snapshot.get("inQueue"),
     );
+  }
+  
+  //Stream for all payment list
+  Stream<List<PaymentCollection>> get paymentsList{
+    return paymentCollection.snapshots()
+    .map(_paymentsListFromSnapshot);
+  }
+  
+  Stream<List<PaymentCollection>> getUserPaymentsList(String userUID){
+    return paymentCollection.where("userUID", isEqualTo: userUID).snapshots()
+    .map(_paymentsListFromSnapshot);
   }
   
   //get collection stream

@@ -77,7 +77,7 @@ class AuthService {
       if (role == "Driver"){
         try {
           await DatabaseService(uid: user.uid).updateQueue(user.uid, false, DateTime.now(), firstName, lastName, plateNumber, 0);
-          await DatabaseService(uid: user.uid).createVehicle(user.uid, vehicleBrand, vehicleColor, plateNumber);
+          await DatabaseService(uid: user.uid).createVehicle(user.uid, vehicleBrand, vehicleColor, plateNumber, DateTime.now());
         } catch (e) {
           debugPrint("User most likely isn't a Driver \n Error: $e");
         }   

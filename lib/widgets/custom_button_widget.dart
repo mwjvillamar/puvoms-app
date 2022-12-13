@@ -96,7 +96,8 @@ class CustomButton extends StatelessWidget {
             }
           } else if(key == const ValueKey("signout")){
             try {
-              await DatabaseService(uid: value).updateQueueStatus(value, false, fiftyDaysFromNow);
+              await DatabaseService(uid: value['uid']).updateQueue(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber'], 0);
+              await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], fiftyDaysFromNow);
               _auth.signOut();
             } catch (e) {
               debugPrint("User isn't a Driver");
@@ -107,9 +108,12 @@ class CustomButton extends StatelessWidget {
                 await DatabaseService(uid: value['uid']).updateQueue(value['uid'], true, today, value['firstName'], value['lastName'], value['plateNumber'], 0);
             } else {
               if(!value['inQueue']){
-                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, today);
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, today, value['firstName'], value['lastName'], value['plateNumber']);
+                await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], today);
               } else {
-                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, fiftyDaysFromNow);
+                // await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber']);
+                await DatabaseService(uid: value['uid']).updateQueue(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber'], 0);
+                await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], fiftyDaysFromNow);
               }
             }
             debugPrint(value.toString());
@@ -118,7 +122,7 @@ class CustomButton extends StatelessWidget {
             try {
               if (formState.validate()){
                 await DatabaseService(uid: value['uid']).updateUser(value['uid'], value['firstName'], value['lastName'], value['phoneNum']);
-                await DatabaseService(uid: value['uid']).createVehicle(value['uid'], value['vehicleBrand'], value['vehicleColor'], value['plateNumber']);
+                await DatabaseService(uid: value['uid']).createVehicle(value['uid'], value['vehicleBrand'], value['vehicleColor'], value['plateNumber'], today);
                 // await DatabaseService(uid: value[0]).createVehicle(value[0], value[4], value[5], value[6]);
                 // await DatabaseService(uid: value[0]).updateUser(value[0], value[1], value[2], value[3]);
                 debugPrint(value.toString());
