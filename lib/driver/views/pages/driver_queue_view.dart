@@ -50,12 +50,12 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                   builder: (context, snapshot4) {
                     QueueData? queueData = snapshot4.data;
                     return Center(
-                      child: Padding(
-                        padding:  EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
-                        child: CustomScrollView(
-                          slivers: [
-                            SliverFillRemaining(
-                              hasScrollBody: false,
+                      child: CustomScrollView(
+                        slivers: [
+                          SliverFillRemaining(
+                            hasScrollBody: false,
+                            child: Padding(
+                              padding:  EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
@@ -66,12 +66,14 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                         minHeight: 200,
                                         minWidth: 200,
                                       ),
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          image: AssetImage('lib/assets/puvoms_logo.png'),
-                                          fit: BoxFit.contain
-                                        )
+                                      // decoration: const BoxDecoration(
+                                      //   shape: BoxShape.circle,
+                                      //   image: DecorationImage(
+                                      //     image: AssetImage('lib/assets/puvoms_logo.png'),
+                                      //     fit: BoxFit.contain
+                                      //   )
+                                      child: FittedBox(
+                                          child: Icon(Icons.directions_bus)
                                       ),
                                     ),
                                   ),
@@ -89,6 +91,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                       "queueTime" : queueData
                                     },
                                   ),
+                                  SizedBox(height: context.mainHP),
                                   Expanded(
                                     flex: 2,
                                     child: Column(
@@ -109,9 +112,9 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                   )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
                     );
                   }
