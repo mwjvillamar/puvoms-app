@@ -23,6 +23,9 @@ class DatabaseService {
   //reference to the vehicle collections
   final CollectionReference vehicleCollection = FirebaseFirestore.instance.collection("vehicles");
   
+  //reference to the payment collections
+  final CollectionReference paymentCollection = FirebaseFirestore.instance.collection("payments");
+  
   Future updateUserData(String plateNumber, String driverName, bool inQueue, int passengerCount) async {
     return await testCollection.doc(uid).set({
       'plateNumber' : plateNumber,

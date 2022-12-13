@@ -35,8 +35,9 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final today = DateTime.now();
-    final fiftyDaysFromNow = today.add(const Duration(days: 50));
+    final fiftyDaysFromNow = today.add(const Duration(days: 360));
     
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -103,12 +104,12 @@ class CustomButton extends StatelessWidget {
             }
           } else if (key == const ValueKey("queue-driver")) {
             if(value['inQueue'] == null){
-                await DatabaseService(uid: value['uid']).updateQueue(value['uid'], true, DateTime.now(), value['firstName'], value['lastName'], value['plateNumber'], 0);
+                await DatabaseService(uid: value['uid']).updateQueue(value['uid'], true, today, value['firstName'], value['lastName'], value['plateNumber'], 0);
             } else {
               if(!value['inQueue']){
-                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, DateTime.now());
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, today);
               } else {
-                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, DateTime.now());
+                await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, fiftyDaysFromNow);
               }
             }
             debugPrint(value.toString());
