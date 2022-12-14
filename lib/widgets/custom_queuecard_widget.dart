@@ -54,8 +54,8 @@ class _CustomQueueCardState extends State<CustomQueueCard> {
                   user.uid!, 
                   "${userData!.firstName!} ${userData.lastName!}", 
                   DateTime.now(), 
-                  widget.value!.uid,
                   "${widget.value!.firstName} ${widget.value!.lastName}" ,
+                  widget.value!.uid,
                   widget.vehicleData!.vehicleBrand, 
                   widget.vehicleData!.vehicleColor, 
                   widget.vehicleData!.plateNumber

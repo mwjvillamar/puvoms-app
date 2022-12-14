@@ -239,8 +239,15 @@ class DatabaseService {
     .map(_paymentsListFromSnapshot);
   }
   
+  //for passengers and admin
   Stream<List<PaymentCollection>> getUserPaymentsList(String userUID){
     return paymentCollection.where("userUID", isEqualTo: userUID).snapshots()
+    .map(_paymentsListFromSnapshot);
+  }
+  
+  //for drivers
+  Stream<List<PaymentCollection>> getDriverPaymentsList(String queueUID){
+    return paymentCollection.where("queueUID", isEqualTo: queueUID).snapshots()
     .map(_paymentsListFromSnapshot);
   }
   
