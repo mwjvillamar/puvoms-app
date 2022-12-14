@@ -122,7 +122,7 @@ class DatabaseService {
       return PaymentCollection(
         userUID: doc.get('userUID'),
         passengerName: doc.get('passengerName'),
-        datePaid: doc.get('datePaid'),
+        datePaid: doc.get('datePaid').toDate(),
         queueUID: doc.get('queueUID'),
         driverName: doc.get('driverName'),
         vehicleBrand: doc.get('vehicleBrand'),

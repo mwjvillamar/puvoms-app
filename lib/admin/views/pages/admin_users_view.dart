@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:puvoms/admin/views/pages/admin_users_list.dart';
 import 'package:puvoms/models/user_collection_model.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:puvoms/widgets/users_list.dart';
-
 class AdminUsersView extends StatefulWidget {
   const AdminUsersView({super.key});
 

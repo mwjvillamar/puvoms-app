@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:puvoms/admin/views/pages/admin_users_tile_widget.dart';
 import 'package:puvoms/models/user_collection_model.dart';
-import 'package:puvoms/widgets/users_tile_widget.dart';
 
 class UsersList extends StatefulWidget {
   const UsersList({super.key});

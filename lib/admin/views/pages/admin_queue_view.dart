@@ -7,7 +7,6 @@ import 'package:puvoms/models/test_model.dart';
 import 'package:puvoms/passenger/views/pages/passenger_queue_list.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_queuecard_widget.dart';
-import 'package:puvoms/widgets/test_list_widget.dart';
 
 class AdminQueueView extends StatefulWidget {
   const AdminQueueView({Key? key}) : super(key: key);

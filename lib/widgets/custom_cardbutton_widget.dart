@@ -20,7 +20,7 @@ class CustomCardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Card(
-        color: Colors.black87,
+        color: Colors.blueAccent,
         child: InkWell(
           onTap: () {
             if(key == const ValueKey("payments")) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
@@ -24,6 +25,12 @@ class CustomQueueCard extends StatefulWidget {
 class _CustomQueueCardState extends State<CustomQueueCard> {
   @override
   Widget build(BuildContext context) {
+    
+    DateTime datePaid = widget.value!.queueStart;
+    var departure = datePaid.add(const Duration(minutes: 30));
+    var dateFormat = DateFormat('MMMM d, yyyy').format(datePaid);
+    var timeFormat = DateFormat.jm().format(datePaid);
+    var departFormat = DateFormat.jm().format(departure);
 
     //debugPaintSizeEnabled = true;
     final user = Provider.of<UserObject?>(context);
@@ -49,9 +56,9 @@ class _CustomQueueCardState extends State<CustomQueueCard> {
                   DateTime.now(), 
                   widget.value!.uid,
                   "${widget.value!.firstName} ${widget.value!.lastName}" ,
-                  widget.vehicleData!.vehicleBrand!, 
-                  widget.vehicleData!.vehicleColor!, 
-                  widget.vehicleData!.plateNumber!
+                  widget.vehicleData!.vehicleBrand, 
+                  widget.vehicleData!.vehicleColor, 
+                  widget.vehicleData!.plateNumber
                 );
                 if(widget.value!.passengerCount < 15){
                   var newValue = widget.value!.passengerCount + 1;
@@ -124,13 +131,13 @@ class _CustomQueueCardState extends State<CustomQueueCard> {
                         ],
                       )
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: FittedBox(
                         alignment: Alignment.centerLeft,
                         child: Padding(
                             padding: EdgeInsets.all(2),
-                            child: Text("Estimated Time of Departure: 11:11")
+                            child: Text("Estimated Time of Departure: $departFormat")
                         ),
                       ),
                     ),
@@ -140,7 +147,7 @@ class _CustomQueueCardState extends State<CustomQueueCard> {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                             padding: const EdgeInsets.all(2),
-                            child: Text("Queue Started at +${widget.value?.queueStart}")
+                            child: Text("Queue Started at $timeFormat")
                         ),
                       ),
                     ),

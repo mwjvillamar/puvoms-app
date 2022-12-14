@@ -28,10 +28,10 @@ class _AdminTallyViewState extends State<DriverTallyView> {
       child: ListView(
         padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
         children: [
-          CustomPaymentCard(),
-          CustomPaymentCard(),
-          CustomPaymentCard(),
-          CustomPaymentCard(),
+          // CustomPaymentCard(),
+          // CustomPaymentCard(),
+          // CustomPaymentCard(),
+          // CustomPaymentCard(),
         ],
       ),
     );
