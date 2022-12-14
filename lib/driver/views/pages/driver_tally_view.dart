@@ -34,10 +34,8 @@ class _AdminTallyViewState extends State<DriverTallyView> {
     return StreamProvider<List<PaymentCollection>>.value(
       value: DatabaseService().getDriverPaymentsList(user!.uid.toString()), 
       initialData: const [],
-      child: const Scaffold(
-        body: Center(
-          child: PassengerPaymentList(),
-        )
+      child: const Center(
+         child: PassengerPaymentList(),
       ),
     );
   }

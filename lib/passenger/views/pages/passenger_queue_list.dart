@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
 import 'package:puvoms/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
@@ -33,6 +34,7 @@ class _PassengerQueueListState extends State<PassengerQueueList> {
       builder: (context, snapshot) {
         List<VehicleCollection>? vehicleList = snapshot.data;
         return ListView.builder(
+          padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainWP),
           itemCount: queueList.length,
           itemBuilder: (context, index) {
             // return CustomQueueCard(value: queueList[index], vehicleData: vehicleList?[index],);

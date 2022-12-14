@@ -60,7 +60,7 @@ class _AdminPaymentCardState extends State<AdminPaymentCard> {
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: FittedBox(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(context.secondaryWP, context.secondaryHP, context.secondaryWP, context.secondaryHP),

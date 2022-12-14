@@ -25,11 +25,9 @@ class _AdminInboxViewState extends State<AdminInboxView> {
     return StreamBuilder<UserData>(
       stream: null,
       builder: (context, snapshot) {
-        return Container(
-          child: Center(
-            child: Text(
-              "Admin - Inbox page"
-            ),
+        return const Center(
+          child: Text(
+            "Admin - Inbox page"
           ),
         );
       }

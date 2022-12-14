@@ -18,8 +18,6 @@ class _AdminGeolocationViewState extends State<AdminGeolocationView> {
 
   @override
   Widget build(BuildContext context) {
-    
-    
 
     // TODO: implement build
 

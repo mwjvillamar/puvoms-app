@@ -36,7 +36,7 @@ class _RegisterViewState extends State<RegisterView> {
   
   String firstName = "";
   String lastName = "";
-  String role = "admin";
+  String role = "passenger";
   String phoneNum = "";
   
   String vehicleBrand = "";
