@@ -4,6 +4,7 @@ import 'package:puvoms/admin/views/pages/admin_users_list.dart';
 import 'package:puvoms/models/user_collection_model.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:puvoms/widgets/custom_textformfield_widget.dart';
 class AdminUsersView extends StatefulWidget {
   const AdminUsersView({super.key});
 
@@ -12,6 +13,9 @@ class AdminUsersView extends StatefulWidget {
 }
 
 class _AdminUsersViewState extends State<AdminUsersView> {
+  
+  String searchValue = "";
+  
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<UserCollection>>.value(
@@ -22,7 +26,21 @@ class _AdminUsersViewState extends State<AdminUsersView> {
           title: const Text("Users"),
           automaticallyImplyLeading: false,
         ),
-        body: const UsersList(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: CustomTextFormField(
+                isHidden: false, 
+                hint: "Search User", 
+                icon: Icons.abc_outlined,
+                callbackFunction: (val) => setState(() => searchValue = val)
+              ),
+            ),
+            const Expanded(flex: 9,child: UsersList()),
+          ],
+        ),
       )
     );
   }

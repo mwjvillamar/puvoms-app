@@ -29,6 +29,7 @@ class AuthService {
       UserCredential userCredential = await _auth.signInAnonymously();
       //add ! to end to, shorthand for it is not null
       User user = userCredential.user!;
+      await DatabaseService(uid: user.uid).createUser(user.uid, "Anon", "Account", "Passenger", "+0000", "No Email");
       return _userFromFirebaseUser(user);
     } on FirebaseAuthException catch (e) {
         switch (e.code) {

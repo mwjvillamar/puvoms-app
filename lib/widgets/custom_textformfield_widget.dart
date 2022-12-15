@@ -23,7 +23,7 @@ class CustomTextFormField extends StatefulWidget {
     this.password,
     // required this.val
     
-    this.callbackFunction,
+    required this.callbackFunction,
   }) : super(key: key);
 
   @override

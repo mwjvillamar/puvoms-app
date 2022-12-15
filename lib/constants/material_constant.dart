@@ -18,6 +18,9 @@ extension Screen on BuildContext {
   double get tertiaryHP => screenHeight * 0.015;
   // TERTIARY Width Padding
   double get tertiaryWP => screenWidth * 0.015;
+  
+  //price
+  double get ticketPrice => 16;
 }
 
 // TODO: Polish -> app theme

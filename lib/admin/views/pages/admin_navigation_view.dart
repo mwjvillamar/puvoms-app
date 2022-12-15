@@ -114,29 +114,34 @@ class _AdminNavigationViewState extends State<AdminNavigationView>{
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
+            type: BottomNavigationBarType.shifting,
             currentIndex: currentIndex,
             onTap: (index) => selectPage(tabList[index], index),
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.location_pin),
                 label: 'Track',
+                backgroundColor: Colors.blueAccent
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.checklist),
                 label: 'Tally',
+                backgroundColor: Colors.blueAccent
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.queue),
                 label: 'Queue',
+                backgroundColor: Colors.blueAccent
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.inbox),
                 label: 'Inbox',
+                backgroundColor: Colors.blueAccent
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
                 label: 'Account',
+                backgroundColor: Colors.blueAccent
               ),
             ],
           )
