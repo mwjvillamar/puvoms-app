@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 class DriverGeolocationView extends StatefulWidget {
   const DriverGeolocationView({Key? key}) : super(key: key);
@@ -14,55 +15,106 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   Completer<GoogleMapController> controller = Completer();
 
-  late BitmapDescriptor originIcon;
+  late BitmapDescriptor currentIcon;
   late BitmapDescriptor destinationIcon;
 
   Set<Marker> marker = <Marker>{};
 
-  late LatLng currentLocation;
-  late LatLng destinationLocation;
+  LatLng currentLocation = const LatLng(14.7473944,120.9733941);
+  LatLng destinationLocation = const LatLng(14.6540828,120.9837599);
 
-  LatLng origin = const LatLng(14.7473944,120.9733941);
-  LatLng destination = const LatLng(14.6540828,120.9837599);
+  PolylinePoints? polylinePoints;
   Set<Polyline> polyline = <Polyline>{};
   List<LatLng> coordinates = [];
-  PolylinePoints? polylinePoints;
 
-  /////////////////////////////////////////////////////////
-  void setInitialLocation() {
-    currentLocation = LatLng(
-      origin.latitude,
-      origin.longitude
-    );
-    destinationLocation = LatLng(
-      destination.latitude,
-      destination.longitude
+  // GET LOCATION METHOD
+  Future<Position> getCurrentLocation() async {
+    bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!isLocationServiceEnabled) {
+      return Future.error('Location services are disabled');
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permissions are permanently denied, we cannot request permission');
+    }
+
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best,
+      forceAndroidLocationManager: true
     );
   }
 
-  /////////////////////////////////////////////////////////
-  void showPinsOnMap() {
+  void setCurrentLocation() {
+    getCurrentLocation().then((location) {
+      setState(() {
+        currentLocation = LatLng(location.latitude, location.longitude);
+      });
+    });
+  }
+
+  // LOCATION UPDATER
+  void liveLocation() {
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    );
+
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen(
+            (Position position) {
+              setState(() {
+                currentLocation = LatLng(position.latitude, position.longitude);
+              });
+            }
+        );
+  }
+
+  // SET INITIAL LOCATION METHOD
+  // LatLng setInitialLocation() {
+  //   currentLocation = LatLng(
+  //     currentLocation.latitude,
+  //     currentLocation.longitude
+  //   );
+  //
+  //   return currentLocation;
+  // }
+
+  // SET MARKER ICONS METHOD
+  void setMarkerIcons() async {
+    currentIcon = BitmapDescriptor.defaultMarker;
+    destinationIcon = BitmapDescriptor.defaultMarker;
+  }
+
+  // SET POLYLINES METHOD
+  void setPolylines() {
+    polylinePoints = PolylinePoints();
+  }
+
+  // SHOW MARKERS ON MAP METHOD
+  void showMarkersOnMap() async {
     marker.add(Marker(
-      markerId: const MarkerId('originPin'),
+      markerId: const MarkerId('positionMarker'),
       position: currentLocation,
-      icon: originIcon,
+      icon: currentIcon,
     ));
 
     marker.add(Marker(
-      markerId: const MarkerId('destinationPin'),
+      markerId: const MarkerId('destinationMarker'),
       position: destinationLocation,
       icon: destinationIcon,
     ));
   }
 
-  /////////////////////////////////////////////////////////
-  void setOriginAndDestinationMarkerIcons() async {
-    originIcon = BitmapDescriptor.defaultMarker;
-    destinationIcon = BitmapDescriptor.defaultMarker;
-  }
-
-  /////////////////////////////////////////////////////////
-  void setPolylines() async {
+  // SHOW POLYLINES ON MAP METHOD
+  void showPolylinesOnMap() async {
     PolylineResult? result = await polylinePoints?.getRouteBetweenCoordinates(
         "AIzaSyB-_D7baXyS2b6Xharz6lmjL41mUJmMkMw",
         PointLatLng(
@@ -88,25 +140,24 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
         polyline.add(
             Polyline(
                 polylineId: const PolylineId('polyline'),
-                color: Colors.black,
-                points: coordinates
+                color: Colors.blueAccent,
+                points: coordinates,
+                width: 5
             )
         );
       });
     }
-
   }
 
+  //////////////////////////////////////////////////////////////
   @override
   void initState() {
+    getCurrentLocation();
+    setCurrentLocation();
+    liveLocation();
 
-    // setup initial locations
-    setInitialLocation();
-
-    // setup marker icons
-    setOriginAndDestinationMarkerIcons();
-
-    polylinePoints = PolylinePoints();
+    setPolylines();
+    setMarkerIcons();
     super.initState();
   }
 
@@ -116,18 +167,18 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
     // TODO: implement build
 
     return GoogleMap(
-        mapType: MapType.normal,
-        markers: marker,
-        polylines: polyline,
-        onMapCreated: (GoogleMapController controller) {
-          showPinsOnMap();
-          setPolylines();
-        },
-        initialCameraPosition: CameraPosition(
-          target: origin,
-          zoom: 16,
-        )
-      );
+            mapType: MapType.normal,
+            markers: marker,
+            polylines: polyline,
+            onMapCreated: (GoogleMapController controller) {
+              showPolylinesOnMap();
+              showMarkersOnMap();
+            },
+            initialCameraPosition: CameraPosition(
+              target: currentLocation, //cant wait for change in value so it gets initial value
+              zoom: 16,
+            )
+    );
   }
 
 }

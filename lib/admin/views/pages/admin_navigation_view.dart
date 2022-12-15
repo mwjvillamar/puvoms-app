@@ -121,7 +121,7 @@ class _AdminNavigationViewState extends State<AdminNavigationView>{
               BottomNavigationBarItem(
                 icon: Icon(Icons.location_pin),
                 label: 'Track',
-                backgroundColor: Colors.blueAccent
+                backgroundColor: Colors.blueAccent,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.checklist),
