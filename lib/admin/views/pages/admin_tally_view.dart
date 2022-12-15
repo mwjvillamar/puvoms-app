@@ -21,9 +21,6 @@ class _AdminTallyViewState extends State<AdminTallyView> {
 
   @override
   Widget build(BuildContext context) {
-
-    //debugPaintSizeEnabled = true;
-
     return Center(
       child: Padding(
         padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
