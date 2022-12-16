@@ -18,6 +18,8 @@ class DriverQueueView extends StatefulWidget {
 class _DriverQueueViewState extends State<DriverQueueView> {
   
   bool inQueue = false;
+  
+  Color color = Colors.black;
 
   @override
   void initState() {
@@ -73,7 +75,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                       //     fit: BoxFit.contain
                                       //   )
                                       child: FittedBox(
-                                          child: Icon(Icons.directions_bus)
+                                          child: Icon(Icons.directions_bus, color: color,)
                                       ),
                                     ),
                                   ),
@@ -90,6 +92,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                       "plateNumber" : vehicleData?.plateNumber,
                                       "queueTime" : queueData
                                     },
+                                    callbackFunction: (val) => setState(() => color = val),
                                   ),
                                   SizedBox(height: context.mainHP),
                                   Expanded(

@@ -108,16 +108,21 @@ class CustomButton extends StatelessWidget {
                 await DatabaseService(uid: value['uid']).updateQueue(value['uid'], true, today, value['firstName'], value['lastName'], value['plateNumber'], 0);
             } else {
               if(!value['inQueue']){
+                callbackFunction(Colors.blueAccent);
                 await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, today, value['firstName'], value['lastName'], value['plateNumber']);
                 await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], today);
+                
               } else {
                 // await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber']);
+                callbackFunction(Colors.black);
                 await DatabaseService(uid: value['uid']).updateQueue(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber'], 0);
                 await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], fiftyDaysFromNow);
+                
               }
             }
             debugPrint(value.toString());
             debugPrint(value['queueTime'].toString());
+            
           } else if (key == const ValueKey("driver-account-save")) {
             try {
               if (formState.validate()){

@@ -62,19 +62,18 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   // LOCATION UPDATER
   void liveLocation() {
-    LocationSettings locationSettings = const LocationSettings(
+    LocationOptions locationOptions = const LocationOptions(
       accuracy: LocationAccuracy.high,
       distanceFilter: 100,
     );
 
-    Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen(
-            (Position position) {
-              setState(() {
-                currentLocation = LatLng(position.latitude, position.longitude);
-              });
-            }
-        );
+    StreamSubscription<Position> positionStream = Geolocator.getPositionStream().listen(
+    (Position position) {
+        debugPrint(position == null ? 'Unknown' : "Position ButtCheeks " + position.latitude.toString() + ', ' + position.longitude.toString());
+        setState(() {
+          currentLocation = LatLng(position.latitude, position.longitude);
+        });
+    });
   }
 
   // SET INITIAL LOCATION METHOD
@@ -153,7 +152,7 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
   @override
   void initState() {
     getCurrentLocation();
-    setCurrentLocation();
+    // setCurrentLocation();
     liveLocation();
 
     setPolylines();
@@ -163,6 +162,7 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   @override
   Widget build(BuildContext context) {
+    
 
     // TODO: implement build
 
@@ -173,6 +173,7 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
             onMapCreated: (GoogleMapController controller) {
               showPolylinesOnMap();
               showMarkersOnMap();
+              
             },
             initialCameraPosition: CameraPosition(
               target: currentLocation, //cant wait for change in value so it gets initial value
