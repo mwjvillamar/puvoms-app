@@ -38,7 +38,7 @@ class _PassengerQueueListState extends State<PassengerQueueList> {
           itemCount: queueList.length,
           itemBuilder: (context, index) {
             // return CustomQueueCard(value: queueList[index], vehicleData: vehicleList?[index],);
-            return CustomQueueCard(value: queueList[index], vehicleData: vehicleList?[index],);
+            return CustomQueueCard(value: queueList[index], vehicleData: vehicleList?[index]);
           },
         );
       }

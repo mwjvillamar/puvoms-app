@@ -55,10 +55,10 @@ class _AdminAccountViewState extends State<AdminAccountView> {
             slivers: [
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
+                  child: Form(
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

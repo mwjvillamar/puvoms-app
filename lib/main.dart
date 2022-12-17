@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         catchError: (_, __) => null,
         value: AuthService().user, 
         initialData: null, 
-        child:MaterialApp(
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'PUVOMS-T3',
           initialRoute: '/login-router',

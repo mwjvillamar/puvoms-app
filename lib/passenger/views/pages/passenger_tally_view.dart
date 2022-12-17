@@ -30,11 +30,9 @@ class _TallyViewState extends State<PassengerTallyView> {
     return StreamProvider<List<PaymentCollection>>.value(
       value: DatabaseService().getUserPaymentsList(user!.uid.toString()), 
       initialData: const [],
-      child: const Scaffold(
-        body: Center(
+      child: const Center(
           child: PassengerPaymentList(),
         )
-      ),
-    );
+      );
   }
 }
