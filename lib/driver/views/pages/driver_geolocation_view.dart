@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:puvoms/shared/load_view.dart';
 
 class DriverGeolocationView extends StatefulWidget {
   const DriverGeolocationView({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class DriverGeolocationView extends StatefulWidget {
 }
 
 class _DriverGeolocationViewState extends State<DriverGeolocationView> {
+
+  late Future data;
 
   Completer<GoogleMapController> controller = Completer();
 
@@ -67,24 +71,23 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
       distanceFilter: 100,
     );
 
-    StreamSubscription<Position> positionStream = Geolocator.getPositionStream().listen(
-    (Position position) {
-        debugPrint(position == null ? 'Unknown' : "Position ButtCheeks " + position.latitude.toString() + ', ' + position.longitude.toString());
-        setState(() {
-          currentLocation = LatLng(position.latitude, position.longitude);
-        });
+    Geolocator.getPositionStream().listen((Position position) {
+      //debugPrint(position == null ? 'Unknown' : "Position ButtCheeks " + position.latitude.toString() + ', ' + position.longitude.toString());
+      setState(() {
+        currentLocation = LatLng(position.latitude, position.longitude);
+      });
     });
   }
 
   // SET INITIAL LOCATION METHOD
-  // LatLng setInitialLocation() {
-  //   currentLocation = LatLng(
-  //     currentLocation.latitude,
-  //     currentLocation.longitude
-  //   );
-  //
-  //   return currentLocation;
-  // }
+  LatLng setInitialLocation() {
+    currentLocation = LatLng(
+      currentLocation.latitude,
+      currentLocation.longitude
+    );
+
+    return currentLocation;
+  }
 
   // SET MARKER ICONS METHOD
   void setMarkerIcons() async {
@@ -151,9 +154,8 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
   //////////////////////////////////////////////////////////////
   @override
   void initState() {
-    getCurrentLocation();
-    // setCurrentLocation();
-    liveLocation();
+    data = getCurrentLocation();
+    setCurrentLocation();
 
     setPolylines();
     setMarkerIcons();
@@ -162,24 +164,30 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   @override
   Widget build(BuildContext context) {
-    
 
     // TODO: implement build
 
-    return GoogleMap(
-            mapType: MapType.normal,
-            markers: marker,
-            polylines: polyline,
-            onMapCreated: (GoogleMapController controller) {
-              showPolylinesOnMap();
-              showMarkersOnMap();
-              
-            },
-            initialCameraPosition: CameraPosition(
-              target: currentLocation, //cant wait for change in value so it gets initial value
-              zoom: 16,
-            )
-    );
+    return FutureBuilder(
+        future: data,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return GoogleMap(
+              mapType: MapType.normal,
+              markers: marker,
+              polylines: polyline,
+              onMapCreated: (GoogleMapController controller) {
+                showPolylinesOnMap();
+                showMarkersOnMap();
+              },
+              initialCameraPosition: CameraPosition(
+                target: setInitialLocation(),
+                //cant wait for change in value so it gets initial value
+                zoom: 16,
+              ),
+            );
+          } else {
+            return const LoadView();
+          }
+        });
   }
-
 }

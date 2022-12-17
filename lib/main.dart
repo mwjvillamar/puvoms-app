@@ -25,13 +25,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       //Stream Provider will wrap all data inside the material app below,
       //Any changes from the stream will return the data below
       home: StreamProvider<UserObject?>.value(
         catchError: (_, __) => null,
         value: AuthService().user, 
         initialData: null, 
-        child:MaterialApp(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'PUVOMS-T3',
           initialRoute: '/login-router',
           routes:{
