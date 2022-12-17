@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:puvoms/models/coordinates_model.dart';
 import 'package:puvoms/models/message_model.dart';
 import 'package:puvoms/models/payment_model.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
@@ -35,7 +36,38 @@ class DatabaseService {
   //reference to a chat collection
   final CollectionReference messageCollection =
       FirebaseFirestore.instance.collection("messages");
+      
+  //reference to a gps collection
+  final CollectionReference coordinatesCollection =
+      FirebaseFirestore.instance.collection("coordinates");
 
+  Future createCoordinate(String driverUID, String driverName, double latitude, double longitude, bool inQueue) async {
+    return await coordinatesCollection.doc(driverUID).set({
+      'driverUID' : driverUID,
+      'driverName' : driverName,
+      'latitude' : latitude,
+      'longitude' : longitude,
+      'inQueue' : inQueue
+    });
+  }
+  
+  // Future updateCoordinate(String driverUID, String driverName, double latitude, double longitude, bool inQueue) async {
+  //   return await coordinatesCollection.doc(driverUID).update({
+  //     'driverUID' : driverUID,
+  //     'driverName' : driverName,
+  //     'latitude' : latitude,
+  //     'longitude' : longitude,
+  //     'inQueue' : inQueue
+  //   });
+  // }
+  
+  Future updateCoordinate(String driverUID, bool inQueue) async {
+    return await coordinatesCollection.doc(driverUID).update({
+      'driverUID' : driverUID,
+      'inQueue' : inQueue
+    });
+  }
+  
   Future updateUserData(String plateNumber, String driverName, bool inQueue,
       int passengerCount) async {
     return await testCollection.doc(uid).set({
@@ -150,6 +182,19 @@ class DatabaseService {
       'message': message,
       'dateSent': dateSent
     });
+  }
+
+  // creating a list from the coordinates collection
+  List<CoordinatesList> _coordinatesListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.docs.map((doc){
+      return CoordinatesList(
+        driverUID: doc.get('driverUID'), 
+        driverName: doc.get('driverName'), 
+        latitude: doc.get('latitude'), 
+        longitude: doc.get('longitude'), 
+        inQueue: doc.get('inQueue')
+        );
+    }).toList();
   }
 
   //creating a list of chats in descending order
@@ -339,5 +384,10 @@ class DatabaseService {
   //Stream for Vehicle List
   Stream<List<VehicleCollection>> get vehicleList {
     return vehicleCollection.snapshots().map(_vehicleListFromSnapshot);
+  }
+  
+  //Stream of Coordinates List
+  Stream<List<CoordinatesList>> get coordinatesList {
+    return coordinatesCollection.snapshots().map(_coordinatesListFromSnapshot);
   }
 }

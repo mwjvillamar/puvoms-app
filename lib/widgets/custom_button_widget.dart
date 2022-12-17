@@ -98,6 +98,7 @@ class CustomButton extends StatelessWidget {
             try {
               await DatabaseService(uid: value['uid']).updateQueue(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber'], 0);
               await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], fiftyDaysFromNow);
+              await DatabaseService(uid: value['uid']).updateCoordinate(value['uid'], false);
               _auth.signOut();
             } catch (e) {
               debugPrint("User isn't a Driver");
@@ -111,12 +112,13 @@ class CustomButton extends StatelessWidget {
                 callbackFunction(Colors.blueAccent);
                 await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], true, today, value['firstName'], value['lastName'], value['plateNumber']);
                 await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], today);
-                
+                await DatabaseService(uid: value['uid']).updateCoordinate(value['uid'], true);
               } else {
                 // await DatabaseService(uid: value['uid']).updateQueueStatus(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber']);
                 callbackFunction(Colors.black);
                 await DatabaseService(uid: value['uid']).updateQueue(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber'], 0);
                 await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], fiftyDaysFromNow);
+                await DatabaseService(uid: value['uid']).updateCoordinate(value['uid'], false);
               }
             }
             debugPrint(value.toString());

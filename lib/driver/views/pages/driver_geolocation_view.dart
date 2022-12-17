@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
+import 'package:puvoms/models/user_model.dart';
+import 'package:puvoms/services/database.dart';
 import 'package:puvoms/shared/load_view.dart';
 
 class DriverGeolocationView extends StatefulWidget {
@@ -14,7 +17,6 @@ class DriverGeolocationView extends StatefulWidget {
 }
 
 class _DriverGeolocationViewState extends State<DriverGeolocationView> {
-
   late Future data;
 
   Completer<GoogleMapController> controller = Completer();
@@ -24,8 +26,8 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   Set<Marker> marker = <Marker>{};
 
-  LatLng currentLocation = const LatLng(14.7473944,120.9733941);
-  LatLng destinationLocation = const LatLng(14.6540828,120.9837599);
+  LatLng currentLocation = const LatLng(14.7473944, 120.9733941);
+  LatLng destinationLocation = const LatLng(14.6540828, 120.9837599);
 
   PolylinePoints? polylinePoints;
   Set<Polyline> polyline = <Polyline>{};
@@ -47,13 +49,13 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permanently denied, we cannot request permission');
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permission');
     }
 
     return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.best,
-      forceAndroidLocationManager: true
-    );
+        desiredAccuracy: LocationAccuracy.best,
+        forceAndroidLocationManager: true);
   }
 
   void setCurrentLocation() {
@@ -65,7 +67,7 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
   }
 
   // LOCATION UPDATER
-  void liveLocation() {
+  liveLocation() {
     LocationOptions locationOptions = const LocationOptions(
       accuracy: LocationAccuracy.high,
       distanceFilter: 100,
@@ -77,14 +79,14 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
         currentLocation = LatLng(position.latitude, position.longitude);
       });
     });
+    
+    return currentLocation;
   }
 
   // SET INITIAL LOCATION METHOD
   LatLng setInitialLocation() {
-    currentLocation = LatLng(
-      currentLocation.latitude,
-      currentLocation.longitude
-    );
+    currentLocation =
+        LatLng(currentLocation.latitude, currentLocation.longitude);
 
     return currentLocation;
   }
@@ -119,34 +121,20 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
   void showPolylinesOnMap() async {
     PolylineResult? result = await polylinePoints?.getRouteBetweenCoordinates(
         "AIzaSyB-_D7baXyS2b6Xharz6lmjL41mUJmMkMw",
+        PointLatLng(currentLocation.latitude, currentLocation.longitude),
         PointLatLng(
-            currentLocation.latitude,
-            currentLocation.longitude
-        ),
-        PointLatLng(
-            destinationLocation.latitude,
-            destinationLocation.longitude
-        )
-    );
+            destinationLocation.latitude, destinationLocation.longitude));
 
     if (result?.status == 'OK') {
       result?.points.forEach((PointLatLng pointLatLng) {
-        coordinates.add(
-            LatLng(
-                pointLatLng.latitude,
-                pointLatLng.longitude
-            )
-        );
+        coordinates.add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
       });
       setState(() {
-        polyline.add(
-            Polyline(
-                polylineId: const PolylineId('polyline'),
-                color: Colors.blueAccent,
-                points: coordinates,
-                width: 5
-            )
-        );
+        polyline.add(Polyline(
+            polylineId: const PolylineId('polyline'),
+            color: Colors.blueAccent,
+            points: coordinates,
+            width: 5));
       });
     }
   }
@@ -164,27 +152,48 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserObject?>(context);
 
     // TODO: implement build
 
     return FutureBuilder(
         future: data,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return GoogleMap(
-              mapType: MapType.normal,
-              markers: marker,
-              polylines: polyline,
-              onMapCreated: (GoogleMapController controller) {
-                showPolylinesOnMap();
-                showMarkersOnMap();
-              },
-              initialCameraPosition: CameraPosition(
-                target: setInitialLocation(),
-                //cant wait for change in value so it gets initial value
-                zoom: 16,
-              ),
-            );
+          if (snapshot.hasData) {
+            return StreamBuilder<UserData>(
+                stream: DatabaseService(uid: user!.uid).userData,
+                builder: (context, snapshot2) {
+                  if (snapshot2.hasData) {
+                    UserData? userData = snapshot2.data;
+                    var firstName = userData?.firstName;
+                    var lastName = userData?.lastName;
+                    return GoogleMap(
+                      onTap: (argument) {
+                        debugPrint(snapshot.toString());
+                      },
+                      mapType: MapType.normal,
+                      markers: marker,
+                      polylines: polyline,
+                      onMapCreated: (GoogleMapController controller) async {
+                        showPolylinesOnMap();
+                        showMarkersOnMap();
+                        await DatabaseService(uid: user.uid).createCoordinate(
+                            user.uid!,
+                            "$firstName $lastName",
+                            currentLocation.latitude,
+                            currentLocation.longitude,
+                            false);
+                      },
+                      initialCameraPosition: CameraPosition(
+                        target: setInitialLocation(),
+                        //cant wait for change in value so it gets initial value
+                        zoom: 16,
+                      ),
+                    );
+                  } else {
+                    return const LoadView();
+                  }
+                });
           } else {
             return const LoadView();
           }

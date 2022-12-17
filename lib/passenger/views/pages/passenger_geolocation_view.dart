@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:puvoms/admin/views/pages/admin_geolocation_map.dart';
+import 'package:puvoms/models/coordinates_model.dart';
+import 'package:puvoms/services/database.dart';
 
 class PassengerGeolocationView extends StatefulWidget {
   const PassengerGeolocationView({Key? key}) : super(key: key);
@@ -21,12 +25,10 @@ class _PassengerGeolocationViewState extends State<PassengerGeolocationView> {
 
     // TODO: implement build
 
-    return const GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: CameraPosition(
-        target: LatLng(14.74910917016755, 120.97379971115177),
-        zoom: 14.4746,
-        )
-      );
+    return StreamProvider<List<CoordinatesList>>.value(
+      value: DatabaseService().coordinatesList,
+      initialData: const [],
+      child: AdminGeolocationMap() 
+    );
   }
 }
