@@ -57,7 +57,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                           SliverFillRemaining(
                             hasScrollBody: false,
                             child: Padding(
-                              padding:  EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
+                              padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [

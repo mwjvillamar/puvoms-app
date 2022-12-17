@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/admin/views/pages/admin_paymentcard_widget.dart';
 import 'package:puvoms/models/payment_model.dart';
+import 'package:puvoms/constants/material_constant.dart';
 
 class PassengerPaymentList extends StatefulWidget {
   const PassengerPaymentList({super.key});
@@ -17,9 +18,10 @@ class _PassengerPaymentListState extends State<PassengerPaymentList> {
     final paymentsList = Provider.of<List<PaymentCollection>>(context);
     
     return ListView.builder(
+      padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
       itemCount: paymentsList.length,
       itemBuilder: (context, index) {
-        return AdminPaymentCard(paymentValue: paymentsList[index],);
+        return AdminPaymentCard(paymentValue: paymentsList[index]);
       },
     );
   }

@@ -49,12 +49,12 @@ class _AccountViewState extends State<PassengerAccountView> {
         UserData? userData = snapshot.data;
         if (userData != null){
           return Center(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
-            child: CustomScrollView(
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainHP),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -124,9 +124,9 @@ class _AccountViewState extends State<PassengerAccountView> {
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
+                ),
+                ),
+              ],
             )
           );
         } else {

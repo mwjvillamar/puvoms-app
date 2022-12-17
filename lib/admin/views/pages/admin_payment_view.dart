@@ -19,7 +19,7 @@ class _AdminPaymentViewState extends State<AdminPaymentView> {
 
     return StreamProvider<List<PaymentCollection>>.value(
       value: DatabaseService().paymentsList, 
-      initialData: [],
+      initialData: const [],
       child: const Center(
         child: AdminPaymentList(),
       ),

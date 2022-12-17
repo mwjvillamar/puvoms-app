@@ -21,7 +21,7 @@ class _AdminPaymentListState extends State<AdminPaymentList> {
       padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, context.mainWP),
       itemCount: paymentsList.length,
       itemBuilder: (context, index) {
-        return AdminPaymentCard(paymentValue: paymentsList[index],);
+        return AdminPaymentCard(paymentValue: paymentsList[index]);
       },
     );
   }

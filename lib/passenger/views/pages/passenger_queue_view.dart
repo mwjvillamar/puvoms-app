@@ -33,11 +33,8 @@ class _QueueViewState extends State<PassengerQueueView> {
     return StreamProvider<List<QueueCollection>>.value(
       initialData: const [],
       value: DatabaseService().queueList,
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(context.mainWP, context.mainHP, context.mainWP, 0),
-          child: const PassengerQueueList()
-        ),
+      child: const Center(
+        child: PassengerQueueList(),
       ),
     );
   }
