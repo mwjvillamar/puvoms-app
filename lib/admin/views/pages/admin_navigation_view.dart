@@ -4,15 +4,13 @@ import 'package:flutter/services.dart';
 import '../../controllers/admin_navigation_controller.dart';
 
 class AdminNavigationView extends StatefulWidget {
-
   const AdminNavigationView({Key? key}) : super(key: key);
 
   @override
   State<AdminNavigationView> createState() => _AdminNavigationViewState();
 }
 
-class _AdminNavigationViewState extends State<AdminNavigationView>{
-
+class _AdminNavigationViewState extends State<AdminNavigationView> {
   DateTime backPressedTime = DateTime.now();
 
   String currentTab = "geolocation";
@@ -35,7 +33,7 @@ class _AdminNavigationViewState extends State<AdminNavigationView>{
   };
 
   void selectPage(String tab, int index) {
-    if(tab == currentTab) {
+    if (tab == currentTab) {
       tabKeys[tab]!.currentState!.popUntil((route) => route.isFirst);
     } else {
       setState(() {
@@ -63,14 +61,14 @@ class _AdminNavigationViewState extends State<AdminNavigationView>{
 
   @override
   Widget build(BuildContext context) {
-
     // Set to true for layout debugging
     debugPaintSizeEnabled = false;
 
     return WillPopScope(
       onWillPop: () async {
         // bool value to check if currently in first page of navigator stack
-        final isFirstRouteInCurrentTab = !await tabKeys[currentTab]!.currentState!.maybePop();
+        final isFirstRouteInCurrentTab =
+            !await tabKeys[currentTab]!.currentState!.maybePop();
 
         // if on first page of navigator stack
         if (isFirstRouteInCurrentTab == true) {
@@ -104,16 +102,16 @@ class _AdminNavigationViewState extends State<AdminNavigationView>{
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            buildOffstageNavigator("geolocation"),
-            buildOffstageNavigator("tally"),
-            buildOffstageNavigator("queue"),
-            buildOffstageNavigator("inbox"),
-            buildOffstageNavigator("account"),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
+          body: Stack(
+            children: <Widget>[
+              buildOffstageNavigator("geolocation"),
+              buildOffstageNavigator("tally"),
+              buildOffstageNavigator("queue"),
+              buildOffstageNavigator("inbox"),
+              buildOffstageNavigator("account"),
+            ],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.shifting,
             currentIndex: currentIndex,
             onTap: (index) => selectPage(tabList[index], index),
@@ -124,29 +122,23 @@ class _AdminNavigationViewState extends State<AdminNavigationView>{
                 backgroundColor: Colors.blueAccent,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.checklist),
-                label: 'Tally',
-                backgroundColor: Colors.blueAccent
-              ),
+                  icon: Icon(Icons.checklist),
+                  label: 'Tally',
+                  backgroundColor: Colors.blueAccent),
               BottomNavigationBarItem(
-                icon: Icon(Icons.queue),
-                label: 'Queue',
-                backgroundColor: Colors.blueAccent
-              ),
+                  icon: Icon(Icons.queue),
+                  label: 'Queue',
+                  backgroundColor: Colors.blueAccent),
               BottomNavigationBarItem(
-                icon: Icon(Icons.inbox),
-                label: 'Inbox',
-                backgroundColor: Colors.blueAccent
-              ),
+                  icon: Icon(Icons.inbox),
+                  label: 'Inbox',
+                  backgroundColor: Colors.blueAccent),
               BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle),
-                label: 'Account',
-                backgroundColor: Colors.blueAccent
-              ),
+                  icon: Icon(Icons.account_circle),
+                  label: 'Account',
+                  backgroundColor: Colors.blueAccent),
             ],
-          )
-      ),
+          )),
     );
   }
-
 }

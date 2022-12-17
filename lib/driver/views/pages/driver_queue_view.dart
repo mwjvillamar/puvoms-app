@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puvoms/driver/views/pages/driver_queue_details.dart';
 import 'package:puvoms/models/queue_collection_model.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/models/user_model.dart';
@@ -79,7 +80,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: context.mainHP),
+                                  // SizedBox(height: context.mainHP),
                                   CustomButton(
                                     key: const ValueKey("queue-driver"),
                                     text: "Queue Driver + ${queueStatus?.inQueue}",
@@ -92,9 +93,13 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                       "plateNumber" : vehicleData?.plateNumber,
                                       "queueTime" : queueData
                                     },
-                                    callbackFunction: (val) => setState(() => color = val),
+                                    callbackFunction: (val) async {
+                                      setState(() {
+                                        color = val;
+                                      });
+                                    },
                                   ),
-                                  SizedBox(height: context.mainHP),
+                                  // SizedBox(height: context.mainHP),
                                   Expanded(
                                     flex: 2,
                                     child: Column(
@@ -112,6 +117,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                         CustomQueueItem(icon: Icons.departure_board, text: 'Estimated Time of Departure: ', value: queueData?.queueStart.toString(),),
                                       ],
                                     ),
+                                    // child: DriverQueueDetails(queueValue: queueData, vehicleValue: vehicleData,),
                                   )
                                 ],
                               ),

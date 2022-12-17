@@ -117,7 +117,6 @@ class CustomButton extends StatelessWidget {
                 callbackFunction(Colors.black);
                 await DatabaseService(uid: value['uid']).updateQueue(value['uid'], false, fiftyDaysFromNow, value['firstName'], value['lastName'], value['plateNumber'], 0);
                 await DatabaseService(uid: value['uid']).updateVehicle(value['uid'], fiftyDaysFromNow);
-                
               }
             }
             debugPrint(value.toString());

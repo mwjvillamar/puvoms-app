@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puvoms/admin/views/pages/admin_inbox_provider.dart';
 
 class DriverInboxView extends StatefulWidget {
   const DriverInboxView({Key? key}) : super(key: key);
@@ -20,12 +21,6 @@ class _DriverInboxViewState extends State<DriverInboxView> {
 
     // TODO: implement build
 
-    return Container(
-      child: const Center(
-        child: Text(
-            'DRIVER Inbox page'
-        ),
-      ),
-    );
+    return const AdminInboxProvider();
   }
 }
