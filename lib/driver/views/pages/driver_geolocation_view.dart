@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -24,13 +23,13 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
   late BitmapDescriptor currentIcon;
   late BitmapDescriptor destinationIcon;
 
-  Set<Marker> marker = <Marker>{};
+  Set<Marker> markers = <Marker>{};
 
   LatLng currentLocation = const LatLng(14.7473944, 120.9733941);
   LatLng destinationLocation = const LatLng(14.6540828, 120.9837599);
 
   PolylinePoints? polylinePoints;
-  Set<Polyline> polyline = <Polyline>{};
+  Set<Polyline> polylines = <Polyline>{};
   List<LatLng> coordinates = [];
 
   // GET LOCATION METHOD
@@ -104,13 +103,13 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
   // SHOW MARKERS ON MAP METHOD
   void showMarkersOnMap() async {
-    marker.add(Marker(
+    markers.add(Marker(
       markerId: const MarkerId('positionMarker'),
       position: currentLocation,
       icon: currentIcon,
     ));
 
-    marker.add(Marker(
+    markers.add(Marker(
       markerId: const MarkerId('destinationMarker'),
       position: destinationLocation,
       icon: destinationIcon,
@@ -130,7 +129,7 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
         coordinates.add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
       });
       setState(() {
-        polyline.add(Polyline(
+        polylines.add(Polyline(
             polylineId: const PolylineId('polyline'),
             color: Colors.blueAccent,
             points: coordinates,
@@ -172,8 +171,8 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
                         debugPrint(snapshot.toString());
                       },
                       mapType: MapType.normal,
-                      markers: marker,
-                      polylines: polyline,
+                      markers: markers,
+                      polylines: polylines,
                       onMapCreated: (GoogleMapController controller) async {
                         showPolylinesOnMap();
                         showMarkersOnMap();
