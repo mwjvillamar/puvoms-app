@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/shared/register_view.dart';
-import 'package:puvoms/shared/login_view.dart';
+import 'package:puvoms/features/register/views/pages/register_view.dart';
+import 'package:puvoms/features/login/views/pages/login_view.dart';
 
 class Authenticate extends StatefulWidget {
   const Authenticate({super.key});

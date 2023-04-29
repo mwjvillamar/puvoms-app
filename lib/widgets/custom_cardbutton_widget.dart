@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/admin/views/pages/admin_driver_view.dart';
-import 'package:puvoms/admin/views/pages/admin_summary_view.dart';
-import 'package:puvoms/admin/views/pages/admin_calendar_view.dart';
-import 'package:puvoms/admin/views/pages/admin_payment_view.dart';
+import 'package:puvoms/features/tally/views/pages/admin_summary_view.dart';
+import 'package:puvoms/features/tally/views/pages/admin_calendar_view.dart';
+import 'package:puvoms/features/tally/views/pages/admin_payment_view.dart';
 import 'package:puvoms/admin/views/pages/admin_users_view.dart';
 
 class CustomCardButton extends StatelessWidget {
@@ -28,9 +28,6 @@ class CustomCardButton extends StatelessWidget {
             }
             else if(key == const ValueKey("users")){
              Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminUsersView())); 
-            }
-            else if(key == const ValueKey("drivers")) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminDriverView()));
             }
             else if(key == const ValueKey("calendar")) {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminCalendarView()));

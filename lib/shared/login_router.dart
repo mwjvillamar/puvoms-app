@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puvoms/driver/views/pages/driver_navigation_view.dart';
-import 'package:puvoms/models/user_model.dart';
-import 'package:puvoms/passenger/views/pages/passenger_navigation_view.dart';
+import 'package:puvoms/features/navigation/views/pages/driver_navigation_view.dart';
+import 'package:puvoms/features/queue/models/user_model.dart';
+import 'package:puvoms/features/navigation/views/pages/passenger_navigation_view.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/shared/authenticate.dart';
-import 'package:puvoms/admin/views/pages/admin_navigation_view.dart';
+import 'package:puvoms/features/navigation/views/pages/admin_navigation_view.dart';
 import 'package:puvoms/shared/load_view.dart';
 
 class LoginRouter extends StatelessWidget {
