@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puvoms/models/user_collection_model.dart';
-
+import 'package:puvoms/features/queue/models/user_collection_model.dart';
 
 class UsersTile extends StatelessWidget {
   

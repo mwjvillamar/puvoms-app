@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:puvoms/admin/views/pages/admin_tally_provider.dart';
+import 'package:puvoms/features/tally/views/pages/admin_tally_provider.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/widgets/custom_cardbutton_widget.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:puvoms/features/account/views/pages/driver_account_view.dart';
 import 'package:puvoms/features/inbox/views/pages/driver_inbox_view.dart';
 import 'package:puvoms/features/geolocation/views/pages/driver_geolocation_view.dart';
-import 'package:puvoms/driver/views/pages/driver_queue_view.dart';
+import 'package:puvoms/features/queue/views/pages/driver_queue_view.dart';
 import 'package:puvoms/features/tally/views/pages/driver_tally_view.dart';
 
 class DriverNavigationController extends StatelessWidget {

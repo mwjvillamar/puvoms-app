@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/features/account/views/pages/passenger_account_view.dart';
 import 'package:puvoms/features/geolocation/views/pages/passenger_geolocation_view.dart';
-import 'package:puvoms/passenger/views/pages/passenger_queue_view.dart';
+import 'package:puvoms/features/queue/views/pages/passenger_queue_view.dart';
 import 'package:puvoms/features/tally/views/pages/passenger_tally_view.dart';
 
 class PassengerNavigationController extends StatelessWidget {

@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:puvoms/admin/views/pages/admin_message_tile.dart';
+import 'package:puvoms/features/inbox//views/pages/admin_message_tile.dart';
 import 'package:puvoms/features/inbox/models/message_model.dart';
 import 'package:puvoms/features/queue/models/user_model.dart';
 import 'package:puvoms/services/auth.dart';
-import 'package:puvoms/services/database.dart';
 
 class AdminMessageList extends StatefulWidget {
   

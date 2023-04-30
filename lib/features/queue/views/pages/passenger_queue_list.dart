@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/constants/material_constant.dart';
-import 'package:puvoms/models/queue_collection_model.dart';
-import 'package:puvoms/models/vehicle_model.dart';
+import 'package:puvoms/features/queue/models/queue_collection_model.dart';
+import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_queuecard_widget.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/features/queue/models/user_model.dart';
-import 'package:puvoms/models/vehicle_model.dart';
+import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:puvoms/widgets/custom_button_widget.dart';
@@ -18,13 +18,13 @@ class DriverAccountView extends StatefulWidget {
 }
 
 class _DriverAccountViewState extends State<DriverAccountView> {
-  
+
   //Firebase Instance
   final AuthService _auth = AuthService();
-  
+
   //formkey
   final _formKey = GlobalKey<FormState>();
-  
+
   final double fontSize = 12;
   
   //account edits with vehicle edits

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puvoms/admin/views/pages/admin_paymentcard_widget.dart';
+import 'package:puvoms/features/tally/views/pages/admin_paymentcard_widget.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/features/tally/models/payment_model.dart';
 

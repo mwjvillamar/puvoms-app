@@ -3,8 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:puvoms/models/queue_collection_model.dart';
-import 'package:puvoms/models/vehicle_model.dart';
+import 'package:puvoms/features/queue/models/queue_collection_model.dart';
+import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/widgets/custom_queueitem_widget.dart';
 
 class DriverQueueDetails extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-import 'package:puvoms/models/queue_collection_model.dart';
+import 'package:puvoms/features/queue/models/queue_collection_model.dart';
 import 'package:puvoms/features/queue/views/pages/passenger_queue_list.dart';
 import 'package:puvoms/services/database.dart';
 

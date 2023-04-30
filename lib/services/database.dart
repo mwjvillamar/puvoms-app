@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:puvoms/features/geolocation/models/coordinates_model.dart';
 import 'package:puvoms/features/inbox/models/message_model.dart';
 import 'package:puvoms/features/tally/models/payment_model.dart';
-import 'package:puvoms/models/queue_collection_model.dart';
+import 'package:puvoms/features/queue/models/queue_collection_model.dart';
 import 'package:puvoms/features/queue/models/test_model.dart';
 import 'package:puvoms/features/queue/models/user_collection_model.dart';
 import 'package:puvoms/features/queue/models/user_model.dart';
-import 'package:puvoms/models/vehicle_model.dart';
+import 'package:puvoms/features/queue/models/vehicle_model.dart';
 
 class DatabaseService {
   //Constructor for the Unique ID

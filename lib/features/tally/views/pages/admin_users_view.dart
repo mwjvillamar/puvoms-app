@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puvoms/features/tally/views/pages/admin_users_list.dart';
-import 'package:puvoms/models/user_collection_model.dart';
+import 'package:puvoms/features/queue/models/user_collection_model.dart';
 import 'package:puvoms/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:puvoms/widgets/custom_textformfield_widget.dart';
