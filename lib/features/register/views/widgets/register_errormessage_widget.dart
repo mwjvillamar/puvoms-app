@@ -2,15 +2,13 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class CustomText extends StatelessWidget {
+class RegisterErrorMessage extends StatelessWidget {
   
   final String? text;
-  
   final Color? color;
-  
   final double? size;
   
-  const CustomText({
+  const RegisterErrorMessage({
     Key? key,
     
     this.text,

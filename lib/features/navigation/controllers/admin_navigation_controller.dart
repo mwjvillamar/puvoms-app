@@ -3,7 +3,7 @@ import 'package:puvoms/features/account/views/pages/admin_account_view.dart';
 import 'package:puvoms/features/inbox/views/pages/admin_inbox_view.dart';
 import 'package:puvoms/features/geolocation/views/pages/admin_geolocation_view.dart';
 import 'package:puvoms/features/queue/views/pages/admin_queue_view.dart';
-import 'package:puvoms/features/tally/views//pages/admin_tally_view.dart';
+import 'package:puvoms/features/tally/views/pages/admin_tally_view.dart';
 
 class AdminNavigationController extends StatelessWidget {
 

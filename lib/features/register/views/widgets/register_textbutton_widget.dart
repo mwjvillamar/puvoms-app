@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/services/auth.dart';
 
-class CustomTextButton extends StatelessWidget{
+class RegisterTextButton extends StatelessWidget{
   
   //FIREBASE VARIABLES
   //_ means private variable
@@ -18,7 +18,7 @@ class CustomTextButton extends StatelessWidget{
   
   final double? size;
   
-  CustomTextButton({
+  RegisterTextButton({
     Key? key,
     required this.prompt,
     required this.text,

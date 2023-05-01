@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/shared/load_view.dart';
-import 'package:puvoms/widgets/custom_button_widget.dart';
-import 'package:puvoms/widgets/custom_label_widget.dart';
 import 'package:puvoms/services/auth.dart';
-import 'package:puvoms/widgets/custom_text_widget.dart';
-import 'package:puvoms/widgets/custom_textformfield_widget.dart';
-import 'package:puvoms/widgets/custom_textbutton_widget.dart';
+import 'package:puvoms/features/login/views/widgets/login_textformfield_widget.dart';
+import 'package:puvoms/features/login/views/widgets/login_button_widget.dart';
+import 'package:puvoms/features/login/views/widgets/login_textbutton_widget.dart';
+import 'package:puvoms/features/login/views/widgets/login_errormessage_widget.dart';
+import 'package:puvoms/widgets/custom_label_widget.dart';
 
 // WIDGET
 class LoginView extends StatefulWidget {
@@ -84,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
                                   Expanded(
                                       flex: 2,
                                       child: FittedBox(
-                                          child: Text("Please login to continue.")
+                                          child: Text("Please login to continue...")
                                       )
                                   )
                                 ]
@@ -97,95 +97,43 @@ class _LoginViewState extends State<LoginView> {
               Expanded(
                   flex: 6,
                   child: SingleChildScrollView(
-                    //Form Widget to get values
                     child: Form(
                       key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          const CustomLabel(icon: Icons.person, text: 'Email'),
-                          CustomTextFormField(
-                            key: const ValueKey("login-username"),
+                          LoginTextFormField(
+                            key: const ValueKey("login-email"),
                             isHidden: false,
-                            hint: "Enter Your Email", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter Your E-mail",
+                            label: "E-mail",
+                            prefixIcon: Icons.email,
                             callbackFunction: (val) => setState(() => email = val)
                           ),
-                          // const CustomLabel(icon: Icons.person, text: ' Username'),
-                          // TextFormField(
-                          //   decoration: const InputDecoration(
-                          //     hintText: ("Enter Your Username"),
-                          //     prefixIcon: Icon(Icons.arrow_right_alt),
-                          //     border: OutlineInputBorder(),
-                          //   ),
-                          //   onChanged: (val) {
-                          //     setState(() => email = val);
-                          //   },
-                          //   validator: (val) => val!.isEmpty ? "Enter an Email" : null,
-                          // ),
-                          const CustomLabel(icon: Icons.key, text: 'Password'),
-                          CustomTextFormField(
+                          SizedBox(height: context.secondaryHP),
+                          LoginTextFormField(
                             key: const ValueKey("login-password"),
                             isHidden: true,
-                            hint: "Enter Your Password", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter Your Password",
+                            label: "Password",
+                            prefixIcon: Icons.password,
                             callbackFunction: (val) => setState(() => password = val)
-                            ),
-                          CustomTextButton(
+                          ),
+                          SizedBox(height: context.secondaryHP),
+                          LoginTextButton(
                             prompt: "Don't have an account yet?",
                             key: const ValueKey("authentication"),
                             text: "Register Here",
                             toggleView: widget.toggleView,
                             size: 16,
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(10),
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     children: [
-                          //       const Text(
-                          //         "Don't have an account yet?",
-                          //         style: TextStyle(fontSize: 16)
-                          //       ),
-                          //       TextButton(
-                          //         onPressed: () {
-                          //           widget.toggleView();
-                          //         }, 
-                          //         child: const Text(
-                          //           "Register Here",
-                          //            style: TextStyle(fontSize: 16)
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          // SizedBox(height: context.mainHP),
-                          // ElevatedButton(
-                          //   style: ElevatedButton.styleFrom(
-                          //     shape: const RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.all(Radius.circular(18))
-                          //     )
-                          //   ),
-                          //   onPressed: () async {
-                          //     if (_formKey.currentState!.validate()){
-                          //       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                          //       if(result is String){
-                          //         setState(() => error = result);
-                          //       }
-                          //     }
-                          //   },
-                          //   child: const Text(
-                          //     'Login',
-                          //     style: TextStyle(fontSize: 16),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5.0,),
-                          CustomText(
+                          LoginErrorMessage(
                             text: error,
                             color: Colors.red,
                             size: 14,
                           ),
-                          CustomButton(
+                          SizedBox(height: context.mainHP),
+                          LoginButton(
                             text: "Login", 
                             key: const ValueKey("login"), 
                             value: [email, password],
@@ -197,11 +145,10 @@ class _LoginViewState extends State<LoginView> {
                               });
                             }),
                           ),
-                          CustomButton(
+                          LoginButton(
                             text: "Continue as Guest", 
                             key: const ValueKey("guest")
                           ),
-                          
                         ],
                       ),
                     ),

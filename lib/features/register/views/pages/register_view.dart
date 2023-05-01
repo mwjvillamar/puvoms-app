@@ -4,11 +4,11 @@ import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/shared/load_view.dart';
 import 'package:puvoms/widgets/custom_dropdown_widget.dart';
+import 'package:puvoms/features/register/views/widgets/register_textformfield_widget.dart';
+import 'package:puvoms/features/register/views/widgets/register_button_widget.dart';
+import 'package:puvoms/features/register/views/widgets/register_textbutton_widget.dart';
+import 'package:puvoms/features/register/views/widgets/register_errormessage_widget.dart';
 import 'package:puvoms/widgets/custom_label_widget.dart';
-import 'package:puvoms/widgets/custom_text_widget.dart';
-import 'package:puvoms/widgets/custom_textbutton_widget.dart';
-import 'package:puvoms/widgets/custom_button_widget.dart';
-import 'package:puvoms/widgets/custom_textformfield_widget.dart';
 
 class RegisterView extends StatefulWidget {
   
@@ -86,13 +86,13 @@ class _RegisterViewState extends State<RegisterView> {
                                 Expanded(
                                     child: FittedBox(
                                         alignment: Alignment.bottomLeft,
-                                        child: Text("Register Account")
+                                        child: Text("REGISTER ACCOUNT")
                                     )
                                 ),
                                 Expanded(
                                     child: FittedBox(
                                         alignment: Alignment.topLeft,
-                                        child: Text("Please do complete all fields")
+                                        child: Text("Please do complete all fields...")
                                     )
                                 )
                               ],
@@ -112,57 +112,62 @@ class _RegisterViewState extends State<RegisterView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const CustomLabel(icon: Icons.account_circle_rounded, text: " First Name"),
-                          CustomTextFormField(
+                          RegisterTextFormField(
                             key: const ValueKey("register-firstName"),
                             isHidden: false,
-                            hint: "Enter your First Name", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter your first name",
+                            label: "First Name",
+                            prefixIcon: Icons.person,
                             callbackFunction: (val) => setState(() => firstName = val),
                           ),
-                          const CustomLabel(icon: Icons.account_circle_rounded, text: " Last Name"),
-                          CustomTextFormField(
+                          SizedBox(height: context.secondaryHP),
+                          RegisterTextFormField(
                             key: const ValueKey("register-lastName"),
                             isHidden: false,
-                            hint: "Enter your Last Name", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter your last name",
+                            label: "Last Name",
+                            prefixIcon: Icons.person,
                             callbackFunction: (val) => setState(() => lastName = val),
                           ),
-                          const CustomLabel(icon: Icons.phone, text: " Phone Number"),
-                          CustomTextFormField(
+                          SizedBox(height: context.secondaryHP),
+                          RegisterTextFormField(
                             key: const ValueKey("register-phoneNum"),
                             isHidden: false,
-                            hint: "Enter your phone number", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter your phone number",
+                            label: "Phone Number",
+                            prefixIcon: Icons.phone,
                             callbackFunction: (val) => setState(() => phoneNum = val),
                           ),
-                          const CustomLabel(icon: Icons.person, text: " Email"),
-                          CustomTextFormField(
-                            key: const ValueKey("register-username"),
+                          SizedBox(height: context.secondaryHP),
+                          RegisterTextFormField(
+                            key: const ValueKey("register-email"),
                             isHidden: false,
-                            hint: "Enter your Email", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter your e-mail",
+                            label: "E-mail",
+                            prefixIcon: Icons.account_circle,
                             callbackFunction: (val) => setState(() => email = val),
                           ),
-                          const CustomLabel(icon: Icons.key, text: " Password"),
-                          CustomTextFormField(
+                          SizedBox(height: context.secondaryHP),
+                          RegisterTextFormField(
                             key: const ValueKey("register-password"),
                             isHidden: true,
-                            hint: "Enter your password", 
-                            icon: Icons.arrow_right_alt,
+                            hint: "Enter your password",
+                            label: "Password",
+                            prefixIcon: Icons.password,
                             callbackFunction: (val) => setState(() => password = val),
                           ),
-                          const CustomLabel(icon: Icons.password, text: " Confirm Password"),
+                          SizedBox(height: context.secondaryHP),
                           TextFormField(
                             obscureText: true,
                             decoration: const InputDecoration(
                               hintText: ("Confirm your password"),
-                              prefixIcon: Icon(Icons.arrow_right_alt),
+                              label: Text("Confirm Password"),
+                              prefixIcon: Icon(Icons.password),
                               border: OutlineInputBorder(),
                             ),
                             validator: (val) => val! != password ? "Does not Match password" : null,
                           ),
-                          const CustomLabel(icon: Icons.badge, text: " Role - For Testing"),
+                          SizedBox(height: context.secondaryHP),
                           CustomDropwdownButton(
                             list: const ['Passenger', 'Driver', 'Admin'],
                             callbackFunction: (val) {
@@ -173,45 +178,49 @@ class _RegisterViewState extends State<RegisterView> {
                             },
                           ),
                           if (role == "Driver") ... [
-                            const CustomLabel(icon: Icons.directions_car, text: " Vehicle Brand"),
-                            CustomTextFormField(
+                            SizedBox(height: context.secondaryHP),
+                            RegisterTextFormField(
                               key: const ValueKey("register-vehicleBrand"),
                               isHidden: false,
-                              hint: "Enter Your Vehicle Brand", 
-                              icon: Icons.arrow_right_alt,
+                              hint: "Enter your vehicle brand",
+                              label: "Vehicle Brand",
+                              prefixIcon: Icons.directions_car,
                               callbackFunction: (val) => setState(() => vehicleBrand = val),       
                             ),
-                            const CustomLabel(icon: Icons.color_lens, text: " Vehicle Color"),
-                            CustomTextFormField(
+                            SizedBox(height: context.secondaryHP),
+                            RegisterTextFormField(
                               key: const ValueKey("register-vehicleColor"),
                               isHidden: false,
-                              hint: "Enter Your Vehicle Brand", 
-                              icon: Icons.arrow_right_alt,
+                              hint: "Enter your vehicle color",
+                              label: "Vehicle Color",
+                              prefixIcon: Icons.color_lens,
                               callbackFunction: (val) => setState(() => vehicleColor = val),       
                             ),
-                            const CustomLabel(icon: Icons.numbers, text: " Plate Number:"),
-                            CustomTextFormField(
+                            SizedBox(height: context.secondaryHP),
+                            RegisterTextFormField(
                               key: const ValueKey("register-plateNumber"),
                               isHidden: false,
-                              hint: "Enter Your Vehicle Brand", 
-                              icon: Icons.arrow_right_alt,
+                              hint: "Enter your plate number",
+                              label: "Plate Number",
+                              prefixIcon: Icons.numbers,
                               callbackFunction: (val) => setState(() => plateNumber = val),       
                             ),
                           ],
-                          const SizedBox(height: 10,),
-                          CustomTextButton(
+                          SizedBox(height: context.secondaryHP),
+                          RegisterTextButton(
                             prompt: "Already have an account?", 
                             text: "Login Here", 
                             key: const ValueKey("authentication"), 
                             toggleView: widget.toggleView, 
                             size: 16,
                           ),
-                          CustomText(
+                          RegisterErrorMessage(
                             text: error,
                             color: Colors.red,
                             size: 14,
                           ),
-                          CustomButton(
+                          SizedBox(height: context.mainHP),
+                          RegisterButton(
                             text: "Register", 
                             key: const ValueKey("register"), 
                             // value: [email, password, firstName, lastName, role, phoneNum],
