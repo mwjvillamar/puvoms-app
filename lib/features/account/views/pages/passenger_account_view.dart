@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/features/queue/models/user_model.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/services/database.dart';
-import 'package:puvoms/widgets/custom_button_widget.dart';
-import 'package:puvoms/widgets/custom_label_widget.dart';
-import 'package:puvoms/constants/material_constant.dart';
-import 'package:puvoms/widgets/custom_accountitem_widget.dart';
+import 'package:puvoms/features/account/views/widgets/account_button_widget.dart';
+import 'package:puvoms/features/account/views/widgets/account_label_widget.dart';
+import 'package:puvoms/features/account/views/widgets/account_infoitem_widget.dart';
 
 class PassengerAccountView extends StatefulWidget {
   const PassengerAccountView({Key? key}) : super(key: key);
@@ -82,8 +82,8 @@ class _AccountViewState extends State<PassengerAccountView> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const CustomLabel(icon: Icons.person, text: 'Full Name:'),
-                                CustomAccountItem(
+                            const AccountLabel(icon: Icons.person, text: 'Full Name:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData.firstName} ${userData.lastName}",
                                   callbackFunction: (val){
@@ -94,8 +94,8 @@ class _AccountViewState extends State<PassengerAccountView> {
                                     });
                                   },
                                 ),
-                                const CustomLabel(icon: Icons.phone, text: 'Phone:'),
-                                CustomAccountItem(
+                                const AccountLabel(icon: Icons.phone, text: 'Phone:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData.phoneNum,
                                   callbackFunction: (val) {
@@ -108,7 +108,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                           ],
                         ),
                          const SizedBox(height: 10,),
-                            CustomButton(
+                            AccountButton(
                               text: "Save",
                               key: const ValueKey("account-save"),
                               value: {
@@ -120,7 +120,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                               // value: [user.uid, firstName, lastName, phoneNum, vehicleBrand, vehicleColor, plateNumber],
                               formState: _formKey.currentState,
                             ),
-                            CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid,)
+                            AccountButton(text: "Logout", key: const ValueKey("signout"), value: user.uid,)
                         ],
                       ),
                     ),
@@ -159,7 +159,7 @@ class _AccountViewState extends State<PassengerAccountView> {
                         const Center(child: Text("Hey Anon!", style: TextStyle(fontSize: 22),)),
                         const Center(child: Text("You are a Passenger", style: TextStyle(fontSize: 18),),),
                         const SizedBox(height: 10,),
-                        CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid,)
+                        AccountButton(text: "Logout", key: const ValueKey("signout"), value: user.uid,)
                       ],
                     ),
                   )

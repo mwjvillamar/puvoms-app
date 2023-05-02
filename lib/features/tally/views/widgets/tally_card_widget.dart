@@ -4,12 +4,12 @@ import 'package:puvoms/features/tally/views/pages/admin_calendar_view.dart';
 import 'package:puvoms/features/tally/views/pages/admin_payment_view.dart';
 import 'package:puvoms/features/tally//views/pages/admin_users_view.dart';
 
-class CustomCardButton extends StatelessWidget {
+class TallyCard extends StatelessWidget {
 
   final IconData icon;
   final String text;
 
-  const CustomCardButton({
+  const TallyCard({
     Key? key,
     required this.icon,
     required this.text,

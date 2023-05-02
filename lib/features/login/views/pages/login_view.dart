@@ -7,7 +7,6 @@ import 'package:puvoms/features/login/views/widgets/login_textformfield_widget.d
 import 'package:puvoms/features/login/views/widgets/login_button_widget.dart';
 import 'package:puvoms/features/login/views/widgets/login_textbutton_widget.dart';
 import 'package:puvoms/features/login/views/widgets/login_errormessage_widget.dart';
-import 'package:puvoms/widgets/custom_label_widget.dart';
 
 // WIDGET
 class LoginView extends StatefulWidget {

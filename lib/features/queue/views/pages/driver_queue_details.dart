@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 import 'package:puvoms/features/queue/models/queue_collection_model.dart';
 import 'package:puvoms/features/queue/models/vehicle_model.dart';
-import 'package:puvoms/widgets/custom_queueitem_widget.dart';
+import 'package:puvoms/features/queue/views/widgets/queue_infoitem_widget.dart';
 
 class DriverQueueDetails extends StatefulWidget {
   
@@ -35,44 +33,44 @@ class _DriverQueueDetailsState extends State<DriverQueueDetails> {
     return Column(
       children: [
         if (widget.queueValue?.inQueue == true) ...[
-          const CustomQueueItem(
+          const QueueInfoItem(
             icon: Icons.departure_board,
             text: 'Queue Status',
             value: "Queued",
           ),
         ] else ...[
-          const CustomQueueItem(
+          const QueueInfoItem(
             icon: Icons.departure_board,
             text: 'Queue Status',
             value: "Not Queued",
           ),
         ],
-        CustomQueueItem(
+        QueueInfoItem(
           icon: Icons.map,
           text: 'Passengers: ',
           value: widget.queueValue?.passengerCount.toString(),
         ),
-        CustomQueueItem(
+        QueueInfoItem(
           icon: Icons.directions_car,
           text: 'Model: ',
           value: widget.vehicleValue?.vehicleBrand,
         ),
-        CustomQueueItem(
+        QueueInfoItem(
           icon: Icons.color_lens,
           text: 'Color: ',
           value: widget.vehicleValue?.vehicleColor,
         ),
-        CustomQueueItem(
+        QueueInfoItem(
           icon: Icons.numbers,
           text: 'License No.: ',
           value: widget.vehicleValue?.plateNumber,
         ),
-        CustomQueueItem(
+        QueueInfoItem(
           icon: Icons.departure_board,
           text: 'Queue Start: ',
           // value: timeFormat,
         ),
-        CustomQueueItem(
+        QueueInfoItem(
           icon: Icons.departure_board,
           text: 'Estimated Time of Departure: ',
           // value: departFormat,

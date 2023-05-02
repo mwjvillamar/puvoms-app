@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CustomDropwdownButton extends StatefulWidget {
+class RegisterDropdown extends StatefulWidget {
   
   final List<String> list;
   final callbackFunction;
   
-  const CustomDropwdownButton({
+  const RegisterDropdown({
     Key? key,
     required this.list,
     this.callbackFunction
   }) : super(key: key);
 
   @override
-  State<CustomDropwdownButton> createState() => _CustomDropwdownButtonState();
+  State<RegisterDropdown> createState() => _RegisterDropdownState();
 }
 
-class _CustomDropwdownButtonState extends State<CustomDropwdownButton> {
+class _RegisterDropdownState extends State<RegisterDropdown> {
   
   
   @override

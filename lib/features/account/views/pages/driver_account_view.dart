@@ -4,10 +4,10 @@ import 'package:puvoms/features/queue/models/user_model.dart';
 import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/services/database.dart';
-import 'package:puvoms/widgets/custom_button_widget.dart';
-import 'package:puvoms/widgets/custom_label_widget.dart';
+import 'package:puvoms/features/account/views/widgets/account_button_widget.dart';
+import 'package:puvoms/features/account/views/widgets/account_label_widget.dart';
 import 'package:puvoms/constants/material_constant.dart';
-import 'package:puvoms/widgets/custom_accountitem_widget.dart';
+import 'package:puvoms/features/account/views/widgets/account_infoitem_widget.dart';
 
 class DriverAccountView extends StatefulWidget {
 
@@ -106,8 +106,8 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const CustomLabel(icon: Icons.person, text: 'Full Name:'),
-                                CustomAccountItem(
+                                const AccountLabel(icon: Icons.person, text: 'Full Name:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-name"),
                                   value: "${userData?.firstName} ${userData?.lastName}",
                                   callbackFunction: (val){
@@ -117,8 +117,8 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                     });
                                   },
                                 ),
-                                const CustomLabel(icon: Icons.phone, text: 'Phone:'),
-                                CustomAccountItem(
+                                const AccountLabel(icon: Icons.phone, text: 'Phone:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-phoneNum"),
                                   value: userData?.phoneNum,
                                   callbackFunction: (val) {
@@ -135,20 +135,20 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                                 //   icon: Icons.abc,
                                 //   callbackFunction: (val) => setState(() => phoneNum = val),
                                 // ),
-                                const CustomLabel(icon: Icons.directions_bus, text: 'Vehicle Brand:'),
-                                CustomAccountItem(
+                                const AccountLabel(icon: Icons.directions_bus, text: 'Vehicle Brand:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-vehicleBrand"),
                                   value: vehicleData?.vehicleBrand,
                                   callbackFunction: (val) => setState(() => vehicleBrand = val),
                                 ),
-                                const CustomLabel(icon: Icons.directions_bus, text: 'Vehicle Color:'),
-                                CustomAccountItem(
+                                const AccountLabel(icon: Icons.directions_bus, text: 'Vehicle Color:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-vehicleColor"),
                                   value: vehicleData?.vehicleColor,
                                   callbackFunction: (val) => setState(() => vehicleColor = val),
                                 ),
-                                const CustomLabel(icon: Icons.abc, text: 'Vehicle Plate Number:'),
-                                CustomAccountItem(
+                                const AccountLabel(icon: Icons.abc, text: 'Vehicle Plate Number:'),
+                                AccountInfoItem(
                                   key: const ValueKey("account-plateNumber"),
                                   value: vehicleData?.plateNumber,
                                   callbackFunction: (val) => setState(() => plateNumber = val),
@@ -156,7 +156,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                               ],
                             ),
                             SizedBox(height: context.secondaryHP),
-                            CustomButton(
+                            AccountButton(
                               text: "Save",
                               key: const ValueKey("driver-account-save"),
                               value: {
@@ -171,7 +171,7 @@ class _DriverAccountViewState extends State<DriverAccountView> {
                               // value: [user.uid, firstName, lastName, phoneNum, vehicleBrand, vehicleColor, plateNumber],
                               formState: _formKey.currentState,
                             ),
-                            CustomButton(text: "Logout", key: const ValueKey("signout"), value: user.uid)
+                            AccountButton(text: "Logout", key: const ValueKey("signout"), value: user.uid)
                           ],
                         ),
                       ),

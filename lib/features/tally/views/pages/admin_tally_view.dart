@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:puvoms/features/tally/views/pages/admin_tally_provider.dart';
 import 'package:puvoms/constants/material_constant.dart';
-import 'package:puvoms/widgets/custom_cardbutton_widget.dart';
+import 'package:puvoms/features/tally/views/widgets/tally_card_widget.dart';
 
 class AdminTallyView extends StatefulWidget {
   const AdminTallyView({Key? key}) : super(key: key);
@@ -89,8 +89,8 @@ class _AdminTallyViewState extends State<AdminTallyView> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: const[
-                            CustomCardButton(key: ValueKey("payments"), icon: Icons.payments, text: "Payments"),
-                            CustomCardButton(key: ValueKey("users"), icon: Icons.account_circle, text: "Users")
+                            TallyCard(key: ValueKey("payments"), icon: Icons.payments, text: "Payments"),
+                            TallyCard(key: ValueKey("users"), icon: Icons.account_circle, text: "Users")
                           ]
                       ),
                     ),
@@ -99,8 +99,8 @@ class _AdminTallyViewState extends State<AdminTallyView> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: const[
-                            CustomCardButton(key: ValueKey("calendar"), icon: Icons.calendar_month, text: "Calendar"),
-                            CustomCardButton(key: ValueKey("summary"), icon: Icons.summarize, text: "Summary"),
+                            TallyCard(key: ValueKey("calendar"), icon: Icons.calendar_month, text: "Calendar"),
+                            TallyCard(key: ValueKey("summary"), icon: Icons.summarize, text: "Summary"),
                           ]
                       ),
                     )

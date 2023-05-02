@@ -4,7 +4,7 @@ import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/features/queue/models/queue_collection_model.dart';
 import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
-import 'package:puvoms/widgets/custom_queuecard_widget.dart';
+import 'package:puvoms/features/queue/views/widgets/queue_card_widget.dart';
 
 class PassengerQueueList extends StatefulWidget {
   const PassengerQueueList({super.key});
@@ -38,7 +38,7 @@ class _PassengerQueueListState extends State<PassengerQueueList> {
           itemCount: queueList.length,
           itemBuilder: (context, index) {
             // return CustomQueueCard(value: queueList[index], vehicleData: vehicleList?[index],);
-            return CustomQueueCard(value: queueList[index], vehicleData: vehicleList?[index]);
+            return QueueCard(value: queueList[index], vehicleData: vehicleList?[index]);
           },
         );
       }

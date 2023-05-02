@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puvoms/features/queue/views/pages/driver_queue_details.dart';
 import 'package:puvoms/features/queue/models/queue_collection_model.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/features/queue/models/user_model.dart';
 import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
-import 'package:puvoms/widgets/custom_button_widget.dart';
-import 'package:puvoms/widgets/custom_queueitem_widget.dart';
+import 'package:puvoms/features/queue/views/widgets/queue_button_widget.dart';
+import 'package:puvoms/features/queue/views/widgets/queue_infoitem_widget.dart';
 
 class DriverQueueView extends StatefulWidget {
   const DriverQueueView({Key? key}) : super(key: key);
@@ -81,7 +80,7 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                     ),
                                   ),
                                   // SizedBox(height: context.mainHP),
-                                  CustomButton(
+                                  QueueButton(
                                     key: const ValueKey("queue-driver"),
                                     text: "Queue Driver + ${queueStatus?.inQueue}",
                                     // value: [user.uid, inQueue, userData?.firstName, userData?.lastName],
@@ -105,16 +104,16 @@ class _DriverQueueViewState extends State<DriverQueueView> {
                                     child: Column(
                                       children: [
                                         if (queueStatus?.inQueue == true) ... [
-                                          const CustomQueueItem(icon: Icons.departure_board, text: 'Queue Status', value: "Queued",),
+                                          const QueueInfoItem(icon: Icons.departure_board, text: 'Queue Status', value: "Queued",),
                                         ] else ... [
-                                          const CustomQueueItem(icon: Icons.departure_board, text: 'Queue Status', value: "Not Queued",),
+                                          const QueueInfoItem(icon: Icons.departure_board, text: 'Queue Status', value: "Not Queued",),
                                         ],
-                                        CustomQueueItem(icon: Icons.map, text: 'Passengers: ', value:  queueData?.passengerCount.toString(),),
-                                        CustomQueueItem(icon: Icons.directions_car, text: 'Model: ', value: vehicleData?.vehicleBrand,),
-                                        CustomQueueItem(icon: Icons.color_lens, text: 'Color: ', value: vehicleData?.vehicleColor,),
-                                        CustomQueueItem(icon: Icons.numbers, text: 'License No.: ', value: vehicleData?.plateNumber,),
-                                        CustomQueueItem(icon: Icons.departure_board, text: 'Queue Start: ', value: queueData?.queueStart.toString(),),
-                                        CustomQueueItem(icon: Icons.departure_board, text: 'Estimated Time of Departure: ', value: queueData?.queueStart.toString(),),
+                                        QueueInfoItem(icon: Icons.map, text: 'Passengers: ', value:  queueData?.passengerCount.toString(),),
+                                        QueueInfoItem(icon: Icons.directions_car, text: 'Model: ', value: vehicleData?.vehicleBrand,),
+                                        QueueInfoItem(icon: Icons.color_lens, text: 'Color: ', value: vehicleData?.vehicleColor,),
+                                        QueueInfoItem(icon: Icons.numbers, text: 'License No.: ', value: vehicleData?.plateNumber,),
+                                        QueueInfoItem(icon: Icons.departure_board, text: 'Queue Start: ', value: queueData?.queueStart.toString(),),
+                                        QueueInfoItem(icon: Icons.departure_board, text: 'Estimated Time of Departure: ', value: queueData?.queueStart.toString(),),
                                       ],
                                     ),
                                     // child: DriverQueueDetails(queueValue: queueData, vehicleValue: vehicleData,),

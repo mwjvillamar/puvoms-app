@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomLabel extends StatelessWidget {
+class AccountLabel extends StatelessWidget {
 
   final IconData icon;
   final String text;
 
-  const CustomLabel({
+  const AccountLabel({
     Key? key,
     required this.icon,
     required this.text,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/constants/material_constant.dart';
 
-class CustomAccountItem extends StatefulWidget {
+class AccountInfoItem extends StatefulWidget {
   final value;
   final callbackFunction;
 
-  const CustomAccountItem({Key? key, this.value, this.callbackFunction})
+  const AccountInfoItem({Key? key, this.value, this.callbackFunction})
       : super(key: key);
 
   @override
-  State<CustomAccountItem> createState() => _CustomAccountItemState();
+  State<AccountInfoItem> createState() => _AccountInfoItemState();
 }
 
-class _CustomAccountItemState extends State<CustomAccountItem> {
+class _AccountInfoItemState extends State<AccountInfoItem> {
   bool isEditing = false;
 
   @override

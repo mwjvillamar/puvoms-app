@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:puvoms/constants/material_constant.dart';
 
-class CustomPaymentCard extends StatefulWidget {
-  const CustomPaymentCard({Key? key}) : super(key: key);
+class PaymentCard extends StatefulWidget {
+  const PaymentCard({Key? key}) : super(key: key);
 
   @override
-  State<CustomPaymentCard> createState() => _CustomPaymentCardState();
+  State<PaymentCard> createState() => _PaymentCardState();
 }
 
-class _CustomPaymentCardState extends State<CustomPaymentCard> {
+class _PaymentCardState extends State<PaymentCard> {
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/services/database.dart';
 
-class CustomButton extends StatelessWidget {
+class AccountButton extends StatelessWidget {
   
   //FIREBASE VARIABLES
   //_ means private variable
@@ -10,24 +10,19 @@ class CustomButton extends StatelessWidget {
 
   // final Function function;
   final String text;
-  
   final value;
   final callbackFunction;
   final loadingFunction;
-  
   final testValue;
-  
   final formState;
   
-  CustomButton({
+  AccountButton({
     Key? key,
     // required this.function,
     required this.text,
     this.value,
     this.testValue,
-    
     this.formState,
-    
     this.callbackFunction,
     this.loadingFunction,
     

@@ -7,22 +7,22 @@ import 'package:puvoms/features/queue/models/user_model.dart';
 import 'package:puvoms/features/queue/models/vehicle_model.dart';
 import 'package:puvoms/services/database.dart';
 
-class CustomQueueCard extends StatefulWidget {
+class QueueCard extends StatefulWidget {
   
   final QueueCollection? value;
   final VehicleCollection? vehicleData;
   
-  const CustomQueueCard({
+  const QueueCard({
     Key? key,
     this.value,
     this.vehicleData
   }) : super(key: key);
 
   @override
-  State<CustomQueueCard> createState() => _CustomQueueCardState();
+  State<QueueCard> createState() => _QueueCardState();
 }
 
-class _CustomQueueCardState extends State<CustomQueueCard> {
+class _QueueCardState extends State<QueueCard> {
   @override
   Widget build(BuildContext context) {
     

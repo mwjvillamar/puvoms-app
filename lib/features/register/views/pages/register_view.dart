@@ -3,12 +3,11 @@ import 'package:flutter/rendering.dart';
 import 'package:puvoms/constants/material_constant.dart';
 import 'package:puvoms/services/auth.dart';
 import 'package:puvoms/shared/load_view.dart';
-import 'package:puvoms/widgets/custom_dropdown_widget.dart';
 import 'package:puvoms/features/register/views/widgets/register_textformfield_widget.dart';
 import 'package:puvoms/features/register/views/widgets/register_button_widget.dart';
 import 'package:puvoms/features/register/views/widgets/register_textbutton_widget.dart';
 import 'package:puvoms/features/register/views/widgets/register_errormessage_widget.dart';
-import 'package:puvoms/widgets/custom_label_widget.dart';
+import 'package:puvoms/features/register/views/widgets/register_dropdown_widget.dart';
 
 class RegisterView extends StatefulWidget {
   
@@ -144,7 +143,7 @@ class _RegisterViewState extends State<RegisterView> {
                             isHidden: false,
                             hint: "Enter your e-mail",
                             label: "E-mail",
-                            prefixIcon: Icons.account_circle,
+                            prefixIcon: Icons.email,
                             callbackFunction: (val) => setState(() => email = val),
                           ),
                           SizedBox(height: context.secondaryHP),
@@ -168,7 +167,7 @@ class _RegisterViewState extends State<RegisterView> {
                             validator: (val) => val! != password ? "Does not Match password" : null,
                           ),
                           SizedBox(height: context.secondaryHP),
-                          CustomDropwdownButton(
+                          RegisterDropdown(
                             list: const ['Passenger', 'Driver', 'Admin'],
                             callbackFunction: (val) {
                               setState(() {

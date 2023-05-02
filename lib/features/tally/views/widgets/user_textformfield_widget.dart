@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatefulWidget {
+class UserTextFormField extends StatefulWidget {
 
   final String hint;
   final IconData icon;
@@ -13,7 +13,7 @@ class CustomTextFormField extends StatefulWidget {
   
   final callbackFunction;
 
-  const CustomTextFormField({
+  const UserTextFormField({
     Key? key,
     
     required this.isHidden,
@@ -27,10 +27,10 @@ class CustomTextFormField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFieldState();
+  State<UserTextFormField> createState() => _CustomTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextFormField> {
+class _CustomTextFieldState extends State<UserTextFormField> {
   
   validateMobile(String value) {
     String pattern = r'(^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4,6}$)';
