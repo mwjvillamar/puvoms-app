@@ -155,47 +155,38 @@ class _DriverGeolocationViewState extends State<DriverGeolocationView> {
 
     // TODO: implement build
 
-    return FutureBuilder(
-        future: data,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return StreamBuilder<UserData>(
-                stream: DatabaseService(uid: user!.uid).userData,
-                builder: (context, snapshot2) {
-                  if (snapshot2.hasData) {
-                    UserData? userData = snapshot2.data;
-                    var firstName = userData?.firstName;
-                    var lastName = userData?.lastName;
-                    return GoogleMap(
-                      onTap: (argument) {
-                        debugPrint(snapshot.toString());
-                      },
-                      mapType: MapType.normal,
-                      markers: markers,
-                      polylines: polylines,
-                      onMapCreated: (GoogleMapController controller) async {
-                        showPolylinesOnMap();
-                        showMarkersOnMap();
-                        await DatabaseService(uid: user.uid).createCoordinate(
-                            user.uid!,
-                            "$firstName $lastName",
-                            currentLocation.latitude,
-                            currentLocation.longitude,
-                            false);
-                      },
-                      initialCameraPosition: CameraPosition(
-                        target: setInitialLocation(),
-                        //cant wait for change in value so it gets initial value
-                        zoom: 16,
-                      ),
-                    );
-                  } else {
-                    return const LoadView();
-                  }
-                });
+    return StreamBuilder<UserData>(
+        stream: DatabaseService(uid: user!.uid).userData,
+        builder: (context, snapshot2) {
+          if (snapshot2.hasData) {
+            UserData? userData = snapshot2.data;
+            var firstName = userData?.firstName;
+            var lastName = userData?.lastName;
+            return GoogleMap(
+              onTap: (argument) {},
+              mapType: MapType.normal,
+              markers: markers,
+              polylines: polylines,
+              onMapCreated: (GoogleMapController controller) async {
+                showPolylinesOnMap();
+                showMarkersOnMap();
+                await DatabaseService(uid: user.uid).createCoordinate(
+                    user.uid!,
+                    "$firstName $lastName",
+                    currentLocation.latitude,
+                    currentLocation.longitude,
+                    false);
+              },
+              initialCameraPosition: CameraPosition(
+                target: setInitialLocation(),
+                //cant wait for change in value so it gets initial value
+                zoom: 16,
+              ),
+            );
           } else {
             return const LoadView();
           }
-        });
+        }
+    );
   }
 }
